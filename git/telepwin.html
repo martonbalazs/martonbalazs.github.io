@@ -1,0 +1,57 @@
+<!-- 2013.08.28 -->
+<HTML><HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+<link href="main.css" rel="stylesheet" type="text/css">
+<TITLE> Git gyorstalpaló </TITLE></HEAD>
+<body bgcolor="FFFACD">
+<h1><p align=center>Git gyorstalpaló</p></h1>
+<p class="null">
+ <span class="nonu"><a href="miagit.html">&gt; <b>Mi is az a Git?</b></a></span><br>
+ <br>
+ <span class="nonu"><a href="index.html">&or;</a></span> <b>Telepítés</b><br>
+</p>
+<p class="egy">
+ <span class="nonu"><a href="telep.html">&or;</a></span> <b>Windowsra</b><br>
+</p>
+<p class="ket">
+ Windowsra először a <a href="http://code.google.com/p/msysgit/" target="_blank">Msysgit</a>-et telepítsük: <a href="http://code.google.com/p/msysgit/downloads/list" target="_blank">itt a letöltések oldala</a>, amiből a "Full installer for official Git" verzió kell, jelenleg épp az első sor. A szokásos installálós ablakokon vegig kell menni, és egy ponton fog ilyet kérdezni, hogy<br>
+ <br>
+ <b>- Use Git Bash only</b><br>
+ <b>- Run Git from the Windows Command Promt</b><br>
+ <b>- Run Git and included Unix tools from the Windows Command Promt</b><br>
+ <br>
+ Nem teljesen értem ez miről szól, de a második opcióra azt mondják biztonságos, az elsőre meg azt, hogy az még kevés lesz, szóval én otthon a másodikat próbáltam ki. Ezután olyat is kérdez, hogy<br>
+ <br>
+ <b>- Checkout Windows-style, commit Unix-style line endings</b><br>
+ <b>- Checkout as-is, commit Unix style line endings</b><br>
+ <b>- Checkout as-is, commit as-is</b><br>
+ <br>
+ Én és ő is az elsőt javasoljuk. (A dolog mögött az van, hogy Linuxban és Windowsban más a sortörés, és azt hiszem, az első fogja a legkevesebb gondot okozni.)<br>
+<!--
+Ezután ha olyat is kérdez, hogy<br>
+ <br>
+ <b>- Use OpenSSH</b><br>
+ <b>- Use PLink</b><br>
+ <br>
+ erre mondjuk azt, hogy OpenSSH.
+-->
+<br>
+ Telepítés, telepítés, ... ha minden igaz, a végén létrejött az asztalon egy "Git Bash" nevű ikon. Ha nincs mellette egy "Git Gui" ikon is, akkor a Start menüben keressük meg a programok között a Git könyvtárat, és onnan kihúzhatjuk a "Git Gui" ikont az asztalra. Ezzel megvagyunk a Git és a Git Gui telepítésével (használatot lásd lejjebb). Megjegyzés: alapból az Intézet Octopus nevű szerverén csak a Start menüben van a Git, de persze kihúzhatjuk az Asztalra.<br> 
+ <br>
+ Most telepítjük a Git Extensions-t <a href="http://sourceforge.net/projects/gitextensions/" target="_blank">innen</a>. Szokásosan telepítő (egy msi kiterjesztésű file) letölt, megnyit és futtat. Gondolom a legtöbb gépre a 32 bites opció kell. Ha több user van a Windowsra, gondolom mindenki használhatja a progit (ezt is kérdezi). Fog olyat kérdezni, hogy Shell extension, ez maradjon, és Visual Studio plugin, aki érti mi ez gondolom beikszelheti, nekem nincs Visual Studiom otthon. Ezután megkérdezi, hogy mi legyen az SSH kliens:<br>
+ <br>
+ <b>- OpenSSH</b><br>
+ <b>- Putty (plink.exe)</b><br>
+ <br>
+ Tudom, hogy legtöbben a Puttyot ismerik, de NE a Puttyot válasszuk itt, hanem az OpenSSH-t. (Ettől még a Puttyot ugyanúgy használhatja mindenki mint eddig, a Git Extensions viszont az OpenSSH-val működik együtt jól. Ha véletlenül mégis a Putty-ot nyomtuk rá, később a beállításoknál vissza lehet állítani OpenSSH-ra.) Aztán megkérdezi, kell-e az Msysgit, de azt már feltettük az előző körben, úgyhogy ne tegye fel még egyszer. KDiff3-ra is rákérdez, az jöhet. További standard kérdések ... a KDiff3 is kérdez ezt-azt ... telepítés kész, Start menüben programok közt ott kell lennie, hogy Git Extensions, és nekem egy Git Extensions nevű tehenet is kirakott az Asztalra. Az Intézet Octopus nevű szerverén nincs tehén, csak a Start menüben van a Git Extensions.
+</p>
+<p class="egy">
+ <span class="nonu"><a href="teleplin.html">&gt; <b>Linuxra</b></a></span><br>
+</p>
+<p class="null">
+ <span class="nonu"><a href="hasznal.html">&gt; <b>Használat (alapok)</b></a></span><br>
+ <br>
+ <span class="nonu"><a href="gitosis.html">&gt; <b>Központi ssh repository telepítése</b></a></span> (elsősorban az ssh Git <i>Szerver</i> üzemeltetőjének szól)<br>
+</p>
+</body>
+</HTML>

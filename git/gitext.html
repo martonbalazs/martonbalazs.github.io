@@ -1,0 +1,314 @@
+<!-- 2013.08.28 -->
+<HTML><HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+<link href="main.css" rel="stylesheet" type="text/css">
+<TITLE> Git gyorstalpaló </TITLE></HEAD>
+<body bgcolor="FFFACD">
+<h1><p align=center>Git gyorstalpaló</p></h1>
+<p class="null">
+ <span class="nonu"><a href="miagit.html">&gt; <b>Mi is az a Git?</b></a></span><br>
+ <br>
+ <span class="nonu"><a href="telep.html">&gt; <b>Telepítés</b></a></span><br>
+ <br>
+ <span class="nonu"><a href="index.html">&or;</a></span> <b>Használat (alapok)</b><br>
+</p>
+<p class="egy">
+ <span class="nonu"><a href="hasznal.html">&or;</a></span> <b>Git Extensions</b><br>
+</p>
+<p class="ket">
+ A Git Extensions egy grafikus felület Windowsban a Githez, okosabb, mint a Git Gui alább, úgyhogy aki ezt használja annak a Git Guit és a parancsoros leírást alább nem kell elolvasni. Először nézzük meg, hogy hogyan hozunk létre új repót. Hozzunk létre valahol egy <i>sajat</i> nevű könyvtárat, tegyünk vagy írjunk bele egy filet. (Ékezetet semilyen filenévben és felhasználónévben sem célszerű használni. :-) ) A Git Extensions elvileg már az Asztalon van (tehén), ha mégsem, a Start menüben ott kell lennie. Kezdő felületén először a<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Settings --&gt; Settings
+   </td>
+  </tr>
+ </table>
+ <br>
+ menüben csupa zöld csíkot kell látnunk. Ha valami piros szereljük meg, nekem otthon rögtön minden zöld volt. Megjegyzés az Intézet Octopus nevű szerveréhez: első indításkor nem találja a Git programokat, mert ezek nem a szokásos helyekre lettek telepítve, hanem:<br>
+ <br>
+ <table>
+  <tr>
+   <td align="left">
+    - Git:
+   </td>
+   <td align="left">
+    <i>C:\Program Files (x86)\main\Git\bin\git.exe</i>
+   </td>
+  </tr>
+  <tr>
+   <td align="left">
+    - KDiff3:
+   </td>
+   <td align="left">
+    <i>C:\Program Files (x86)\main\KDiff3\kdiff3.exe</i>
+   </td>
+  </tr>
+ </table>
+ <br>
+ Ezen kívül az Octopuson egy <i>shell extensions</i> tartalmú csík piros marad, de ez úgy tűnt nem okoz problémát.<br>
+ <br>
+ Ezután a<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Global settings
+   </td>
+  </tr>
+ </table>
+ <br>
+ fülben ellenőrizzük, hogy a nevünk és email címünk jól van-e beírva, ha nem, javítsuk. A Settings bezárása után klikkeljünk oda, hogy<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Create new repository
+   </td>
+  </tr>
+ </table>
+ <br>
+ adjuk meg az előbb létrehozott <i>sajat</i> könyvtárat, és legyen ez egy <i>Personal repository</i> (és nem <i>Central</i>). Ekkor létrjön a könyvtárunkban egy <i>.git</i> adatbázis, amiben még nincsen benne a fileunk. Nekem egy zöld nyíl keringett körbekörbe amíg rá nem klikkeltem, hogy <i>Refresh</i> (két zöld görbe nyilacska) a bal felső sarokban. Ezután egy szürkés ablak jön fel egy <i>Edit .gitignore</i> és egy <i>Commit</i> gombbal. Az előzőt egyelőre hagyjuk, klikkeljük a<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Commit
+   </td>
+  </tr>
+ </table>
+ <br>
+ gombra. Ez felhoz egy ablakot a fileunkkal. Nyomjuk meg, hogy<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Stage
+   </td>
+  </tr>
+ </table>
+ <br>
+ ezzel ajánlottuk a filet a Git figyelmébe. Ezután a jobb alsó részbe írjunk valami olyasmit, hogy "Elso commit". Humanitárius okokból itt ne használjunk ékezeteket. :-) Majd alul klikkeljünk rá a<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    [zöld pipa] Commit
+   </td>
+  </tr>
+ </table>
+ <br>
+ gombra. Ezzel a változások / az új fileunk bekerült a Git (egylőre csak helyi) adatbázisába. (Megjegyzés: meg lehet mondani a Git-nek, hogy bizonyos fileok engem sosem érdekelnek, erre való a <i>.gitignore</i> file, részleteket tud a Google.)
+ <!--
+ <a href="http://book.git-scm.com/4_ignoring_files.html" target="_blank">itt</a>.)
+ -->
+ <br>
+ <br>
+ Mielőtt megnézzük mi mást tud a Git, itt van a másik módszer egy repó létrehozására: klónozunk egyet egy központi <i>Szerver</i> nevű gépen levő repónkról. Ezt csak akkor csináljuk, amikor legelőször hozzuk le a repót, és még nincs saját másolatunk. Csukjuk be a Git Extensiont, és nyissuk ki újra. Mi a <i>Szerver</i>ről ssh-n keresztül fogjuk hozni-vinni a cuccainkat, ezért ezt írom le (de megjegyzésképp a Git működik http-n, rsync-en, és egy saját git protokollján keresztül is). Az elején most klikk oda, hogy<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Clone repository
+   </td>
+  </tr>
+ </table>
+ <br>
+ Megkérdezi honnan, hát innen:<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    projfelh@valami.szerver.hu:proba
+   </td>
+  </tr>
+ </table>
+ <br>
+ a <i>Destination</i> pedig legyen egy létező könyvtár, melynek végére odaírjuk, hogy <i>proba</i>, legyen Personal repó. Utána nyissuk meg (felajánlja).<br>
+<br>
+A fő ablakban a repó történelmét láthatjuk, alatta a három fül: <i>Commit</i>, <i>File tree</i>, <i>Diff</i> további infókat ad a repóról. Változtassuk most meg valamelyik fileunkat, majd klikk oda felül, hogy<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    [zöld pipa] Commit
+   </td>
+  </tr>
+ </table>
+ <br>
+ A felugró ablakban látjuk a változásokat,<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Stage
+   </td>
+  </tr>
+ </table>
+ <br>
+ árhúzza a file(okat) az alsó <i>Staged files</i> ablakba, írjunk commit megjegyzést, majd alul<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    [zöld pipa] Commit
+   </td>
+  </tr>
+ </table>
+ <br>
+ Most a megváltozott adatbázisunkat szeretnénk visszatölteni a <i>Szerver</i>re. Ha klónozással szereztük az adatbázist, akkor ehhez csak a fent található<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    kék &uarr; felnyílra (Push)
+   </td>
+  </tr>
+ </table>
+ <br>
+ kell kattintani. Ha viszont új <i>sajat</i> nevű repót hoztunk létre, akkor emailben el kell küldeni a nevét annak, aki a <i>Szerver</i>en a <i>projfelh</i> felhasználót kezeli, hogy tudathassa a <i>Szerver</i>rel, hogy lesz egy ilyen új adatbázis rajta. Ha tudatta vele, akkor a következőket kell tenni:<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    kék &uarr; felnyíl (Push)
+   </td>
+  </tr>
+  <tr>
+   <td>
+    Remote: projfelh@valami.szerver.hu:sajat
+   </td>
+  </tr>
+ </table>
+ <br>
+ majd <i>Push</i>. Ekkor ha minden jól ment feltettük a repónkat a <i>Szerver</i>re. Érdemes a <i>Push</i> menüben a<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Manage remotes
+   </td>
+  </tr>
+ </table>
+ <br>
+ ablakba egy nevet adni a fenti projfelh@valami.szerver.hu:sajat címnek, hogy ne kelljen mindig beírni.<br>
+ <br>
+ Ha ezután valamikor máskor dolgozni szeretnénk mondjuk a <i>proba</i> projecten, akkor (ha épp nincs meg a könyvtárunk benne a <i>./git</i> adatbázissal, klónozzuk, lásd fent, ha pedig megvan, akkor)<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    kék &darr; lenyíl (Pull) --&gt; Manage remotes --&gt; Remote repositories
+   </td>
+  </tr>
+ </table>
+ <br>
+ alatt adhatunk egy nevet a repónak, és érdemes a<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Default pull behaviour
+   </td>
+  </tr>
+ </table>
+ <br>
+ fülben elérni, hogy a <i>Local branch name</i> és a <i>Default merge with</i> is legyen master. Fontos még, hogy a <i>Pull</i> menüben a<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Remote branch
+   </td>
+  </tr>
+ </table>
+ <br>
+ is legyen a master, és legyen a pont ott, hogy <i>Merge remote branch to current branch</i>. Ezután ha minden jól megy, <i>Pull</i> frissíti a repónkat.
+ Ha sokan piszkálták egyszerre a <i>proba</i> könyvtárat és fel-le töltögettek a központi adatbázisba, a Git legtöbbször olyankor is tudja frissíteni a saját könyvtárunkat (pull) vagy a központi könyvtárat (push), kitalálja hogyan egyesítse a változásokat. Ha ez mégsem sikerülne, Google segít (<i>branching and merging</i>).
+ <!--
+ klikk <a href="http://book.git-scm.com/3_basic_branching_and_merging.html" target="_blank">ide</a>, <a href="http://book.git-scm.com/3_distributed_workflows.html" target="_blank">ide</a> vagy <a href="http://book.git-scm.com/5_advanced_branching_and_merging.html" target="_blank">ide</a>.
+ -->
+ <br>
+ <br>
+ <br>
+ <b>Verziókezelés.</b> A <i>Diff</i> fül mindeközben megmutatja mi változott az egyes verziók között. Ha egy korábbi verzió érdekel minket,<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Commands --&gt; Checkout revision
+   </td>
+  </tr>
+ </table>
+ <br>
+ a könyvtárunkban visszaállítja a megfelelő korábbi állapotot. Ne ijedjünk meg, nem vesztettük el amit azóta írtunk, egy<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    [kék ceruza] --&gt; Local branch --&gt; master
+   </td>
+  </tr>
+ </table>
+ <br>
+ visszaállítja a legutóbb <i>commit</i>olt verziót a könyvtárunkban.<br>
+ <br>
+ <br>
+ <b>Elágazás.</b> Tegyük fel, hogy kipróbálnánk valamit, de nem vagyunk biztosak benne, hogy jó lesz a vége. Ekkor elágazhatunk:<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Commands --&gt; Create branch
+   </td>
+  </tr>
+ </table>
+ <br>
+ egy új ágat csinál, és aztán a kék ceruzával lehet váltogatni az ágak között. A fileok könyvtárunkban mindig megfelelően változnak. Lehet szerkeszteni, <i>stage</i>-elni és <i>commit</i>olni ahogy eddig, bármelyik ágban, <i>push</i>olni is lehet, közben figyeljünk, hogy melyik ágat melyikbe nyomjuk. Ha írtuk kicsit a kísérleti ágat, esetleg a fő ágat is, és a kísérlet jól sikerült, akkor beolvaszthatjuk a fő ágba: váltsunk a fő ágba, majd<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Commands --&gt; Merge branches
+   </td>
+  </tr>
+ </table>
+ <br>
+ Ha a merge mégsem sikerülne, Google segít (<i>branching and merging</i>).
+ <!--klikk <a href="http://book.git-scm.com/3_basic_branching_and_merging.html" target="_blank">ide</a>, <a href="http://book.git-scm.com/3_distributed_workflows.html" target="_blank">ide</a> vagy <a href="http://book.git-scm.com/5_advanced_branching_and_merging.html" target="_blank">ide</a>. Sikeres merge után a kísérleti ágat kitörölhetjük:-->
+ <br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Commands --&gt; Delete branch
+   </td>
+  </tr>
+ </table>
+ <br>
+ <br>
+ <b>Tisztítás / tömörítés.</b> Előfordulhat, hogy a <i>.git</i> könyvtárunk túl nagyra nőtt, vagy már felesleges objektumokat tartalmaz. (Ez ténylegesen meg is történik, ha különböző gépeken tárolt <i>.git</i> könyvtárakat a Git tudtán kívül szinkronizálunk.) Ezen segít egy tömörítés/tisztítás:<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Settings --&gt; Git maintenance --&gt; Compress git database
+   </td>
+  </tr>
+ </table>
+ <br>
+ Elkerülendő a &quot;Jaj mégsem kellett volna kitörölnöm&quot; problémákat olyan <i>.git</i>-beli objektumokkal amiket amúgy a Git a hatóköréből már kiiktatott, a fenti klikk csak a két hétnél régebbi <b>és</b> a Git adatbázisában már feleslegessé vált objektumokat törli. (Tehát nem a két hétnél regebbi verziókat, azok természetesen megmaradnak ezután is.) Ez a klikk a <i>git gc</i> utasítást adja ki, melyről további részletek <a href="http://stackoverflow.com/questions/1904860/how-to-remove-unreferenced-blobs-from-my-git-repo" target="_blank">itt</a>.<br>
+ <br>
+ További olvasnivaló: <a href="http://book.git-scm.com/index.html" target="_blank">Git könyv</a> (az első fejezet ijesztő, de nem kell); <a href="http://www.hackido.com/2010/01/installing-git-on-server-ubuntu-or.html" target="_blank">privát ssh repo</a>.
+</p>
+<p class="egy">
+ <span class="nonu"><a href="gitgui.html">&gt; <b>Git Gui</b></a></span><br>
+ <br>
+ <span class="nonu"><a href="gitcml.html">&gt; <b>Parancssorból</b></a></span><br>
+</p>
+<p class="null">
+ <span class="nonu"><a href="gitosis.html">&gt; <b>Központi ssh repository telepítése</b></a></span> (elsősorban az ssh Git <i>Szerver</i> üzemeltetőjének szól)<br>
+</p>
+</body>
+</HTML>

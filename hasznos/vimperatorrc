@@ -1,0 +1,10 @@
+:set! browser.startup.page=0
+set editor='xterm -e vim'
+set act=homepage,quickmark,paste
+set stal=1
+set go=
+set ssli=2
+:set autocomplete=false
+:set! browser.tabs.closeWindowWithLastTab=false
+:set gui=none
+:set gui=tabs

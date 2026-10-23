@@ -1,0 +1,826 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<STYLE TYPE="text/css">
+.red
+{
+color:FF3030
+}
+</STYLE>
+<TITLE>Martingale Theory with Applications, Autumn 2022</TITLE>
+</HEAD>
+<!--
+<body bgcolor="FFFACD">
+ -->
+<body bgcolor="008080">
+<h2><p align=center>Martingale Theory with Applications, Autumn 2022</p></h2>
+<p align=center>MATH30027, MATHM0045</p>
+<!--
+<h2><p align=center style="color:red">Page under construction, don't rely on it yet!</p></h2>
+<h3><p align="center"><i>This unit will run face-to-face.</i></p></h3>
+-->
+<br>&nbsp;
+<table align=center>
+<tr><td align=right><a href="http://www.maths.bris.ac.uk/~mb13434/" target="_blank">Márton Balázs</a></td><td></td><td></td></tr>
+<tr><td align=right><b>Email:</b></td><td></td><td>m.balazs@our_city.ac.countrycode</td></tr>
+<tr><td align=right><b>Tel:</b></td><td></td><td>+44 (0) 117 4557958</td></tr>
+<tr><td align=right><b>Office:</b></td><td></td><td>Fry 1.44</td></tr>
+<tr><td align=right><b>Drop in Sessions:</b></td><td>&nbsp;</td><td>Wednesdays 13:30 - 14:30, 1.44 Fry on teaching weeks.</td></tr>
+<tr><td align=right><b>Support Sessions:</b></td><td>&nbsp;</td><td>From the second week by Ettore Fincato, see your timetables.</td></tr>
+<tr><td align=right><b>Q&amp;A Session:</b></td><td>&nbsp;</td><td>Friday 6<sup>th</sup> January, 11:00am, see Blackboard for Zoom link. <i>Prepare with questions.</i></td></tr>
+<!--
+<tr><td align=right><b>Math caf&eacute;s:</b></td><td>&nbsp;</td><td><i>Send me an email to set up an appointment.</i><i>To be announced soon.</i>Mondays 11:00am - 12:00pm on Weeks 2-6, Zoom</td></tr>
+<tr><td></td><td></td><td>Extra drop-in session: Tuesday 14<sup>th</sup> December, 11:00, <strong>G.10</strong>.</td></tr>
+<tr><td align=right><b>Support Sessions:</b></td><td>&nbsp;</td><td>Mondays 16:00 - 17:00 (online with Ziyang Liu, see Zoom link on Blackboard) on weeks 4-6 and 8-12.</td></tr>
+<tr><td></td><td colspan=2><i>Zoom meeting links will be announed on Blackboard and emailed to you a few days in advance.</i></td></tr>
+<tr><td></td><td></td><td><i>except for the 8th of March, which is cancelled.</i></td></tr>
+-->
+</table>
+<br>&nbsp;
+<br>&nbsp;
+<table align=center><tr><td>
+<ul>
+ <!--
+ <li>The <a href="intro_mt20z.pdf" target="_blank">slides from the intro Zoom session</a>.
+<br>&nbsp;
+ -->
+<li>The <a href="https://www.bris.ac.uk/unit-programme-catalogue/UnitDetails.jsa?ayrCode=22%2F23&unitCode=MATH30027" target="_blank">unit description for level H/6</a>, including assessment methods, texts, syllabus.
+<br>&nbsp;
+<li>The <a href="https://www.bris.ac.uk/unit-programme-catalogue/UnitDetails.jsa?ayrCode=22%2F23&unitCode=MATHM0045" target="_blank">unit description for level M/7</a>, including assessment methods, texts, syllabus.
+<br>&nbsp;
+<li>This unit will happen face-to-face, and you are expected to follow lectures in the classroom. Nevertheless, I will link YouTube videos from previous years on most <b>but not all</b> of the material, see the column "Past videos" in the table. I hope YouTube works for everyone interested, let me know otherwise.
+ <!--
+<br>&nbsp;
+<li>Calculators are <b>not</b> allowed in the examination.
+ -->
+<br>&nbsp;
+<li>I will assume familiarity with the following concepts from calculus and analysis, but of course I'm happy to discuss these outside class:
+ <ul>
+  <li> basic properties, derivatives and integrals of elementary functions like polynomials, exponential, logarithm, trigonometric and some hyperbolic functions
+  <li> the definition of limit, liminf and limsup of real-valued sequences
+  <li> that monotone sequences have limits
+  <li> the definition of a Cauchy sequence and that these are convergent in &Ropf;
+  <li> that 1/n<sup>p</sup> is summable for p&gt;1 but not for p&le;1, and the analogous statement for integrals
+  <li> that exponentials converge/diverge faster than any polynomial
+  <li> the triangle inequality for absolute value
+  <li> the way to find maxima and minima of smooth real to real functions
+  <li> the Heine–Cantor theorem on uniform continuity of continuous real-valued functions on a closed and bounded real interval
+ </ul>
+<br>&nbsp;
+<li><a href="mart_thy_notes.pdf" target="_blank">Lecture notes</a> (last modified: 10 Dec 2022). Please send me comments (e.g., typos). Most of these notes are based on A.N. Shyriaev: Probability (Second Edition, Springer) and D. Williams: Probability with Martingales (Cambridge University Press) which you can take a look into yourself. These latter are however advisory, examinable is what is featured in lectures.
+<!--
+<br>&nbsp;
+<li><a href="normal-table.pdf" target="_blank">The standard normal distribution</a> in pdf. You will be given a similar table on the exam.
+-->
+<br>&nbsp;
+<li><a href="prob1_and_beyond.html" target="_blank">Extended slides/notes of elementary probability</a>. Some of it can be used as reference and refreshment for parts of the Probability 1 and Advanced Probability 2 units. We will not touch most of this material in class. Please notice that these links are <b>by no means meant to fully cover our material</b>, nor will all parts of all of them be assessed. They rather serve as background reading. (They were actually part of lecture notes for a rather strong first probability unit I used to teach before.)
+<!--
+<br>&nbsp;
+<li> A mock exam with solutions is now available on Blackboard. Disclaimer: no two exams are the same, this is just to show you some possible style of how our exam could look like. The topics and difficulty of the questions might vary. Concentrating on past and mock exams is in general NOT a good way of preparation.
+-->
+<br>&nbsp;
+<li> Remark on the assessments: there will be no distinction between levels H/6 and M/7 regarding homeworks. Six homework sets will be assigned, see the schedule below. Please note, these qualify as <i>progress check</i>, meaning <b>no late submissions will be accepted</b>. My marking deadline is one week after the respective due dates. From each of these, you can collect 17 homework marks. Your final mark will be weighted as 20% -- 80% homework mark -- exam mark.
+<br>&nbsp;
+<li> A few more remarks on the exam: for both levels, final examination will be 2½-hour long, will consist of four questions each of which will be used for assessment. The exams at levels H/6 and M/7 will have cca. 80% overlap. Calculators of an approved type, as well as four sheets of A4 notes written double-sided can be brought into the examination. Past exams, one with solutions, are to be found on the Blackboard page <i>Resources for students</i> &rarr; <i>Examinations</i>.
+<br>&nbsp;
+<li>I came across <a href="https://www.youtube.com/watch?v=LKnqECcg6Gw" target="_blank">this illustration</a> of Jensen's inequality: square-root of the average &ne; average of the square-root.
+</ul>
+</td></tr></table>
+<p align="center">
+ Below is a detailed schedule. Topics of future events are plans, and can change. Topics of past events serve as log.<br>
+ <br>
+ Homeworks are/will also be posted here: just click those with a link below. They are due every second Thursday at 12:00pm in Blackboard.<br>
+ <br>
+ Homework solutions will appear on Blackboard, please email me if you have problem accessing these.
+</p>
+<p align="center">
+</p>
+<br>&nbsp;
+<table align="center" border="1" cellpadding="2" rules="groups" style="border-collapse: collapse; border: 1px solid black">
+ <colgroup></colgroup><colgroup></colgroup><colgroup></colgroup><colgroup></colgroup>
+ <tbody>
+  <tr>
+   <th>
+    Date
+   </th>
+   <th>
+    Topics
+   </th>
+   <th>
+    Past videos
+   </th>
+   <th>
+    Homework due:
+   </th>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td align="center">
+    <b>
+     Mon 26 Sep
+    </b>
+   </td>
+   <td>
+    <a href="meas_th_prob.pdf" target="_blank">Measure </a><a href="meas_th_prob_env.pdf" target="_blank" style="color:green">Theory (basic notions, probability)</a><br>
+   </td>
+   <td>
+    <a href="https://youtu.be/VGyjoD7C9cM" title="MT/1. Algebra, sigma-algebra, measures" target="_blank">1</a>,
+    <a href="https://youtu.be/B1GBLnC0pEA" title="MT/2. Continuity of measures" target="_blank">2</a>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+  <tr>
+   <td align="center">
+    <b>
+     Thu 29 Sep
+    </b>
+   </td>
+   <td>
+    <a href="meas_th_prob.pdf" target="_blank">Measure </a><a href="meas_th_prob_env.pdf" target="_blank" style="color:green">Theory (basic notions, probability)</a><br>
+   </td>
+   <td>
+    <a href="https://youtu.be/Z_tBXmtlNL0" title="FTiP21/47: Proof of continuity of measures" target="_blank">3</a>,
+    <a href="https://youtu.be/0i8l-TjMr4Y" title="MT/3. Probability space, examples of sigma-algebras" target="_blank">4</a>
+    &nbsp;
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+  <tr>
+   <td align="center">
+    <b>
+     Fri 30 Sep
+    </b>
+   </td>
+   <td>
+    <i>
+     Ex. class (sigma-algebras, random variables, stochastic processes, conditional expectation)
+    </i>
+   </td>
+   <td>
+    <a href="https://youtu.be/jc9SDx3_Be8" title="MT/4. Construction of interesting measures" target="_blank">5</a>,
+    <a href="https://youtu.be/SRdg7-hrvlc" title="MT/5. Random variables" target="_blank">6</a><br>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td align="center">
+    <b>
+     Mon 3 Oct
+    </b>
+   </td>
+   <td>
+    Expectation, conditional expectation<br>
+   </td>
+   <td>
+    <a href="https://youtu.be/YEA3f8Ss6Rs" title="MT/6. Expectation" target="_blank">7</a>,
+    <a href="https://youtu.be/6deY6TUUEns" title="MT/7. Conditional expectation" target="_blank">8</a>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+  <tr>
+   <td align="center">
+    <b>
+     Thu 6 Oct
+    </b>
+   </td>
+   <td>
+    Conditional expectation
+   </td>
+   <td>
+    <a href="https://youtu.be/ckpW18MyqE8" title="MT/8. Conditional expectation examples" target="_blank">9</a>,
+    <a href="https://youtu.be/NqZcXDQUDzo" title="MT/9. Tower rule" target="_blank">10</a>
+   </td>
+   <td align="center">
+    <b>
+     by noon:
+    </b><br>
+    <a href="hw1_mt22z.pdf">HW1</a>
+    (sol. on Bb.)
+    <!--
+    HW1
+    -->
+   </td>
+  </tr>
+  <tr>
+   <td align="center">
+    <b>
+     Fri 7 Oct
+    </b>
+   </td>
+   <td>
+    Conditional expectation
+   </td>
+   <td>
+    <a href="https://youtu.be/W0sHDRZ0D0c" title="MT/10. Conditional expectation simple example" target="_blank">11</a><br>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td align="center">
+    <b>
+     Mon 10 Oct
+    </b>
+   </td>
+   <td>
+    Conditional expectation
+   </td>
+   <td>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+  <tr>
+   <td align="center">
+    <b>
+     Thu 13 Oct
+    </b>
+   </td>
+   <td>
+    Probabilistic tools: Borel Cantelli lemmas
+   </td>
+   <td>
+    <a href="https://youtu.be/ORNU0l9Zmo8" title="FTiP/1. A product-sum lemma" target="_blank">12</a>,
+    <a href="https://youtu.be/nWLXz3Kaee8" title="FTiP/2. Limsup of events" target="_blank">13</a>,
+    <a href="https://youtu.be/mv1NKw4gqdI" title="FTiP/3. Borel Cantelli lemmas" target="_blank">14</a>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+  <tr>
+   <td align="center">
+    <b>
+     Fri 14 Oct
+    </b>
+   </td>
+   <td>
+    <i>
+     Ex. class (probabilistic tools)
+    </i>
+   </td>
+   <td>
+    <a href="https://www.youtube.com/watch?v=Ov8AdyVjemw" target="_blank" title="FTiP_ex/2. Mean conv. example">25</a>,
+    <a href="https://www.youtube.com/watch?v=bkK3FD-dJ_Q" target="_blank" title="FTiP_ex/3. Indicator conv. example">26</a>,
+    <a href="https://www.youtube.com/watch?v=6hrPlz_Og0E" target="_blank" title="FTiP_ex/4. Polynomial conv. example">27</a>,
+    <a href="https://www.youtube.com/watch?v=-5YQkh6Dn6Y" target="_blank" title="FTiP_ex/5. Bernoulli conv. example">28</a>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td align="center">
+    <b>
+     Mon 17 Oct
+    </b>
+   </td>
+   <td>
+    Probabilistic tools: limits and expectations
+   </td>
+   <td>
+    <a href="https://youtu.be/xDi7-5Avx58" title="FTiP/4. Monotone convergence" target="_blank">15</a>,
+    <a href="https://youtu.be/tvNH90WqaGk" title="FTiP/5. Fatou's lemma" target="_blank">16</a>,
+    <a href="https://youtu.be/amQAYvR0zjs" title="FTiP/6. Dominated convergence" target="_blank">17</a>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+  <tr>
+   <td align="center">
+    <b>
+     Thu 20 Oct
+    </b>
+   </td>
+   <td>
+    Probabilistic tools: Fubini; inequalities
+   </td>
+   <td>
+    <a href="https://youtu.be/sdxw_9AnfxM" title="MT/11. Fubini's theorem" target="_blank">18</a>,
+    <a href="https://youtu.be/6SNLb1ok3OA" title="FTiP/7. Jensen's and Ljapunov's inequality" target="_blank">19</a><br>
+   </td>
+   <td align="center">
+    <b>
+     by noon:
+    </b><br>
+    <a href="hw2_mt22z.pdf">HW2</a>
+    (sol. on Bb.)
+    <!--
+    HW2
+    -->
+   </td>
+  </tr>
+  <tr>
+   <td align="center">
+    <b>
+     Fri 21 Oct
+    </b>
+   </td>
+   <td>
+    Probabilistic tools: inequalities
+   </td>
+   <td>
+    <a href="https://youtu.be/mdvlouD97Ws" title="FTiP/8. Hölder and Cauchy-Schwarz" target="_blank">20</a>,
+    <a href="https://youtu.be/p_w3y-ni2P0" title="FTiP/9. Minkowski's inequality" target="_blank">21</a>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td align="center">
+    <b>
+     Mon 24 Oct
+    </b>
+   </td>
+   <td>
+    Modes of convergence; relations
+   </td>
+   <td>
+    <a href="https://youtu.be/S-b4y_oTlHw" title="FTiP/10. Modes of convergence" target="_blank">22</a>,
+    <a href="https://youtu.be/dS61PkLHEzg" title="FTiP/11. Convergence: a.s. vs in probability" target="_blank">23</a>,
+    <a href="https://youtu.be/QgGw54QmyDY" title="FTiP/12. Convergence: implications" target="_blank">24</a>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+  <tr>
+   <td align="center">
+    <b>
+     Thu 27 Oct
+    </b>
+   </td>
+   <td>
+    Filtrations, Martingales
+   </td>
+   <td>
+    <a href="https://youtu.be/VgPR21w8WKE" title="MT/12. Filtrations, martingales" target="_blank">29</a>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td align="center">
+    <b>
+     Fri 28 Oct
+    </b>
+   </td>
+   <td>
+    <i>
+     Ex. class (martingales: ABRACADABRA)
+    </i>
+   </td>
+   <td>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td align="center">
+    <b>
+     Mon 31 Oct
+    </b>
+   </td>
+   <td>
+    Martingales, stopping times
+   </td>
+   <td>
+    <a href="https://youtu.be/Jk1xI-nchXI" title="MT/13. Stopping time" target="_blank">30</a>,
+    <a href="https://youtu.be/MUwbNdCd03w" title="MT/14. Martingale transform" target="_blank">31</a>,
+    <a href="https://youtu.be/uTfj65-QO6w" title="MT/15. Optional stopping theorem" target="_blank">32</a>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+  <tr>
+   <td align="center">
+    <b>
+     Thu 3 Nov
+    </b>
+   </td>
+   <td>
+    Random walks and martingales
+   </td>
+   <td>
+   </td>
+   <td align="center">
+    <b>
+     by noon:
+    </b><br>
+    <a href="hw3_mt22z.pdf">HW3</a>
+    (sol. on Bb.)
+    <!--
+    HW3
+    -->
+   </td>
+  </tr>
+  <tr>
+   <td align="center">
+    <b>
+     Fri 4 Nov
+    </b>
+   </td>
+   <td>
+    Random walks and martingales
+   </td>
+   <td>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td align="center">
+    <b>
+     Mon 7 Nov
+    </b>
+   </td>
+   <td>
+    Upcrossing Lemma, martingale convergence
+   </td>
+   <td>
+    <a href="https://youtu.be/pMs-bbtUu0I" title="MT/16. Doob's upcrossing lemma" target="_blank">33</a>,
+    <a href="https://youtu.be/9p8LT3Hy6xo" title="MT/17. Doob's forward convergence theorem" target="_blank">34</a>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+  <tr>
+   <td align="center">
+    <b>
+     Thu 10 Nov
+    </b>
+   </td>
+   <td>
+    Martingale convergence; L<sup>2</sup> convergence
+   </td>
+   <td>
+    <a href="https://youtu.be/MklGDy0o2L4" title="MT/18. L^2 martingales" target="_blank">35</a><br>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+  <tr>
+   <td align="center">
+    <b>
+     Fri 11 Nov
+    </b>
+   </td>
+   <td>
+    <i>
+     Ex. class (martingale convergence)
+    </i>
+   </td>
+   <td>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td align="center">
+    <b>
+     Mon 14 Nov
+    </b>
+   </td>
+   <td>
+    Doob's decomposition
+   </td>
+   <td>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+  <tr>
+   <td align="center">
+    <b>
+     Thu 17 Nov
+    </b>
+   </td>
+   <td>
+    Uniform integrability
+   </td>
+   <td>
+   </td>
+   <td align="center">
+    <b>
+     by noon:
+    </b><br>
+    <a href="hw4_mt22z.pdf">HW4</a>
+    (sol. on Bb.)
+    <!--
+    HW4
+    -->
+   </td>
+  </tr>
+  <tr>
+   <td align="center">
+    <b>
+     Fri 18 Nov
+    </b>
+   </td>
+   <td>
+    UI and convergence: proofs
+   </td>
+   <td>
+    <a href="https://youtu.be/RbRps6kUniI" title="MT/19. Uniform integrability: definition" target="_blank">36</a>,
+    <a href="https://youtu.be/Av1RRYcX1UI" title="MT/20. Uniform integrability: a useful lemma" target="_blank">37</a>,
+    <a href="https://youtu.be/1YR3zT3hl2s" title="MT/21. Uniform integrability: modes of convergence" target="_blank">38</a>,
+    <a href="https://youtu.be/OcQaW2L8LYc" title="MT/22. Uniform integrability: modes of convergence, proof i-ii" target="_blank">39</a>,
+    <a href="https://youtu.be/MFS4Bn-XuZA" title="MT/23. Uniform integrability: modes of convergence, proof ii-i" target="_blank">40</a>,
+    <a href="https://youtu.be/lwuVce2QbU4" title="MT/24. Uniform integrability: modes of convergence, proof i-iii" target="_blank">41</a>,
+    <a href="https://youtu.be/mCM_s_YC0RE" title="MT/25. Uniform integrability: modes of convergence, proof iv, v" target="_blank">42</a>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td align="center">
+    <b>
+     Mon 21 Nov
+    </b>
+   </td>
+   <td>
+    UI martingales
+   </td>
+   <td>
+    <a href="https://youtu.be/rVPn5Ey83-4" title="MT/26. Uniform integrable martingales" target="_blank">43</a>,
+    <a href="https://youtu.be/KyGsKBz9qVo" title="MT/27. Lévy's upwards theorem" target="_blank">44</a>
+   </td>
+   <td align="center">
+     --
+   </td>
+  </tr>
+  <tr>
+   <td align="center">
+    <b>
+     Thu 24 Nov
+    </b>
+   </td>
+   <td>
+    Tail &sigma;-algebra, 0-1 law; Strong Law of Large Numbers
+   </td>
+   <td>
+    <a href="https://youtu.be/_knTBlGRmRs" title="MT/28. Kolmogorov's 0-1 law" target="_blank">45</a>,
+    <a href="https://youtu.be/Qb1lzXkIfjc" title="MT/29. Lévy's downwards theorem" target="_blank">46</a>,
+    <a href="https://youtu.be/QghGttpqcKI" title="MT/30. Strong law of large numbers" target="_blank">47</a>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+  <tr>
+   <td align="center">
+    <b>
+     Fri 25 Nov
+    </b>
+   </td>
+   <td>
+    <i>
+     Ex. class (Doob's decomp., UI martingales)
+    </i>
+   </td>
+   <td>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td align="center">
+    <b>
+     Mon 28 Nov
+    </b>
+   </td>
+   <td>
+    Doob's submartingale inequality
+   </td>
+   <td>
+    <a href="https://youtu.be/DTQ5pgjrV_Q" title="MT/31. Doob's submartingale inequality" target="_blank">48</a>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+  <tr>
+   <td align="center">
+    <b>
+     Thu 1 Dec
+    </b>
+   </td>
+   <td>
+    Doob's submartingale inequality
+   </td>
+   <td>
+   </td>
+   <td align="center">
+    <b>
+     by noon:
+    </b><br>
+    <a href="hw5_mt22z.pdf">HW5</a>
+    (sol. on Bb.)
+    <!--
+    HW5
+    -->
+   </td>
+  </tr>
+  <tr>
+   <td align="center">
+    <b>
+     Fri 2 Dec
+    </b>
+   </td>
+   <td>
+    Doob's submartingale inequality: Azuma-Hoeffding
+   </td>
+   <td>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td align="center">
+    <b>
+     Mon 5 Dec
+    </b>
+   </td>
+   <td>
+    European option, hedging strategy
+   </td>
+   <td>
+    <a href="https://youtu.be/f4Z2xm_Rx-Q" title="MT/32. Discrete Black-Scholes formula: background" target="_blank">49</a>,
+    <a href="https://youtu.be/Z6cauTbTtbk" title="MT/33. Discrete Black-Scholes formula: European option and hedging" target="_blank">50</a>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td align="center">
+    <b>
+     Thu 8 Dec
+    </b>
+   </td>
+   <td>
+    Black-Scholes optional pricing and proof
+   </td>
+   <td>
+    <a href="https://youtu.be/EazfFATAs3I" title="MT/34. Discrete Black-Scholes formula: a lemma" target="_blank">51</a>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td align="center">
+    <b>
+     Fri 9 Dec
+    </b>
+   </td>
+   <td>
+    <i>
+     Ex. class (Doob submart. ineq., Azuma-Hoeffding)
+    </i>
+   </td>
+   <td>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td align="center">
+    <b>
+     Mon 12 Dec
+    </b>
+   </td>
+   <td>
+    Black-Scholes optional pricing proof
+   </td>
+   <td>
+    <a href="https://youtu.be/yQWUAqA4tzI" title="MT/35. Discrete Black-Scholes formula: proof" target="_blank">52</a>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td align="center">
+    <b>
+     Thu 15 Dec
+    </b>
+   </td>
+   <td>
+    <i>
+     Review
+    </i>
+   </td>
+   <td>
+   </td>
+   <td align="center">
+    <b>
+     by noon:
+    </b><br>
+    <a href="hw6_mt22z.pdf">HW6</a>
+    (sol. on Bb.)
+    <!--
+    HW6
+    -->
+   </td>
+  </tr>
+  <tr>
+   <td align="center">
+    <b>
+     Fri 16 Dec
+    </b>
+   </td>
+   <td>
+    <i>
+     Review
+    </i>
+   </td>
+   <td>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+ </tbody>
+ <!--
+ <tbody>
+  <tr>
+   <td>
+    Mon 11 Nov
+   </td>
+   <td>
+    -- <i>Teaching has ended by now</i> --
+   </td>
+   <td>
+   </td>
+   <td align="center">
+    <a href="hw3_mt21z.pdf">HW3</a>
+    (<a href="cont_cond.pdf">notes for 3.9(e)</a>)
+    (sol. on Bb.)
+    HW3
+   </td>
+  </tr>
+ -->
+</table>
+<br>&nbsp;
+<br>&nbsp;
+<hr align=center width=30%>
+<br>&nbsp;
+<p align=center>
+If you have any questions, please contact me (see on top). Click <a href="https://outlook.office365.com/owa/calendar/24e913f958614025984e1a0cd99decfb@bristol.ac.uk/4106e3a6b0d64a1b9fb1a5a1c08d40171084624880904190380/calendar.html" target="_blank">here</a> to see my calendar.<br>
+</p>
+<br>&nbsp;
+<hr align=center width=30%>
+<p align=center>
+To the <a href="teach.html">teaching page</a>
+</p>
+</body>
+</html>

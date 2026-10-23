@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Bash parameter expansion
+veg=${1##*.}
+elej=${1%.*}
+
+ok=0
+if [ -f $elej.ltx ]; then
+ latex $elej.ltx
+ dvips $elej.dvi
+ok=1
+fi
+if [ -f $elej.tex ]; then
+ latex $elej.tex
+ dvips $elej.dvi
+ok=1
+fi
+if [ $ok = 0 ]; then
+echo 'Nem találom azt, hogy' $elej'.ltx, sem azt, hogy' $elej'.tex'.
+fi

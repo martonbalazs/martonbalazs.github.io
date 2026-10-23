@@ -1,0 +1,114 @@
+<!-- !! Date in file !! -->
+<!DOCTYPE HTML>
+<html>
+<head>
+ <meta name="description" content="A Linux IMAP and SMTP example with Oauth2 to O365">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>A Linux IMAP and SMTP example with Oauth2 to O365</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <style>
+  code {font-family: 'Courier New', Courier, monospace}
+  pre.one {font-family: 'Courier New', Courier, monospace; background-color: #EEEEEE; padding-top: 5px; height: 20px}
+  pre {font-family: 'Courier New', Courier, monospace; background-color: #EEEEEE; padding-top: 5px}
+  li {margin:15px}
+ </style>
+</head>
+<body>
+<h2 align="center">
+ A Linux IMAP and SMTP example with Oauth2 to O365
+</h2>
+<p align="center">
+ Assembled by <a href="https://people.maths.bris.ac.uk/~mb13434/" target="_blank">Márton Balázs</a>, IT rep for Maths<br>
+ <font size="-2">last updated: [2025-04-12]</font>
+</p>
+<br>&nbsp;
+<p align="justify">
+This is a tested example of reading emails via IMAP and sending via SMTP to O365 using Oauth2 authentication. It is using <a href="https://isync.sourceforge.io/" target="_blank">isync</a> for getting email locally, <a href="https://neomutt.org/" target="_blank">NeoMutt</a> for reading from file and sending via <a href="https://marlam.de/msmtp/" target="_blank">msmtp</a>. Hopefully the below will make sense with other clients as well. Notice that IMAP and SMTP access is turned off by default at the UoB, you can request this with IT Services.
+ <ol>
+  <li>
+   Install <a href="https://github.com/moriyoshi/cyrus-sasl-xoauth2" target="_blank">cyrus-sasl-xoauth2</a> (it might as well be a package, like it is in <a href="https://aur.archlinux.org/packages/cyrus-sasl-xoauth2-git/" target="_blank">Arch AUR</a>).
+   On Ubuntu 20.04 some tweaks are needed:
+   <ol type="i">
+    <li>
+     Install the <code>libsasl2-dev</code> package, otherwise cyrus-sasl-xoauth2 will complain.
+    </li>
+    <li>
+     When following the cyrus-sasl-xoauth2 instructions, <b>after</b> <code>autogen.sh</code> and <code>configure</code>, but <b>before</b> <code>make</code> and <code>make install</code>, find the line
+     <pre class="one">
+      pkglibdir = ${CYRUS_SASL_PREFIX}/lib/sasl2
+     </pre>
+     in <code>Makefile</code>, and change it to
+     <pre class="one">
+      pkglibdir = ${CYRUS_SASL_PREFIX}/lib/x86_64-linux-gnu/sasl2
+     </pre>
+     (<a href="https://unix.stackexchange.com/questions/625637/configuring-mbsync-with-authmech-xoauth2" target="_blank">source of wisdom</a>).
+    </li>
+    <li>
+     If you had <code>isync</code> installed (see below) then reinstall it so that it notices the new sasl plugin.
+    </li>
+   </ol>
+  </li>
+  <li>
+   Install <a href="https://github.com/harishkrupo/oauth2ms" target="_blank">oauth2ms</a>. Its config file is in <code>~/.config/oauth2ms/config.json</code>:
+   <pre>{
+	"tenant_id": "&lt;see your ITS' guides&gt;",
+	"client_id": "&lt;see your ITS' guides&gt;",
+	"client_secret": "",
+	"redirect_host": "localhost",
+	"redirect_port": "5000",
+	"redirect_path": "/appredirecturi/",
+	"scopes": ["https://outlook.office.com/IMAP.AccessAsUser.All", " https://outlook.office.com/SMTP.Send"]
+}</pre>
+	<!-- "redirect_path": "/getToken/", CHANGING on [2022-01-11 Tue]:-->
+   where <code>tenant_id</code> and <code>client_id</code> are to be provided by your IT Services. <a href="https://uob.sharepoint.com/sites/systemsupport/SitePages/legacy-authentication-linux.aspx" target="_blank">Click here for the UoB ones.</a> I suspect that <code>redirect_port</code> is irrelevant but cannot be left empty.<br>
+   <br>
+   The first time you run <code>oauth2ms</code> it will guide you through getting a token, see the details on their <a href="https://github.com/harishkrupo/oauth2ms" target="_blank">GitHub page</a>. The token is stored in <code>~/.local/share/oauth2ms/credentials.bin</code>, make sure the disk or this part of your filesystem is encrypted. Alternatively, <a href="https://github.com/harishkrupo/oauth2ms#encryption" target="_blank">the token can be encrypted</a> with the <code>-e</code> option.<br>
+   <br>
+   From time to time you'll be thrown loads of errors. Remove the token and let <code>oauth2ms</code> regenerate it.<br>
+   <br>
+   (Oauth2ms works fine on Ubuntu 20.04; at home on Arch I now use <a href="https://github.com/pdobsan/oama" target="_blank">oama</a>, which is also a <a href="https://aur.archlinux.org/packages/oama-bin" target="_blank">package in Arch/AUR</a>. Following their instructions was straightforward, but the "device code flow" method didn't work, I use "other authorization flows".)
+  </li>
+  <li>
+   You can use <a href="https://isync.sourceforge.io/" target="_blank">isync</a> for downloading emails. Make sure your filesystem is encrypted. The relevant parts of <code>~/.mbsyncrc</code>:
+   <pre>IMAPAccount uob
+PipelineDepth 1
+# Address to connect to
+Host outlook.office365.com
+User ab12345@bristol.ac.uk
+PassCmd oauth2ms
+AuthMechs XOAUTH2
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+Timeout 180</pre>
+   of course write in your UoB userid.
+  </li>
+  <li>
+   Install <a href="https://marlam.de/msmtp/" target="_blank">msmtp</a>. At the time of writing this, Ubuntu 20.04 has version 1.8.6-1, while at least 1.8.13 is needed; in the office I'm using Davmail instead. The relevant parts of its config file <code>~/.msmtprc</code>:
+   <pre>defaults
+protocol smtp
+tls on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+
+account uob
+host smtp.office365.com
+port 587
+auth xoauth2
+from x.yzuv@bristol.ac.uk
+user ab12345@bristol.ac.uk
+passwordeval oauth2ms</pre>
+   of course write in your public email address and UoB userid.
+  </li>
+  <li>
+   I use <a href="https://neomutt.org/" target="_blank">NeoMutt</a>, here is the relevant bit of <code>~/.mutt/muttrc</code> (or the sub-config you link in there):
+   <pre>set realname = 'xab yzuv'
+set from = x.yzuv@bristol.ac.uk
+unset smtp_url
+unset smtp_pass
+set sendmail = "/usr/bin/msmtp -a uob"</pre>
+   again, set your real name and public email address.
+  </li>
+ </ol>
+ Any comments on the above are welcome.
+</p>
+</body>
+</html>

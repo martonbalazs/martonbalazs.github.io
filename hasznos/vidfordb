@@ -1,0 +1,16 @@
+#!/bin/bash
+# mencoder; ffmpeg; http://therning.org/niklas/node/160
+# http://askubuntu.com/questions/83711/how-can-i-rotate-a-video
+
+read -p "Have you tried removing the video metadata yet? (vidrmmetadata) y/n" tried
+if [ "$tried" != "y" ]; then
+ exit
+fi
+
+mkdir balrott
+
+for i in `ls *.*`; do 
+ echo "`ls $i` --> balrott/`ls $i | sed -e 's/\./-\./'`"
+ ffmpeg -i "$i" -vf "transpose=2" -strict -2 balrott/`ls $i | sed -e 's/\./-\./'`
+done
+

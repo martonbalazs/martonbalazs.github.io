@@ -1,0 +1,424 @@
+<!-- 2015.11.24 -->
+<HTML><HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+<link href="main.css" rel="stylesheet" type="text/css">
+<TITLE> Git gyorstalpaló </TITLE></HEAD>
+<body bgcolor="FFFACD">
+<h1><p align=center>Git gyorstalpaló</p></h1>
+<p class="null">
+ <span class="nonu"><a href="miagit.html">&gt; <b>Mi is az a Git?</b></a></span><br>
+ <br>
+ <span class="nonu"><a href="telep.html">&gt; <b>Telepítés</b></a></span><br>
+ <br>
+ <span class="nonu"><a href="index.html">&or;</a></span> <b>Használat (alapok)</b><br>
+</p>
+<p class="egy">
+ <span class="nonu"><a href="gitext.html">&gt; <b>Git Extensions</b></a></span><br>
+ <br>
+ <span class="nonu"><a href="gitgui.html">&gt; <b>Git Gui</b></a></span><br>
+ <br>
+ <span class="nonu"><a href="hasznal.html">&or;</a></span> <b>Parancssorból</b><br>
+</p>
+<p class="ket">
+ Az alábbiak mind működnek linux és Windows alatt is. Linuxban egy terminált kell kérni, Windowsban a Git bash-t.<br>
+ <br>
+ Először is megmondjuk a Git-nek, kik is vagyunk mink:<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ git config --global user.name "<i>Saját Nevünk</i>"
+   </td>
+  </tr>
+  <tr>
+   <td>
+    $ git config --global user.email "<i>saját@email.címünk</i>"
+   </td>
+  </tr>
+ </table>
+ <br>
+ Ezután Git adatbázist szeretnénk. Git adatbázis mindig egy teljes könyvtárhoz (alkönyvtárakkal együtt) készül. Adatbázisunk kétféleképp lehet: szerzünk egyet, vagy csinálunk egyet a saját könyvtárunkról.<br>
+ <br>
+ Git adatbázist csinálni egyszerű: a kívánt könyvtárban azt mondjuk, hogy<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ git init
+   </td>
+  </tr>
+ </table>
+ <br>
+ Ez létrehozza a könyvtárunkban a .git/ adatbázist.<br>
+ <br>
+ Szerezni is egyszerű. Mi egy <i>Szerver</i> nevű gépéről ssh-n keresztül fogjuk hozni-vinni a cuccainkat, ezért ezt írom le (de megjegyzésképp a Git működik http-n, rsync-en, és egy saját git protokollján keresztül is). Feltesszük, hogy ezen a szerveren van már egy <i>proba</i> nevű adatbázis (ssh git szerver leírása lejjebb). Amikor először szedjük le a <i>proba</i> nevű adatbázist,<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    git clone projfelh@valami.szerver.hu:proba
+   </td>
+  </tr>
+ </table>
+ <br>
+ Ez létrehozza a <i>proba</i> nevű könyvtárat a <i>proba</i> project filejaival, és egy <i>.git</i> könyvtárral, ami a <i>proba</i> teljes adatbázisát tartalmazza. (Ékezetet semilyen filenévben és felhasználónévben sem érdemes használni. :-) )<br>
+ <br>
+ Van tehát egy könyvtárunk egy git adatbázissal. Ebben a könyvtárban módosítunk valamit, elmentjük ahogy szoktuk a munkánkat, viszont ettől még nem kerül be a Git adatbázisába. Ehhez először ki kell jelölnünk, hogy mely fileokat ajánljuk a Git figyelmébe:<br>
+ <br>
+ <table>
+  <tr>
+   <td class="kod">
+    $ git add file1 file2 file3
+   </td>
+   <td>
+    &nbsp;
+   </td>
+   <td align="left">
+    vagy
+   </td>
+  </tr>
+  <tr>
+   <td class="kod">
+    $ git add .
+   </td>
+   <td>
+    &nbsp;
+   </td>
+   <td align="left">
+    ha minden file-t a figyelmébe ajánlunk.
+   </td>
+  </tr>
+ </table>
+ <br>
+ Ezután azt kell mondani, hogy<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ git commit
+   </td>
+  </tr>
+ </table>
+ <br>
+ ekkor egy editort nyit meg, amibe pár szóval érdemes leírni mit dolgoztunk. Humanitárius okokból itt ne használjunk ékezeteket. :-) (Ha nem tetszik az editor amit a Git használ, hanem inkább <i>emacs</i>-et használnánk, akkor<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ git config --global core.editor emacs
+   </td>
+  </tr>
+ </table>
+ <br>
+ ) Ha kész, akkor az editor bezárása után a változás el lett mentve a Git helyi adatbázisába. (Megjegyzés: meg lehet mondani a Git-nek, hogy bizonyos fileok engem sosem érdekelnek.)
+ <!--, részletek <a href="http://book.git-scm.com/4_ignoring_files.html" target="_blank">itt</a>.)-->
+ <br>
+<br>
+Most a megváltozott adatbázisunkat szeretnénk visszatölteni a <i>Szerver</i>re. Ha klónozással szereztük az adatbázist, akkor ehhez csak annyit kell mondanunk, hogy<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ git push
+   </td>
+  </tr>
+ </table>
+ <br>
+ Ha viszont a <i>proba</i> könyvtárunkról az adatbázis újonan készült, akkor a <i>Szerver</i>en a <i>projfelh</i> felhasználó üzemeltetőjének el kell küldeni emailben a <i>proba</i> nevet, hogy tudathassa a <i>Szerver</i>rel, hogy lesz egy ilyen új adatbázis rajta. Ha tudatta vele, akkor a következőket kell tenni:<br>
+ <br>
+ <table>
+  <tr>
+   <td class="kod">
+    $ git remote add origin projfelh@valami.szerver.hu:proba.git
+   </td>
+  </tr>
+ </table>
+ <br>
+ ezzel megspórolhatjuk, hogy mindig ki kelljen írni a projfelh@valami.szerver.hu:proba.git -et, helyette csak annyit kell majd írni, hogy <i>origin</i>. Ezután pedig<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ git push origin master
+   </td>
+  </tr>
+ </table>
+ <br>
+ ami szabad fordításban annyit tesz, hogy légy szíves az előbb definiált <i>origin</i> nevű központi helyre töltsd fel az adatbázisunkat. A <i>master</i> egyelőre az egyetlen <i>ága</i> a központi adatbázisnak, de ezt is be kell írni.<br>
+ <br>
+ Ha ezután valamikor máskor dolgozni szeretnénk a könyvtárban, akkor (ha épp nincs meg a könyvtárunk benne a ./git adatbázissal, klónozzuk, lásd fent, ha pedig megvan, akkor)<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ git pull origin master
+   </td>
+  </tr>
+ </table>
+ <br>
+ az <i>origin</i> rövidítésű központi adatbázis <i>master</i> ágával (egyelőre ez az egyetlen) frissíti a saját könyvtárunkat (ha kell).<br>
+ <br>
+ Ha sokan piszkálták egyszerre a <i>proba</i> könyvtárat és fel-le töltögettek a központi adatbázisba, a Git legtöbbször olyankor is tudja frissíteni a saját könyvtárunkat (pull) vagy a központi könyvtárat (push), kitalálja hogyan egyesítse a változásokat. Ha ez mégsem sikerülne, Google segít (<i>branching and merging</i>).
+ <!--
+ klikk <a href="http://book.git-scm.com/3_basic_branching_and_merging.html" target="_blank">ide</a>, <a href="http://book.git-scm.com/3_distributed_workflows.html" target="_blank">ide</a> vagy <a href="http://book.git-scm.com/5_advanced_branching_and_merging.html" target="_blank">ide</a>.
+ -->
+ <br>
+ <br>
+ Ha nem vagyunk elég bátrak, pull helyett lehet a következőket is csinálni:<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ git fetch
+   </td>
+  </tr>
+  <tr>
+   <td>
+    $ git diff master..origin/master
+   </td>
+  </tr>
+ </table>
+ <br>
+ ez nem írja át a könyvtárunkban a fileokat, de megmutatja mi a különbség a <i>Szerver</i> verziója és a mi verziónk között. Ha a helyzet jó, akkor<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ git merge master origin/master
+   </td>
+  </tr>
+ </table>
+ <br>
+ átvezeti a változásokat. Ha ez mégsem sikerülne, Google segít (<i>branching and merging</i>).
+ <!--
+klikk <a href="http://book.git-scm.com/3_basic_branching_and_merging.html" target="_blank">ide</a>, <a href="http://book.git-scm.com/3_distributed_workflows.html" target="_blank">ide</a> vagy <a href="http://book.git-scm.com/5_advanced_branching_and_merging.html" target="_blank">ide</a>.
+-->
+<br>
+<br>
+ Ha el vagyunk tévedve, vagy valami nem világos, segíthetnek a következők:<br>
+ <br>
+ <table>
+  <tr>
+   <td class="kod">
+    $ git status
+   </td>
+   <td>
+    &nbsp;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td class="kod">
+    $ git diff
+   </td>
+   <td>
+    &nbsp;
+   </td>
+   <td>
+    megmutatja mi változott, de még nem volt rá <i>add</i>,
+   </td>
+  </tr>
+  <tr>
+   <td class="kod">
+    $ git diff --cached
+   </td>
+   <td>
+    &nbsp;
+   </td>
+   <td>
+    megmutatja mi lesz <i>commit</i>-olva.
+   </td>
+  </tr>
+ </table>
+ <br>
+ <br>
+ <b>Verziókezelés.</b> Történelem:<br>
+ <br>
+ <table>
+  <tr>
+   <td class="kod">
+    $ git log
+   </td>
+   <td>
+    &nbsp;
+   </td>
+   <td>
+    történelem.
+    <!--(<a href="http://book.git-scm.com/3_reviewing_history_-_git_log.html" target="_blank">bővebben</a>)-->
+   </td>
+  </tr>
+ </table>
+ <br>
+ Minden egyes <i>commit</i>nak lesz egy ronda neve, ezt pl. a <i>git log</i> megmutatja. Ha kiváncsiak vagyunk milyen fileok tartoznak az adatbázisunkhoz,<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ git ls-tree master
+   </td>
+  </tr>
+  <tr>
+   <td>
+    $ git ls-tree <i>[a ronda név első pár karaktere]</i>
+   </td>
+  </tr>
+ </table>
+ <br>
+ Ha nem adtunk meg elég sok karaktert, a Git panaszkodik, adjunk meg még párat a ronda névből. Ha kiváncsiak vagyunk két <i>commit</i> közti különbségre,<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ git diff <i>[ronda név]</i>..<i>[ronda név]</i>
+   </td>
+  </tr>
+ </table>
+ <br>
+ Ha valamelyik korábbi verziót megint megnéznénk,<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ git checkout <i>[a ronda név első pár karaktere]</i>
+   </td>
+  </tr>
+ </table>
+ <br>
+ Ekkor a könyvtárunkban visszaáll a <i>ronda nevű commit</i>nak megfelelő állapot. Ne ijedjünk meg, nem vesztettük el amit azóta írtunk, egy<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ git checkout master
+   </td>
+  </tr>
+ </table>
+ <br>
+ visszaállítja a legutóbb <i>commit</i>olt verziót a könyvtárunkban.<br>
+ <br>
+ <br>
+ <b>Elágazás.</b> Tegyük fel, hogy kipróbálnánk valamit, de nem vagyunk biztosak benne, hogy jó lesz a vége. Ekkor elágazhatunk:<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ git branch kiserleti
+   </td>
+  </tr>
+ </table>
+ <br>
+ ez létrehozott egy <i>kiserleti</i> ágat a könyvtárunkból. Ha ezen akarunk dolgozni,<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ git checkout kiserleti
+   </td>
+  </tr>
+ </table>
+ <br>
+ majd változtassunk a könyvtárunkon, ezután a szokásos<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ git add .
+   </td>
+  </tr>
+  <tr>
+   <td>
+    $ git commit
+   </td>
+  </tr>
+ </table>
+ <br>
+ elkönyveli a változásokat a kísérleti ágban. Bármikor visszatérhetünk a fő ágra:<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ git checkout master
+   </td>
+  </tr>
+ </table>
+ <br>
+ Melyik ágban vagyunk is tulajdonképpen:<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ git branch
+   </td>
+  </tr>
+ </table>
+ <br>
+ Mi különbözik az ágakban:<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ git diff master..kiserleti
+   </td>
+  </tr>
+ </table>
+ <br>
+ Ha írtuk kicsit a kísérleti ágat, esetleg a fő ágat is, és a kísérlet jól sikerült, akkor beolvaszthatjuk a fő ágba:<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ git merge kiserleti
+   </td>
+  </tr>
+ </table>
+ <br>
+ Ha a merge mégsem sikerülne, Google segít (<i>branching and merging</i>).
+ <!--
+ klikk <a href="http://book.git-scm.com/3_basic_branching_and_merging.html" target="_blank">ide</a>, <a href="http://book.git-scm.com/3_distributed_workflows.html" target="_blank">ide</a> vagy <a href="http://book.git-scm.com/5_advanced_branching_and_merging.html" target="_blank">ide</a>. Sikeres merge után a kísérleti ágat kitörölhetjük (persze nem a történelemből):
+ -->
+ <br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ git branch -d kiserleti
+   </td>
+  </tr>
+ </table>
+ <br>
+ Ha viszont a kísérlet befuccsolt, és nyomtalanul el akarjuk tüntetni (a történelemből is), akkor<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ git checkout master
+   </td>
+  </tr>
+  <tr>
+   <td>
+    $ git branch -D kiserleti
+   </td>
+  </tr>
+ </table>
+ <br>
+ <br>
+ <b>Tisztítás / tömörítés.</b> Előfordulhat, hogy a <i>.git</i> könyvtárunk túl nagyra nőtt, vagy már felesleges objektumokat tartalmaz. (Ez ténylegesen meg is történik, ha különböző gépeken tárolt <i>.git</i> könyvtárakat a Git tudtán kívül szinkronizálunk.) Ezen segít egy tömörítés/tisztítás:<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ git gc
+   </td>
+  </tr>
+ </table>
+ <br>
+ Elkerülendő a &quot;Jaj mégsem kellett volna kitörölnöm&quot; problémákat olyan <i>.git</i>-beli objektumokkal amiket amúgy a Git a hatóköréből már kiiktatott, a <i>git gc</i> csak a két hétnél régebbi <b>és</b> a Git adatbázisában már feleslegessé vált objektumokat törli. (Tehát nem a két hétnél regebbi verziókat, azok természetesen megmaradnak <i>git gc</i> után is.) További részletek <a href="http://stackoverflow.com/questions/1904860/how-to-remove-unreferenced-blobs-from-my-git-repo" target="_blank">itt</a>.<br>
+ <br>
+ További olvasnivaló: <a href="http://book.git-scm.com/index.html" target="_blank">Git könyv</a> (az első fejezet ijesztő, de nem kell); <a href="http://www.hackido.com/2010/01/installing-git-on-server-ubuntu-or.html" target="_blank">privát ssh repo</a>.
+</p>
+<p class="null">
+ <span class="nonu"><a href="gitosis.html">&gt; <b>Központi ssh repository telepítése</b></a></span> (elsősorban az ssh Git <i>Szerver</i> üzemeltetőjének szól)<br>
+</p>
+</body>
+</HTML>

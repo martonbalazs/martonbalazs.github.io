@@ -1,0 +1,30 @@
+#!/bin/bash
+mkdir ekezetes
+for i in `ls *.html`
+do
+cat "$i" | sed \
+-e 's/\&aacute\;/\á/g' \
+-e 's/\&Aacute\;/\Á/g' \
+-e 's/\&eacute\;/\é/g' \
+-e 's/\&Eacute\;/\É/g' \
+-e 's/\&iacute\;/\í/g' \
+-e 's/\&Iacute\;/\Í/g' \
+-e 's/\&oacute\;/\ó/g' \
+-e 's/\&Oacute\;/\Ó/g' \
+-e 's/\&ouml\;/\ö/g' \
+-e 's/\&Ouml\;/\Ö/g' \
+-e 's/\&otilde\;/\õ/g' \
+-e 's/\&\#337\;/\õ/g' \
+-e 's/\&Otilde\;/\Õ/g' \
+-e 's/\&\#336\;/\Õ/g' \
+-e 's/\&uacute\;/\ú/g' \
+-e 's/\&Uacute\;/\Ú/g' \
+-e 's/\&uuml\;/\ü/g' \
+-e 's/\&Uuml\;/\Ü/g' \
+-e 's/\&ucirc\;/\û/g' \
+-e 's/\&\#369\;/\û/g' \
+-e 's/\&Ucirc\;/\Û/g' \
+-e 's/\&\#368\;/\Û/g' \
+-e 's/iso\-8859\-1/iso\-8859\-2/g' \
+> ekezetes/"$i"
+done
