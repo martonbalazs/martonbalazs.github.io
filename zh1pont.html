@@ -1,0 +1,42 @@
+<!-- 2013.08.28 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<STYLE TYPE="text/css">
+<!--
+.aligned
+   {
+   text-align:justify;
+   }
+-->
+</STYLE>
+<title>
+ZH pontozó
+</title></head>
+<body bgcolor="FFFACD">
+<h2><p align=center>ZH pontozó</p></h2>
+<p align=center>(Első verzió, 2008 február előtt)
+
+<p class=aligned> Ez a ZH pontozó első verziója. Nem tud pár dolgot, amit az újabb verzió már tud. Az egyik ilyen a pótlási héten iratott pótpótZH (mely lényegesen különbözik az IVZH-tól), amely miatt az új verzióban sajnos nem tudtam megtartani a kompatibilitást ezzel az első verzióval. Tehát a 2008 február előtti adatokat ezzel a scripttel lehet csak lefordítani.</p>
+
+<p class=aligned> A ZH pontozó egy bash script, amely a hallgatók félev közben és vizsgákon szerzett pontszámait könyveli, kiértékeli, osztályozza. A dolog többféle kurzus követelményeit is figyelembe tudja venni, képes gyakorlatvezetők és/vagy vizsgalapok szerint válogatni a hallgatók között, illetve az eredményeknek csak számunkra fontos részét megjeleníteni. A megjelenítés módja egy publikus és egy nem publikus html file, az előbbi nevek nélkül (azaz kitehető az oktató honlapjára, vagy nyomtatás után a faliújságra), az utóbbi nevekkel. A html-ből (esetleg az oldal kicsinyítése után) nyomtatni is lehet kedvenc böngészőnkkel. A csomagban van angolul beszélő verzió is, illetve angolul beszélő, amerikai stílusú (A<sup>+</sup>, A, A<sup>-</sup>, B<sup>+</sup>, B, B<sup>-</sup>, C<sup>+</sup>, C, C<sup>-</sup>, D, F osztályzatokat adó) verzió is. Amerikai kurzusban persze név nélkül sem szabad közzétenni az eredményeket. </p>
+<p class=aligned> Bár tesztjeim során jól működött, semmiféle garanciát nem vállalok arra, hogy a program helyes eredményeket szolgáltat. Cserébe mindenki szabadon viheti, használhatja, átírhatja a kódot.</p>
+<p class=aligned> Alább letölthető a csomagolt file. Fontos, hogy ne legyen "zhpontozo1" nevű könyvtár a home könyvtárunkban. Fontos még az is, hogy ahol majd dolgozunk a programmal, ott ne legyen .zhg, .zhv, .zhr, .zhs, .osz, .zhc, .zha kiterjesztésű file ugyanolyan névvel, mint amilyennel dolgozunk (lásd a használati utasítást).</p>
+<p class=aligned> A letöltött zh1.tar.gz file-t a home könytárunkba kell másolni, majd kiadni a
+<code>
+gzip -d zh1.tar.gz
+</code>
+és
+<code>
+tar -xf zh1.tar
+</code>
+parancsokat. Ezután a <kbd>zhpontozo1/doc/olvassel.txt</kbd> fileban találhatjuk a használati utasítást, és a <kbd>zhpontozo1/</kbd> könyvtárban vannak példák is.</p>
+<p class=aligned>Köszönettel tartozom Székely Balázsnak, aki felhívta a figyelmemet a bash csodálatos lehetőségeire.</p>
+Tehát itt a csomag: <a href="zh1.tar.gz">zh1.tar.gz</a>
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<p align=center> Vissza a <a href="zhpont.html">ZHpontozó oldalra</a></p>
+</body>
+</html>

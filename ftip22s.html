@@ -1,0 +1,876 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<STYLE TYPE="text/css">
+.red
+{
+color:FF3030
+}
+</STYLE>
+<TITLE>Further Topics in Probability, Spring 2022</TITLE>
+</HEAD>
+<!--
+<body bgcolor="FFFACD">
+ -->
+<body bgcolor="008080">
+<h2 align=center>Further Topics in Probability, Spring 2022</h2>
+<p align=center>MATH30006, MATHM0018</p>
+<!--
+<h2><p align=center style="color:red">Page under construction, don't rely on it yet!</p></h2>
+-->
+<h3><p align="center"><i>This unit will run face-to-face.</i></p></h3>
+<br>&nbsp;
+<table align=center>
+<tr><td align=right></td><td></td><td><a href="index.html" target="_blank">Márton Balázs</a></td></tr>
+<tr><td align=right><b>Email:</b></td><td></td><td>m.balazs@our_city.ac.countrycode</td></tr>
+<tr><td align=right><b>Office:</b></td><td></td><td>1.44 Fry</td></tr>
+<tr><td align=right><b>Drop in Sessions:</b></td><td>&nbsp;</td><td><!--<i>To be announced soon.</i>-->Tuesdays 16:30 - 17:30 in 1.44 Fry, and Wednesdays 18:00 - 19:00 on Zoom (see link on Blackboard)</td></tr>
+<tr><td align=right><b>Classes and support sessions:</b></td><td>&nbsp;</td><td>See in your timetables (and Blackboard about cancellations, etc)</td></tr>
+<!--
+<tr><td></td><td></td><td><i>except for the 8th of March, which is cancelled.</i></td></tr>
+-->
+<tr><td align=right><b>Q&amp;A Session:</b></td><td>&nbsp;</td><td>Wednesday 18<sup>th</sup> May, 3:00pm, G.10. <i>Please prepare with questions.</i></td></tr>
+</table>
+<br>&nbsp;
+<br>&nbsp;
+<table align=center><tr><td>
+<ul>
+<li>The <a href="https://www.bris.ac.uk/unit-programme-catalogue/UnitDetails.jsa?ayrCode=21%2F22&unitCode=MATH30006" target="_blank">unit description for level H/6</a>, including assessment methods, texts, syllabus.
+<br>&nbsp;
+<li>The <a href="https://www.bris.ac.uk/unit-programme-catalogue/UnitDetails.jsa?ayrCode=21%2F22&unitCode=MATHM0018&_ga=2.242391046.527970056.1641650981-152090864.1637374904" target="_blank">unit description for level M/7</a>, including assessment methods, texts, syllabus.
+<br>&nbsp;
+<li>Calculators of an approved type (permissible for A-Level examinations) are permitted in the examination.
+<br>&nbsp;
+<li>This unit will happen face-to-face, and you are expected to follow lectures in the classroom. Nevertheless, I will link YouTube videos from previous years on the material, see the column "Past videos" in the table. I hope YouTube works for everyone interested, let me know otherwise.
+ <!--
+<br>&nbsp;
+<li>Calculators are <b>not</b> allowed in the examination.
+ -->
+<br>&nbsp;
+<li>I will assume familiarity with the following concepts from calculus and analysis, but of course I'm happy to discuss these outside class:
+ <ul>
+  <li> basic properties, derivatives and integrals of elementary functions like polynomials, exponential, logarithm, trigonometric and some hyperbolic functions
+  <li> the definition of limit, liminf and limsup of real-valued sequences
+  <li> that monotone sequences have limits
+  <li> the definition of a Cauchy sequence and that these are convergent in &Ropf;
+  <li> that 1/n<sup>p</sup> is summable for p&gt;1 but not for p&le;1, and the analogous statement for integrals
+  <li> that exponentials converge/diverge faster than any polynomial
+  <li> the triangle inequality for absolute value
+  <li> the way to find maxima and minima of smooth real to real functions
+  <li> the Heine–Cantor theorem on uniform continuity of continuous real-valued functions on a closed and bounded real interval
+  <li> complex numbers, and exponentials thereof
+  <li> Cauchy's Residue Theorem. This will be stated in class and in the notes together with examples of how to use it, so don't worry about it too much.
+ </ul>
+<br>&nbsp;
+<li> Remark on the assessments: there will be no distinction between levels H/6 and M/7 regarding homeworks. Six homework sets will be assigned, see the schedule below. Our marking deadline is one week after the respective due dates. From each of these, you can collect 17 homework marks. Your final mark will be weighted as 20% -- 80% homework mark -- exam mark.
+<br>&nbsp;
+<li> A few more remarks on the exam: for both levels, final examination will be 2½-hour long, will consist of four questions each of which will be used for assessment. The exams at levels H/6 and M/7 will have cca. 80% overlap. Past exams, one with solutions, are to be found on the Blackboard page <i>Resources for students</i> &rarr; <i>Examinations</i>.
+<br>&nbsp;
+<li><a href="normal-table.pdf" target="_blank">The standard normal distribution</a> in pdf. A similar table will be available on the exam.
+<br>&nbsp;
+<li><a href="rev_notes_A_Smith_ftip16s.pdf" target="_blank">Revision notes</a>
+ <!-- (<a href="rev_notes_A_Smith_ftip16s_env.pdf" target="_blank" style="color:green">greener version</a>, half the paper)-->
+ in pdf, written by Aaron Smith, a student in this unit in 2015. The notes on <a href="Stirling_DeMoivre_Laplace.pdf" target="_blank">Stirling's formula and the DeMoivre-Laplace CLT</a>, and a <a href="product_sum_lemma.pdf" target="_blank">product-sum lemma</a> are additional to this. Please notice that these notes are <b>by no means meant to fully cover our material</b>, nor will all parts of them be assessed. (<i>Last edited: 14/02/2022.</i>)
+<br>&nbsp;
+<li><a href="prob1_and_beyond.html" target="_blank">Extended slides/notes of elementary probability</a>. Some of it can be used as reference and refreshment for parts of the Probability 1 and Advanced Probability 2 units. Other portions we will cover in class, and some we will not touch. Below you'll see links to relevant parts of this material. Please notice that these links are <b>by no means meant to fully cover our material</b>, nor will all parts of all of them be assessed. They rather serve as background reading. (They are actually part of lecture notes for a rather strong first probability unit I used to teach before.)
+ <!--
+<br>&nbsp;
+<li> A mock exam with solutions is now available on Blackboard. Disclaimer: no two exams are the same, this is just to show you some possible style of how our exam could look like. The topics and difficulty of the questions might vary. Concentrating on past and mock exams is in general NOT a good way of preparation.
+ -->
+<br>&nbsp;
+<li>I came across <a href="https://www.youtube.com/watch?v=LKnqECcg6Gw" target="_blank">this illustration</a> of Jensen's inequality: square-root of the average &ne; average of the square-root.
+<br>&nbsp;
+<li>I was thinking about going over the <a href="http://link.springer.com/article/10.1007/BF01013465" target="_blank">ingenious proof of the SLLN by N. Etemadi</a>, or <a href="https://arxiv.org/abs/2105.03803" target="_blank">this other one using ergodic ideas by C.W. Chin</a>, but decided to stay with the classical argument instead. You are welcome to check out their ways of doing it!
+<br>&nbsp;
+<li><a href="https://arxiv.org/abs/2111.01603" target="_blank">Here is an alternative way of getting to the Continuity theorem</a> by Christian D&ouml;bler, in case you are interested.
+</ul>
+</td></tr></table>
+<p align="center">
+ Below is a detailed schedule. Topics of future events are plans, and can change. Topics of past events serve as log. <span style="color:green">The green version of pdf's use less paper to print.</span> Previous years' videos are are added for convenience, and the recommended literature can be found under the unit description links above. Both of these are advisory, examinable is what is featured in lectures.<br>
+ <br>
+ Homeworks are/will also be posted here: just click those with a link below. They are due every second Thursday (see below) at 12:00pm in Blackboard. Homework solutions will appear on Blackboard, please email me if you have problem accessing these.
+</p>
+<br>&nbsp;
+<table align="center" border="1" cellpadding="2" rules="groups" style="border-collapse: collapse; border: 1px solid black">
+ <colgroup></colgroup><colgroup></colgroup><colgroup></colgroup><colgroup></colgroup>
+ <tbody>
+  <tr>
+   <th>
+    Time
+   </th>
+   <th>
+    Topics
+   </th>
+   <th>
+    Past videos
+   </th>
+   <th>
+    Homework due:
+   </th>
+  </tr>
+ </tbody>
+ <tbody>
+  <!-- Week 13 -->
+  <tr>
+   <td>
+    <b>
+     Mon 24 Jan
+    </b>
+   </td>
+   <td>
+    <i>Intorduction</i>; <a href="NegBin_Hypergeom.pdf" target="_blank">Basic discrete distributions</a>
+   </td>
+   <td>
+    <a href="https://youtu.be/yL6bI7815xA" title="FTiP21/1. A review of basic integer distributions" target="_blank">L1</a>,
+    <a href="https://youtu.be/hpBUn8Zm9a4" title="FTiP21/2. Negative binomial and Hypergeometric" target="_blank">L2</a>
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 25 Jan
+    </b>
+   </td>
+   <td>
+    Convolution (discrete cases)<br>
+    Basic continuous distributions
+   </td>
+   <td>
+    <a href="https://youtu.be/I9hnnURsCyE" title="FTiP21/3. Convolution of integer random variables" target="_blank">L3</a>,
+    <a href="https://youtu.be/yTzh8uGhkyY" title="FTiP21/4. Convolution example: Binomial" target="_blank">L4</a>,
+    <a href="https://youtu.be/UVq2SI9CdTQ" title="FTiP21/5. Convolution example: Poisson" target="_blank">L5</a>,
+    <a href="https://youtu.be/QGwby1OU1cA" title="FTiP21/6. Convolution example: Geometric and Negative Binomial" target="_blank">L6</a><br>
+    <a href="https://youtu.be/Lj4UHw1B76o" title="FTiP21/7. A review of basic continuous distributions" target="_blank">L7</a>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Fri 28 Jan
+    </b>
+   </td>
+   <td>
+    <i>Ex. class (convolution)
+     <!--
+     (Neg.bin., Poi., Uniform convolutions)
+     -->
+     </i>
+   </td>
+   <td>
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <!-- Week 14 -->
+  <tr>
+   <td>
+    <b>
+     Mon 31 Jan
+    </b>
+   </td>
+   <td>
+    <a href="Normal_normed.pdf" target="_blank">Normal distribution</a><br>
+    <a href="joint_cont_distr.pdf" target="_blank">Convolution </a><a href="joint_cont_distr_env.pdf" target="_blank" style="color:green">(Uniform, Gaussian)</a><br>
+   </td>
+   <td>
+    <a href="https://youtu.be/bzagGuL2VxI" title="FTiP21/8. Normal is normed" target="_blank">L8</a><br>
+    <a href="https://youtu.be/OO443jH05fE" title="FTiP21/9. Convolution of continuous random variables" target="_blank">L9</a>,
+    <a href="https://youtu.be/345SOnIN6z4" title="FTiP21/10. Convolution of normal random variables" target="_blank">L10</a>
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 1 Feb
+    </b>
+   </td>
+   <td>
+    Convolution (Cauchy)
+   </td>
+   <td>
+    <a href="https://youtu.be/6lTidOhjinI" title="FTiP21/11. Cauchy distribution" target="_blank">L11</a>,
+    <a href="https://youtu.be/Wu94gtpJrlQ" title="FTiP21/12. Residuum theorem" target="_blank">L12</a>,
+    <a href="https://youtu.be/CVvDJiB2sDE" title="FTiP21/13. Convolution of cauchy random variables" target="_blank">L13</a>
+   </td>
+   <td align="center">
+    <b>
+     by Thu 3 Feb, noon:
+    </b><br>
+    <a href="hw1_ftip22s.pdf">HW1</a>
+    (sol. on Bb.)
+    <!--
+    HW1
+    -->
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     <!--70/10-->
+     Fri 4 Feb
+   </b>
+   </td>
+   <td>
+    Convolution (Cauchy)
+   </td>
+   <td>
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Mon 7 Feb
+    </b>
+   </td>
+   <td>
+    Gamma, Chi square distributions
+   </td>
+   <td>
+    <a href="https://youtu.be/vx24ZjMUqBs" title="FTiP21/14. Gamma function" target="_blank">L14</a>,
+    <a href="https://youtu.be/UjNSGY_FKpI" title="FTiP21/15. Gamma distribution; convolution properties" target="_blank">L15</a>,
+    <a href="https://youtu.be/9b3C6UqYuOw" title="FTiP21/16. Gamma and the Chi-square distribution" target="_blank">L16</a>
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 8 Feb
+    </b>
+   </td>
+   <td>
+    <a href="Poisson_process.pdf" target="_blank">Poisson process</a><br>
+    Generating functions (properties)
+   </td>
+   <td>
+    <a href="https://youtu.be/dk1SyqtoRLw" title="FTiP21/17. A few words on the Poisson process" target="_blank">L17</a><br>
+    <a href="https://youtu.be/TXXVRFg73AM" title="FTiP21/18. Generating functions" target="_blank">L18</a>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Fri 11 Feb
+    </b>
+   </td>
+   <td>
+    <i>
+     Ex. class (generating function examples)
+     </i>
+   </td>
+   <td>
+    <a href="https://youtu.be/ti0cyqSp87A" title="FTiP21/19. Generating function of Binomial" target="_blank">L19</a>,
+    <a href="https://youtu.be/IdXIqHH0jDg" title="FTiP21/20. Generating function of Poisson" target="_blank">L20</a>,
+    <a href="https://youtu.be/KB50NZNPj2Y" title="FTiP21/21. Generating function of Geometric" target="_blank">L21</a>,
+    <a href="https://youtu.be/ppmWYNSwB0I" title="FTiP21/23. Generating functions and convolutions" target="_blank">L23</a>
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <!-- Week 16 -->
+  <tr>
+   <td>
+    <b>
+     Mon 14 Feb
+    </b>
+   </td>
+   <td>
+    Generating functions (random no. of summands)
+   </td>
+   <td>
+    <a href="https://youtu.be/MJCVgibmgx4" title="FTiP21/24. Random sums" target="_blank">L24</a>,
+    <a href="https://youtu.be/FHuiPt-wAgQ" title="FTiP21/25. A random sum example" target="_blank">L25</a>
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 15 Feb
+    </b>
+   </td>
+   <td>
+    Generating functions (Galton-Watson process)
+   </td>
+   <td>
+    <a href="https://youtu.be/40_Dk7ZcQ6c" title="FTiP21/26. Galton-Watson process" target="_blank">L26</a>,
+    <a href="https://youtu.be/6QHwFx9A928" title="FTiP21/27. Extinction probability in the G-W process" target="_blank">L27</a>
+   </td>
+   <td align="center">
+    <b>
+     by Thu 17 Feb, noon:
+    </b><br>
+    <a href="hw2_ftip22s.pdf">HW2</a>
+    (sol. on Bb.)
+    <!--
+    HW2
+    -->
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Fri 18 Feb
+    </b>
+   </td>
+   <td>
+    Critical G-W process; total population
+   </td>
+   <td>
+    <a href="https://youtu.be/mCudCkDjVpY" title="FTiP21/28. Geometric G-W process" target="_blank">L28</a>,
+    <a href="https://youtu.be/xHpo6f4szmw" title="FTiP21/29. A critical G-W process" target="_blank">L29</a>,
+    <a href="https://youtu.be/s-0qoT6VwWM" title="FTiP21/30. Total population in the G-W process" target="_blank">L30</a>
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <!-- Week 17 -->
+  <tr>
+   <td>
+    <b>
+     Mon 21 Feb
+    </b>
+   </td>
+   <td>
+    Generating functions (random walk: level 1 hitting time)
+   </td>
+   <td>
+    <a href="https://youtu.be/JownKcXesEQ" title="FTiP21/31. Simple random walk, hitting times" target="_blank">L31</a>,
+    <a href="https://youtu.be/PQst9eRO34Q" title="FTiP21/32. Recurrence of simple random walk" target="_blank">L32</a>
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 22 Feb
+    </b>
+   </td>
+   <td>
+    Generating functions (random walk: recurrence and transience)
+   </td>
+   <td>
+    <a href="https://youtu.be/mQNsoQkOECE" title="FTiP21/33. Amoebas and random walks" target="_blank">L33</a>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Fri 25 Feb
+    </b>
+   </td>
+   <td>
+    <i>
+     Ex. class (fun with generating functions: triangle, Neg.Binomial)
+    </i>
+   </td>
+   <td>
+    <a href="https://youtu.be/NP9R7SxW7t4" title="FTiP21/22. Generating function of Negative Binomial" target="_blank">L22</a>
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <!-- Week 18 -->
+  <tr>
+   <td>
+    <b>
+     Mon 28 Feb
+    </b>
+   </td>
+   <td>
+    Generating functions (weak convergence)
+   </td>
+   <td>
+    <a href="https://youtu.be/0RuqQiB81qM" title="FTiP21/34. Integer limit distributions and Continuity theorem" target="_blank">L34</a>
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 1 Mar
+    </b>
+   </td>
+   <td>
+    Generating functions (weak convergence, Law of Rare Events)
+   </td>
+   <td>
+    <a href="https://youtu.be/DuaYhitJ63o" title="FTiP21/35. Proof of the integer Continuity theorem 1." target="_blank">L35</a>,
+    <a href="https://youtu.be/c5O1pNL583w" title="FTiP21/36. Proof of the integer Continuity theorem 2." target="_blank">L36</a>
+   </td>
+   <td align="center">
+    <b>
+     by Thu 3 Mar, noon:
+    </b><br>
+    <a href="hw3_ftip22s.pdf">HW3</a>
+    (sol. on Bb.)
+    <!--
+    HW3
+    -->
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Fri 4 Mar
+    </b>
+   </td>
+   <td>
+    Generating functions (Law of Rare Events)
+   </td>
+   <td>
+    <a href="https://youtu.be/vASi725VRBw" title="FTiP21/37. Law of Rare Events" target="_blank">L37</a>
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Mon 7 Mar
+    </b>
+   </td>
+   <td>
+    Weak convergence<br>
+    <a href="Bernoulli_LLN.pdf" target="_blank">Weak Law </a><a href="Bernoulli_LLN_env.pdf" target="_blank" style="color:green">of Large Numbers</a><br>
+     <a href="Stirling_DeMoivre_Laplace.pdf" target="_blank">Stirling's formula</a>
+   </td>
+   <td>
+    <a href="https://youtu.be/Y987RzsE0iA" title="FTiP21/38. Weak Law of Large Numbers (with second moment)" target="_blank">L38</a>,
+    <a href="https://youtu.be/MelZZ_BwkaE" title="FTiP21/39. Bernstein polynomials and Weierstrass’ approximation theorem" target="_blank">L39</a>
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 8 Mar
+    </b>
+   </td>
+   <td>
+     <a href="Stirling_DeMoivre_Laplace.pdf" target="_blank">Stirling's formula</a>
+   </td>
+   <td>
+    <a href="https://youtu.be/8PBAee_X8No" title="FTiP21/40. Stirling's formula and some motivation" target="_blank">L40</a>,
+    <a href="https://youtu.be/JYFJ3AouUe4" title="FTiP21/41. Proof of Stirling's formula" target="_blank">L41</a>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Fri 11 Mar
+    </b>
+   </td>
+   <td>
+    <i>
+     Ex. class (<a href="step_on_n.pdf" target="_blank">RW probabilities</a> (sol. on Bb))
+    </i>
+   </td>
+   <td>
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Mon 14 Mar
+    </b>
+   </td>
+   <td>
+    <a href="Stirling_DeMoivre_Laplace.pdf" target="_blank">DeMoivre Laplace CLT</a>
+   </td>
+   <td>
+    <a href="https://youtu.be/6tBSUqs9QBo" title="FTiP21/42. DeMoivre-Laplace theorem" target="_blank">L42</a>,
+    <a href="https://youtu.be/YXQCgdWvezU" title="FTiP21/43. Proof of the DeMoivre-Laplace theorem, 1." target="_blank">L43</a>
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 15 Mar
+    </b>
+   </td>
+   <td>
+    <a href="Stirling_DeMoivre_Laplace.pdf" target="_blank">DeMoivre Laplace CLT</a>
+   </td>
+   <td>
+    <a href="https://youtu.be/ODvhVGyH9ws" title="FTiP21/44. Proof of the DeMoivre-Laplace theorem, 2." target="_blank">L44</a>,
+    <a href="https://youtu.be/94yMRnxZq-4" title="FTiP21/45. Proof of the DeMoivre-Laplace theorem, 3." target="_blank">L45</a>
+   </td>
+   <td align="center">
+    <b>
+     by Thu 17 Mar, noon:
+    </b><br>
+    <a href="hw4_ftip22s.pdf">HW4</a>
+    (sol. on Bb.)
+    <!--
+    HW4
+    -->
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Fri 18 Mar
+    </b>
+   </td>
+   <td>
+    <a href="Stirling_DeMoivre_Laplace.pdf" target="_blank">DeMoivre Laplace CLT</a><br>
+    (Review from <i>Martingales</i>: <a href="meas_th_prob.pdf" target="_blank">Measure </a><a href="meas_th_prob_env.pdf" target="_blank" style="color:green">Theory</a>, <a href="product_sum_lemma.pdf" target="_blank">product-sum lemma</a>, probabilistic tools, <a href="conv_examples.pdf" target="_blank">convergence modes</a>)
+   </td>
+   <td>
+    <a href="https://youtu.be/qT9sxYcImsk" title="FTiP21/46. Global DeMoivre-Laplace theorem" target="_blank">L46</a><br>
+    (<a href="https://youtu.be/VGyjoD7C9cM" title="MT/1. Algebra, sigma-algebra, measures" target="_blank">M1</a>,
+    <a href="https://youtu.be/B1GBLnC0pEA" title="MT/2. Continuity of measures" target="_blank">M2</a>,
+    <a href="https://youtu.be/Z_tBXmtlNL0" title="FTiP21/47: Proof of continuity of measures" target="_blank">L47</a>,
+    <a href="https://youtu.be/0i8l-TjMr4Y" title="MT/3. Probability space, examples of sigma-algebras" target="_blank">M3</a>,
+    <a href="https://youtu.be/jc9SDx3_Be8" title="MT/4. Construction of interesting measures" target="_blank">M4</a>,
+    <a href="https://youtu.be/SRdg7-hrvlc" title="MT/5. Random variables" target="_blank">M5</a>,
+    <a href="https://youtu.be/YEA3f8Ss6Rs" title="MT/6. Expectation" target="_blank">M6</a>,<br>
+    <a href="https://www.youtube.com/watch?v=ORNU0l9Zmo8" target="_blank" title="FTiP/1. A product-sum lemma">F1</a>,
+    <a href="https://www.youtube.com/watch?v=nWLXz3Kaee8" target="_blank" title="FTiP/2. Limsup of events">F2</a>,
+    <a href="https://www.youtube.com/watch?v=mv1NKw4gqdI" target="_blank" title="FTiP/3. Borel Cantelli lemmas">F3</a>,
+    <a href="https://www.youtube.com/watch?v=xDi7-5Avx58" target="_blank" title="FTiP/4. Monotone convergence">F4</a>,
+    <a href="https://www.youtube.com/watch?v=tvNH90WqaGk" target="_blank" title="FTiP/5. Fatou's lemma">F5</a>,
+    <a href="https://www.youtube.com/watch?v=amQAYvR0zjs" target="_blank" title="FTiP/6. Dominated convergence">F6</a>,
+    <a href="https://www.youtube.com/watch?v=6SNLb1ok3OA" target="_blank" title="FTiP/7. Jensen's and Ljapunov's inequality">F7</a>,
+    <a href="https://www.youtube.com/watch?v=mdvlouD97Ws" target="_blank" title="FTiP/8. H&ouml;lder and Cauchy-Schwarz">F8</a>,<br>
+    <a href="https://www.youtube.com/watch?v=p_w3y-ni2P0" target="_blank" title="FTiP/9. Minkowski's inequality">F9</a>,
+    <a href="https://www.youtube.com/watch?v=S-b4y_oTlHw" target="_blank" title="FTiP/10. Modes of convergence">F10</a>,
+    <a href="https://www.youtube.com/watch?v=dS61PkLHEzg" target="_blank" title="FTiP/11. Convergence: a.s. vs in probability">F11</a>,
+    <a href="https://www.youtube.com/watch?v=QgGw54QmyDY" target="_blank" title="FTiP/12. Convergence: implications">F12</a>,
+    <a href="https://www.youtube.com/watch?v=Ov8AdyVjemw" target="_blank" title="FTiP_ex/2. Mean conv. example">E2</a>,
+    <a href="https://www.youtube.com/watch?v=bkK3FD-dJ_Q" target="_blank" title="FTiP_ex/3. Indicator conv. example">E3</a>,
+    <a href="https://www.youtube.com/watch?v=6hrPlz_Og0E" target="_blank" title="FTiP_ex/4. Polynomial conv. example">E4</a>,
+    <a href="https://www.youtube.com/watch?v=-5YQkh6Dn6Y" target="_blank" title="FTiP_ex/5. Bernoulli conv. example">E5</a>)
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Mon 21 Mar
+    </b>
+   </td>
+   <td>
+    SLLN (Kolmogorov's ineq.; Kolmogorov-Khinchin)
+   </td>
+   <td>
+    <a href="https://www.youtube.com/watch?v=wTycSmNU7xk" target="_blank" title="FTiP/13. Stating the Strong and Weak LLN">F13</a>,
+    <a href="https://www.youtube.com/watch?v=bhwebWaRSTQ" target="_blank" title="FTiP/14. Kolmogorov's inequality">F14</a>,
+    <a href="https://www.youtube.com/watch?v=8oA6Ad82HWY" target="_blank" title="FTiP/15. Kolmogorov-Khinchin Thm.">F15</a>
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 22 Mar
+    </b>
+   </td>
+   <td>
+    SLLN (Toeplitz' lemma; Kronecker; Kolmogorov's Thm)
+   </td>
+   <td>
+    <a href="https://www.youtube.com/watch?v=2ngb_VB4Qcc" target="_blank" title="FTiP/16. Toeplitz lemma">F16</a>,
+    <a href="https://www.youtube.com/watch?v=s_4zGZvRQaU" target="_blank" title="FTiP/17. Kronecker lemma">F17</a><br>
+    <a href="https://www.youtube.com/watch?v=JDQ_cFkS_xA" target="_blank" title="FTiP/18. Kolmogorov's Thm.">F18</a>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Fri 25 Mar
+    </b>
+   </td>
+   <td>
+    <i>
+     Ex. class (SLLN)
+     </i>
+   </td>
+   <td>
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Mon 28 Mar
+    </b>
+   </td>
+   <td>
+    SLLN (Kolmogorov's Thm, final proof, remarks)
+   </td>
+   <td>
+    <a href="https://www.youtube.com/watch?v=NcCqFF2Rdx4" target="_blank" title="FTiP/19. A bound on a polynomial sum">F19</a>,
+    <a href="https://www.youtube.com/watch?v=WVTbgJTpBJQ" target="_blank" title="FTiP/20. Expectation and tail probability">F20</a>,
+    <a href="https://www.youtube.com/watch?v=3a2oBaJWgIg" target="_blank" title="FTiP/21. Proof of the SLLN.">F21</a>,
+    <a href="https://www.youtube.com/watch?v=f5BiXECmE_s" target="_blank" title="FTiP/22. Remarks on the SLLN">F22</a>
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 29 Mar
+    </b>
+   </td>
+   <td>
+    Characteristic Functions
+   </td>
+   <td>
+    <a href="https://www.youtube.com/watch?v=z3bCZbmZQz4" target="_blank" title="FTiP/23. Characteristic functions">F23</a>,
+    <a href="https://www.youtube.com/watch?v=WU62tNpAP6A" target="_blank" title="FTiP/24. Characteristic functions: uniform continuity">F24</a>,
+    <a href="https://www.youtube.com/watch?v=LKak4y3ikA8" target="_blank" title="FTiP/25. Characteristic functions and lattice disributions">F25</a>,
+    <a href="https://www.youtube.com/watch?v=WckGoiEfISQ" target="_blank" title="FTiP/26. Characteristic functions: further properties">F26</a>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Fri 1 Apr
+    </b>
+   </td>
+   <td>
+    Inversion formula
+   </td>
+   <td>
+    <a href="https://www.youtube.com/watch?v=N9zTDfsVObU" target="_blank" title="FTiP/27. Characteristic functions and moments">F27</a>,
+    <a href="https://www.youtube.com/watch?v=0uF5vMlH0fQ" target="_blank" title="FTiP/28. Inversion formula">F28</a>
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td colspan="4" align="center">
+    <i>
+     Easter vacation
+    </i>
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Mon 25 Apr
+    </b>
+   </td>
+   <td>
+    Inversion formula, weak convergence
+   </td>
+   <td>
+    <a href="https://www.youtube.com/watch?v=V-Lab2NJYJI" target="_blank" title="FTiP/29. Remarks with the inversion formula">F29</a>,
+    <a href="https://www.youtube.com/watch?v=lHkQylsOiE8" target="_blank" title="FTiP/30. Weak convergence">F30</a>
+   </td>
+   <td align="center">
+    <b>
+     by Mon 25 Apr, noon:
+    </b><br>
+    <a href="hw5_ftip22s.pdf">HW5</a>
+    (sol. on Bb.)
+    <!--
+    HW5
+    -->
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 26 Apr
+    </b>
+   </td>
+   <td>
+    Weak Convergence (Prokhorov's Thm) 
+   </td>
+   <td>
+    <a href="https://www.youtube.com/watch?v=ZYNeld2GzHs" target="_blank" title="FTiP/31. Generalised distribution functions">F31</a>,
+    <a href="https://www.youtube.com/watch?v=t5IDjdVtT_c" target="_blank" title="FTiP/32. Prokhorov's theorem">F32</a>
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Fri 29 Apr
+    </b>
+   </td>
+   <td>
+    <i>
+     Ex. class <a href="charfct_clt.pdf" target="_blank">(Characteristic functions</a> (sol. on Bb))
+     </i>
+   </td>
+   <td>
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Tue(!) 3 May
+    </b>
+   </td>
+   <td>
+    Continuity Lemma
+   </td>
+   <td>
+    <a href="https://www.youtube.com/watch?v=AkyZC-DS06M" target="_blank" title="FTiP/33. Tightness and weak convergence">F33</a>,
+    <a href="https://www.youtube.com/watch?v=uoHm61YOu7Y" target="_blank" title="FTiP/34. Tightness and characteristic functions">F34</a>,
+    <a href="https://www.youtube.com/watch?v=ZFse8SIFuBI" target="_blank" title="FTiP/35. A tail bound with characteristic functions">F35</a>,
+    <a href="https://www.youtube.com/watch?v=CEfpIdf9XKI" target="_blank" title="FTiP/36. Continuity lemma">F36</a><br>
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 3 May
+    </b>
+   </td>
+   <td>
+    WLLN, CLT
+   </td>
+   <td>
+    <a href="https://www.youtube.com/watch?v=iXfg3Zo7BPY" target="_blank" title="FTiP/37. A Taylor expansion of characteristic functions">F37</a>,
+    <a href="https://www.youtube.com/watch?v=6b5cEB0mWkM" target="_blank" title="FTiP/38. Weak Law of Large Numbers">F38</a>,
+    <a href="https://www.youtube.com/watch?v=V1FUqYpPbBQ" target="_blank" title="FTiP/39. Central Limit Theorem">F39</a>
+   </td>
+   <td align="center">
+    <b>
+     by Thu 5 May, noon:
+    </b><br>
+    <a href="hw6_ftip22s.pdf">HW6</a>
+    (sol. on Bb.)
+    <!--
+    HW6
+    -->
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Fri 6 May
+    </b>
+   </td>
+   <td>
+    Comments on the CLT, Berry-Esseen, Local CLT, Lindeberg Thm
+   </td>
+   <td>
+    <a href="https://www.youtube.com/watch?v=MICNzKScZXY" target="_blank" title="FTiP/40. Berry-Esseen Theorem">F40</a>,
+    <a href="https://www.youtube.com/watch?v=8VrfPAA0fLc" target="_blank" title="FTiP/41. Local CLT">F41</a>,
+    <a href="https://www.youtube.com/watch?v=YWyC55qAZpw" target="_blank" title="FTiP/42. Lindeberg CLT">F42</a>
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+  <!--
+  <tr>
+   <td>
+    (<s>Fri 8 May</s>)
+   </td>
+   <td align="center">
+   </td>
+   <td align="center">
+    <i>
+     Bank holiday, no class
+    </i>
+   </td>
+   <td align="center">
+   </td>
+  </tr>
+  -->
+ </tbody>
+ <!--
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     TBC
+    </b>
+   </td>
+   <td>
+    Q&amp;A session
+   </td>
+   <td align="center">
+     ..
+   </td>
+  </tr>
+ </tbody>
+ -->
+</table>
+<br>&nbsp;
+<br>&nbsp;
+<hr align=center width=30%>
+<br>&nbsp;
+<p align=center>
+If you have any questions, please contact me (see on top). Click <a href="https://outlook.office365.com/owa/calendar/24e913f958614025984e1a0cd99decfb@bristol.ac.uk/4106e3a6b0d64a1b9fb1a5a1c08d40171084624880904190380/calendar.html" target="_blank">here</a> to see my schedule.<br>
+</p>
+<br>&nbsp;
+<hr align=center width=30%>
+<p align=center>
+To my <a href="teach.html">teaching page</a>
+</p>
+</body>
+</html>

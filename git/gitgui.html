@@ -1,0 +1,303 @@
+<!-- 2013.08.28 -->
+<HTML><HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+<link href="main.css" rel="stylesheet" type="text/css">
+<TITLE> Git gyorstalpaló </TITLE></HEAD>
+<body bgcolor="FFFACD">
+<h1><p align=center>Git gyorstalpaló</p></h1>
+<p class="null">
+ <span class="nonu"><a href="miagit.html">&gt; <b>Mi is az a Git?</b></a></span><br>
+ <br>
+ <span class="nonu"><a href="telep.html">&gt; <b>Telepítés</b></a></span><br>
+ <br>
+ <span class="nonu"><a href="index.html">&or;</a></span> <b>Használat (alapok)</b><br>
+</p>
+<p class="egy">
+ <span class="nonu"><a href="gitext.html">&gt; <b>Git Extensions</b></a></span><br>
+ <br>
+ <span class="nonu"><a href="hasznal.html">&or;</a></span> <b>Git Gui</b><br>
+</p>
+<p class="ket">
+ A Git Gui egy grafikus felület a Githez Linuxban és Windowsban is. A Git Extensions-nél butább, de azért sokmindenre elég ez is. Először nézzük meg, hogy hogyan hozunk létre új repót. Hozzunk létre valahol egy <i>sajat</i> nevű könyvtárat, tegyünk vagy írjunk bele egy filet. (Ékezetet semilyen filenévben és felhasználónévben sem érdemes használni. :-) ) A Git Gui-nak Windowsban külön ikonja van a Start menüben a Git-ben, illetve ha kitettük az asztalra akkor ott, Linuxban parancssorból<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ git gui
+   </td>
+  </tr>
+ </table>
+ <br>
+ Legelőször megkérdezi, hogy csináljon-e új repót, klónozzon (másoljon) egyet, vagy egy létezőt nyisson meg. Mondjuk neki, hogy csináljon új repót, ezután adjuk meg neki az előbb létrehozott <i>sajat</i> könyvtárat. Ekkor feljön a Git Gui ablak, és <i>Unstaged Changes/Kiválasztatlan változások</i> alatt ott lesz a file-unk. Ekkorra a könyvtárban egy <i>.git</i> könyvtár is van, ez a Git adatbázisa.<br>
+ <br>
+ Mielőtt megnéznénk mi mindent tud a Git, itt van a másik módszer egy repó létrehozására: klónozunk egyet egy központi <i>Szerver</i> nevű gépen levő repónkról. Ezt csak akkor csináljuk, amikor legelőször hozzuk le a repót, és még nincs saját másolatunk. Csukjuk be a Git Gui-t, és nyissuk ki újra. (Ha megint a <i>sajat</i>ot nyitja meg kérdezés nélkül, akkor csukjuk be megint, ki kell mennünk a könyvtárból mielőtt újra megnyitjuk a Git Guit). Mi a <i>Szerver</i>ről ssh-n keresztül fogjuk hozni-vinni a cuccainkat, ezért ezt írom le (de megjegyzésképp a Git működik http-n, rsync-en, és egy saját git protokollján keresztül is). Az elején most mondjuk azt, hogy klónozzon/másoljon. Megkérdezi honnan, hát innen:<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    projfelh@valami.szerver.hu:proba
+   </td>
+  </tr>
+ </table>
+ <br>
+ azt is megkérdezi hova, írjunk be egy létező könyvtárat, majd a végére tegyük hozzá, hogy <i>/proba</i>. Ezután ha minden jól ment a publikus rsa kulccsal, ahogy <a href="hasznal.html">itt</a> írtam, akkor kis töprengés után azt mondja rendben, és feljön a Git Gui ablak. Ekkorra ahol mondtuk neki ott létrehozott egy <i>proba</i> könyvtárat, és beletette a <i>proba</i> project filejait a <i>Szerver</i> repójából (felteszem, hogy ott már ez létre lett hozva korábban). A könyvtárban egy <i>.git</i> könyvtár is van, ez a Git adatbázisa.<br>
+ <br>
+ Most, hogy minden jól legyen, az<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Edit/Szerkesztés --&gt; Opciók
+   </td>
+  </tr>
+ </table>
+ <br>
+ pontban ellenőrizzük / adjuk meg a nevünket és emailcímünket. Sok egyéb beállítható dolog is van, ne piszkáljuk. :-) Most változtassunk valamit valamelyik fileon, majd a Git Guiban klikkeljünk oda, hogy<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Rescan/Keresés újra
+   </td>
+  </tr>
+ </table>
+ <br>
+ Ekkor megjelenik (ha még nem volt ott) a file-unk a piros csík alatt, esetleg valamilyen változások is a sárga csík alatt. Most ki kell jelölnünk, hogy mely fileokat ajánljuk a Git figyelmébe: klikkeljünk rá a file(ok)ra a piros csík alatt, majd<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    (felső menüben) Commit --&gt; Stage to commit/Kiválasztás commitolásra
+   </td>
+  </tr>
+ </table>
+ <br>
+ hogy átkerüljön a zöld csík alá (<i>Staged Changes/Kiválasztott változtatások</i>). (Ha nem új a file, csak változott, akkor alul van egy<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Változtatások kiválasztása/Stage Changed
+   </td>
+  </tr>
+ </table>
+ <br>
+ gomb is, azzal egyszerűbb.) Ezután egy commit üzenetet írjunk a jobb alsó ablakba, pl., hogy "Elso commit". Humanitárius okokból itt ne használjunk ékezeteket. :-) Majd alul klikkeljünk rá a<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Commit
+   </td>
+  </tr>
+ </table>
+ <br>
+ gombra. Ezzel a változások / az új fileunk bekerült a Git (egylőre csak helyi) adatbázisába. (Megjegyzés: meg lehet mondani a Git-nek, hogy bizonyos fileok engem sosem érdekelnek, részletek <a href="http://book.git-scm.com/4_ignoring_files.html" target="_blank">itt</a>.)<br>
+ <br>
+ Most a megváltozott adatbázisunkat szeretnénk visszatölteni a <i>Szerver</i>re. Ha klónozással szereztük az adatbázist, akkor ehhez csak arra kell klikkelnünk, hogy<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Push
+   </td>
+  </tr>
+ </table>
+ <br>
+ a felugró ablakban mindent úgyhagyni, és <i>Push</i> mégegyszer.<br>
+ <br>
+ Ha viszont a <i>sajat</i> könyvtárunkról az adatbázis újonan készült, akkor el kell küldeni emailben a nevét annak, aki a <i>Szerver</i>en a <i>projfelh</i> usert adminisztrálja, hogy tudathassa a <i>Szerver</i>rel, hogy lesz egy ilyen új adatbázis rajta. Ha tudatta vele, akkor a következőket kell tenni:<br>
+ <br>
+ <table>
+  <tr>
+   <td class="kod">
+    Remote/Távoli --&gt; Add/Hozzáadás
+   </td>
+  </tr>
+ </table>
+ <br>
+ névnek írjunk be akármit (pl. Szerver/sajat), helynek pedig azt, hogy<br>
+ <br>
+ <table>
+  <tr>
+   <td class="kod">
+    projfelh@valami.szerver.hu:sajat
+   </td>
+   <td>
+    &nbsp;
+   </td>
+   <td align="left">
+    majd
+   </td>
+  </tr>
+  <tr>
+   <td class="kod">
+    Do nothing else now/Ne csináljunk semmit
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+ </table>
+ <br>
+ mert már ezt a repót létrehozták a <i>Szerver</i>en (üresen!). Ha ez megvan, akkor most lehet arra klikkelnünk, hogy<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Push
+   </td>
+  </tr>
+ </table>
+ <br>
+ a felugró ablakban mindent úgyhagyni, és <i>Push</i> mégegyszer. Ha minden jól megy, most felkerültek a <i>Szerver</i> központi <i>sajat</i> repójába a filejaink.<br>
+<br>
+ Ha ezután valamikor máskor dolgozni szeretnénk mondjuk a <i>proba</i> projecten, akkor (ha épp nincs meg a könyvtárunk benne a <i>./git</i> adatbázissal, klónozzuk, lásd fent, ha pedig megvan, akkor)<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Remote/Távoli --&gt; Fetch from/Letöltés innen
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <i>[amit a proba repó létrehozója megadott, pl.]</i> origin
+   </td>
+  </tr>
+ </table>
+ <br>
+ ez lehozza a <i>Szerver</i> <i>proba</i> nevű repóját, de még nem veti össze a filejainkkal. Ehhez még az kell, hogy<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Merge --&gt; Local/Helyi merge
+   </td>
+  </tr>
+  <tr>
+   <td>
+    Tracking/Követő branch
+   </td>
+  </tr>
+ </table>
+ <br>
+ Ez már valójában összeveti a letöltött repót a mienkkel, és frissíti a saját könyvtárunkat (ha kell).<br>
+ <br>
+ Ha sokan piszkálták egyszerre a <i>proba</i> könyvtárat és fel-le töltögettek a központi adatbázisba, a Git legtöbbször olyankor is tudja frissíteni a saját könyvtárunkat (pull) vagy a központi könyvtárat (push), kitalálja hogyan egyesítse a változásokat. Ha ez mégsem sikerülne, klikk <a href="http://book.git-scm.com/3_basic_branching_and_merging.html" target="_blank">ide</a>, <a href="http://book.git-scm.com/3_distributed_workflows.html" target="_blank">ide</a> vagy <a href="http://book.git-scm.com/5_advanced_branching_and_merging.html" target="_blank">ide</a>.<br>
+ <br>
+ A Git tud különbségeket (<i>diff</i>) nézni a saját és a központi repó között, de a Git Gui ezt nem tudja, vagy csak én nem tudom hogy tudja.<br>
+ <br>
+ <br>
+ <b>Verziókezelés.</b> Hasznos a történelem megtekintése:<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Repository/Repó --&gt; vizualizálás
+   </td>
+  </tr>
+ </table>
+ <br>
+ Minden egyes <i>commit</i>nak lesz egy ronda neve, ez itt látszik az <i>SHA1 ID</i> sorban. Ha valamelyik korábbi <i>commit</i>ot megnéznénk,<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Branch --&gt; Checkout
+   </td>
+  </tr>
+  <tr>
+   <td>
+    Revision Expression/kifejezés
+   </td>
+  </tr>
+ </table>
+ <br>
+ alatt be kell írni a ronda név első pár karakterét. Ha nem adtunk meg elég sok karaktert, a Git Gui panaszkodik, adjunk meg még párat a ronda névből. Ekkor a könyvtárunkban visszaáll a <i>ronda nevű commit</i>nak megfelelő állapot. Ne ijedjünk meg, nem vesztettük el amit azóta írtunk, egy<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Branch --&gt; Checkout
+   </td>
+  </tr>
+  <tr>
+   <td>
+    Local/Helyi branch
+   </td>
+  </tr>
+ </table>
+ <br>
+ visszaállítja a legutóbb <i>commit</i>olt verziót a könyvtárunkban.<br>
+ <br>
+ <br>
+ <b>Elágazás.</b> Tegyük fel, hogy kipróbálnánk valamit, de nem vagyunk biztosak benne, hogy jó lesz a vége. Ekkor elágazhatunk:<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Branch --&gt; Create/Létrehozás --&gt; <i>kiserleti</i>
+   </td>
+  </tr>
+ </table>
+ <br>
+ ez létrehoz egy <i>kiserleti</i> ágat a könyvtárunkból. Ezen dolgozhatunk, commitolhatunk ahogy eddig, pusholhatjuk is.<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Branch --&gt; Checkout
+   </td>
+  </tr>
+  <tr>
+   <td>
+    Local/Helyi branch --&gt; master
+   </td>
+  </tr>
+ </table>
+ <br>
+ visszavisz minket a fő ágba, illetve hasonlóan válthatunk a kísérleti ágba, mindannyiszor változnak a fileok is a könyvtárunkban. Ha írtuk kicsit a kísérleti ágat, esetleg a fő ágat is, és a kísérlet jól sikerült, akkor beolvaszthatjuk a fő ágba:<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Merge --&gt; Local/Helyi Merge --&gt; <i>kiserleti</i>
+   </td>
+  </tr>
+ </table>
+ <br>
+ Ha a merge mégsem sikerülne, klikk <a href="http://book.git-scm.com/3_basic_branching_and_merging.html" target="_blank">ide</a>, <a href="http://book.git-scm.com/3_distributed_workflows.html" target="_blank">ide</a> vagy <a href="http://book.git-scm.com/5_advanced_branching_and_merging.html" target="_blank">ide</a>. Sikeres merge után a kísérleti ágat kitörölhetjük:<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Branch --&gt; Delete/Törlés
+   </td>
+  </tr>
+ </table>
+ <br>
+ <br>
+ <b>Tisztítás / tömörítés.</b> Előfordulhat, hogy a <i>.git</i> könyvtárunk túl nagyra nőtt, vagy már felesleges objektumokat tartalmaz. (Ez ténylegesen meg is történik, ha különböző gépeken tárolt <i>.git</i> könyvtárakat a Git tudtán kívül szinkronizálunk.) Ezen segít egy tömörítés/tisztítás:<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    Repository/Repó --&gt; Compress Database/Adatbázis tömörítése
+   </td>
+  </tr>
+ </table>
+ <br>
+ Elkerülendő a &quot;Jaj mégsem kellett volna kitörölnöm&quot; problémákat olyan <i>.git</i>-beli objektumokkal amiket amúgy a Git a hatóköréből már kiiktatott, a fenti klikk csak a két hétnél régebbi <b>és</b> a Git adatbázisában már feleslegessé vált objektumokat törli. (Tehát nem a két hétnél regebbi verziókat, azok természetesen megmaradnak ezután is.) További részletek <a href="http://stackoverflow.com/questions/1106529/how-to-skip-loose-object-popup-when-running-git-gui">itt</a> és <a href="http://stackoverflow.com/questions/1904860/how-to-remove-unreferenced-blobs-from-my-git-repo" target="_blank">itt</a>.<br>
+ <br>
+ További olvasnivaló: <a href="http://book.git-scm.com/index.html" target="_blank">Git könyv</a> (az első fejezet ijesztő, de nem kell); <a href="http://www.hackido.com/2010/01/installing-git-on-server-ubuntu-or.html" target="_blank">privát ssh repo</a>.
+</p>
+<p class="egy">
+ <span class="nonu"><a href="gitcml.html">&gt; <b>Parancssorból</b></a></span><br>
+</p>
+<p class="null">
+ <span class="nonu"><a href="gitosis.html">&gt; <b>Központi ssh repository telepítése</b></a></span> (elsősorban az ssh Git <i>Szerver</i> üzemeltetőjének szól)<br>
+</p>
+</body>
+</HTML>

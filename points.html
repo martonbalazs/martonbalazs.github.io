@@ -1,0 +1,56 @@
+<!-- 2013.08.28 -->
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<STYLE TYPE="text/css">
+<!--
+.aligned
+   {
+   text-align:justify;
+   }
+-->
+</STYLE>
+<title>LaTeX points track keeping</title>
+</head>
+<body bgcolor="FFFACD">
+<h2><p align=center>Points track-keeping in LaTeX</p></h2>
+<p class=aligned>Have you ever thought of getting LaTeX to compute sums and averages of your classes' points, thus having accurate but ready-to-print tables on your classes' performance? I recently have, and wrote the LaTeX file below. I checked a few times, and it seems to work right. However, I cannot take responsibility for it working properly. Due to my limited knowledge and aim to keep one file, the code is semi-automatic in the sense that one has to adjust the file for different number and types of assignments, and one also enters the points in the file itself. Therefore some friendship with LaTeX is recommended. But once everything is set, the file is easy to use during the semester. <i>Keeping the students' points on computer means that one MUST prevent loosing or accidentally overwriting the file!</i> I keep copies in three different computers. Here are the features:</p>
+<ul>
+<li>writes the actual points in a nice table during the semester,
+<li>computes the sum of points for each student during the semester,
+<li>continuously grades each student during the semester according to the grading preferences given by the instructor, so it is immediate to tell how students are doing in terms of assignments,
+<li>drops the worst homework when all homeworks are graded (of course, this part can easily be cut from the code),
+<li>computes class averages of homeworks and exams, and also of the final grades,
+<li>expresses these class averages in terms of grades.
+</ul>
+<p class=aligned>And here are some disadvantages / things to work on:
+<ul>
+<li>Only accepts integer points.
+<li>Makes "a 10<sup>-5</sup> order error" when rounding the averages.
+<li>I couldn't overcome the problem that a LaTeX command can have at most nine arguments, this makes the file a little bit messy.
+</ul>
+<p class=aligned>Below are the file itself and some examples. These, together with some comments to be found in the LaTeX file, hopefully make it easy to adjust the settings to different course syllabi.</p>
+<table align=center>
+<tr><td colspan=2 align=center><p class=aligned><b>1.</b> This is how the file looks like at the beginning. The grading preferences, maximum points for homeworks and exams are set. In our example there are 11 homeworks, each for 10 points, the worst of them is dropped. Two midterms worth 80 points each, and the final worth 140 points. Everything else is computed by LaTeX.</p></td></tr>
+<tr><td align=center><a href="points1.ltx">LaTeX</a></td><td align=center><a href="points1.pdf">PDF</a></td>
+<tr><td><br>&nbsp;</td><td></td></tr>
+<tr><td colspan=2 align=center><p class=aligned><b>2.</b> First week's homework points are entered.</p></td></tr>
+<tr><td align=center><a href="points2.ltx">LaTeX</a></td><td align=center><a href="points2.pdf">PDF</a></td>
+<tr><td><br>&nbsp;</td><td></td></tr>
+<tr><td colspan=2 align=center><p class=aligned><b>3.</b> Homeworks up to the fourth one, and the first midterm are done.</p></td></tr>
+<tr><td align=center><a href="points3.ltx">LaTeX</a></td><td align=center><a href="points3.pdf">PDF</a></td>
+<tr><td><br>&nbsp;</td><td></td></tr>
+<tr><td colspan=2 align=center><p class=aligned><b>4.</b> We are just before the due date of the last homework. Student Four stopped working after the third week, the others handed in homeworks quite regularly, and wrote the two midterms.</p></td></tr>
+<tr><td align=center><a href="points4.ltx">LaTeX</a></td><td align=center><a href="points4.pdf">PDF</a></td>
+<tr><td><br>&nbsp;</td><td></td></tr>
+<tr><td colspan=2 align=center><p class=aligned><b>5.</b> This is the final state of the sheet: Student Three receives an "I", and Student Four actually dropped the class. Their sums and grades are not computed in the sum and grade class average.</p></td></tr>
+<tr><td align=center><a href="points5.ltx">LaTeX</a></td><td align=center><a href="points5.pdf">PDF</a></td>
+</table>
+<br>&nbsp;
+<hr align=center width=30%>
+<p align=center>
+<br>&nbsp;
+<a href="util.html">Back to the utilities</a>
+</p>
+</body>
+</html>

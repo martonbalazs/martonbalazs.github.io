@@ -1,0 +1,100 @@
+<!-- !! Date in file !! -->
+<!DOCTYPE HTML>
+<html>
+<head>
+ <meta name="description" content="Rsync at UoB">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Rclone at the UoB</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <style>
+  code {font-family: 'Courier New', Courier, monospace}
+  pre.one {font-family: 'Courier New', Courier, monospace; background-color: #EEEEEE; padding-top: 5px; height: 20px}
+  pre {font-family: 'Courier New', Courier, monospace; background-color: #EEEEEE; padding-top: 5px}
+  li {margin:15px}
+ </style>
+</head>
+<body>
+<h2 align="center">
+ Using rclone to connect Linux boxes at the UoB to OneDrive
+</h2>
+<p align="center">
+ Assembled by <a href="https://people.maths.bris.ac.uk/~mb13434/" target="_blank">Márton Balázs</a>, IT rep for Maths<br>
+ <font size="-2">last updated: [2021-10-01 Tue]</font>
+</p>
+<p align="justify">
+ There are various servers described <a href="index.html">here</a> that can be used for file storage. This page explains a way to connect Linux boxes to OneDrive. I wouldn't call this a full backup as OneDrive does not respect several Linux conventions such as capitalisation, file timestamps and permissions. Nevertheless, this could be useful to provide all your files should you need them on UoB Windows machines as MyFiles will terminate soon. <i>Be careful and always test your method first to avoid data loss.</i>
+</p>
+<p align="justify">
+ Here we'll use <a href="https://rclone.org/" target="_blank">rclone</a> to copy files from the Linux home to OneDrive.
+</p>
+<p align="justify">
+<b>Step 1:</b> Currently the version of <code>rclone</code> is too old on the Ubuntu 18.04 and 20.04 machines (I don't know about CentOS, I don't have one handy to test). Hence, after opening a terminal (with Bash please), do
+</p>
+<pre class="one">
+ module load rclone
+</pre>
+<p align="justify">
+<b>Step 2:</b> Proceed along <a href="https://rclone.org/onedrive/" target="_blank">this guide</a>. The default options as described worked fine for me. I called the remote "onedr", and in OneDrive I have a directory called <code>rclonesync</code> where I want my Linux files to be uploaded.
+</p>
+<p align="justify">
+ <b>Step 2a:</b> Following the introduction of MFA, rclone might greet you with a frightening error that contains the word <i>oauth2</i>. Following <a href="https://rclone.org/commands/rclone_config_update/" target="_blank">these steps</a>, namely
+</p>
+<pre class="one">
+ rclone config update onedr env_auth true
+</pre>
+<p align="justify">
+ (obviously replace "onedr" by your remote's name if it's different), seems to prompt the Authenticator app and solve the problem.
+</p>
+<p align="justify">
+<b>Step 3:</b> If you don't yet have this, create a <code>tmp/</code> directory in your home, this is where sync logs will be written. Create a file somewhere which we'll call <code>[exclusion file]</code>. This will tell rclone which parts of your home you want to exclude from the backup. Contents of this one look like
+</p>
+<pre>
+.*
+tmp/
+</pre>
+<p align="justify">
+as you definitely don't want all the hidden dotfiles to be uploaded, nor your <code>tmp</code> directory. <a href="https://rclone.org/filtering/" target="_blank">There is a lot more you can do in this file.</a>
+</p>
+<p align="justify">
+<b>Step 4:</b> Create a script and make it executable so that you can run it from a terminal with the following contents (<code>[username]</code> is your UoB username in the format <code>ab12345</code>):
+</p>
+<pre>
+#!/bin/bash
+
+module load rclone
+
+k=`date +%N`
+
+echo "___________________ TEST Onedrive ___________________" 2>&1|tee -a ~/tmp/sync_tmp$k.txt
+rclone sync --checksum -u -v --dry-run --exclude-from /home/[username]/[exclusion file] /home/[username]/ onedr:/rclonesync/ 2>&1|tee -a ~/tmp/sync_tmp$k.txt
+echo "^^^^^^^^^^^^^^^^^^^ TEST Onedrive ^^^^^^^^^^^^^^^^^^^" 2>&1|tee -a ~/tmp/sync_tmp$k.txt
+
+[your preferred text editor/viewer here] ~/tmp/sync_tmp$k.txt
+</pre>
+<p align="justify">
+where <code>[your preferred text editor/viewer here]</code> could be <code>less</code>, <code>more</code>, <code>gedit</code>, <code>pico</code>, <code>emacs</code>, <code>vim</code>, etc. (My line here uses Vim and the MultipleSearch plugin, it reads
+</p>
+<pre class="one">
+vim "+noremap q :q<CR>" "+noremap <Space> <PageDown>" -c 'Search TEST' -c 'Search deleting' -c 'Search copying' -c 'Search directory' -p -M -R ~/tmp/sync_tmp$k.txt
+</pre>
+<p align="justify">
+:-) ) The script runs <code>rclone</code> which looks at your files on OneDrive/<code>rclonesync</code>/, and uploads anything from your local machine's <code>HOME</code> that is either missing or newer than that on OneDrive and is not excluded in the <code>[exclusion file]</code>. <b>It also deletes from OneDrive</b> files that are not present on your local Linux <code>HOME</code>. The options we used are:<br>
+ <code>--exclude-from</code> to exclude files and directories you listed in <code>[exclusion file]</code>.<br>
+ <code>--checksum</code>, this uses a more accurate comparison than just size and modification time.<br>
+ <code>-u</code>, this blocks a newer version on OneDrive from being overwritten by an old one from Linux, but I haven't tested this!<br>
+ <code>-v</code> provides a list of what actually is changed.
+</p>
+<p align="justify">
+ The pipe into <code>tee</code> writes a copy of whatever the script shows you into a file in <code>tmp/</code> of a random name that comes from the current time. Finally, the script shows you this file so that you can comfortably look into it. These files are not removed so eventually you'll have to clean your <code>tmp/</code>.
+</p>
+<p align="justify">
+<b>Actually, the above script doesn't do anything</b> except showing you what would happen if you were serious, se let's call it <code>onedrivesynctest</code>. <b>To do the real thing</b>, make a copy and call it <code>onedrivesync</code> in which you remove "TEST" everywhere and also "<code>--dry-run</code>". Unfortunately this will also change the format of the output log of <code>rclone</code> (hence my last line there looks
+</p>
+<pre class="one">
+vim "+noremap q :q<CR>" "+noremap <Space> <PageDown>" -c 'Search new)' -c 'Search existing)' -c 'Search ERROR :' -c 'Search : Deleted' -p -M -R ~/tmp/sync_tmp$k.txt
+</pre>
+<p align="justify">
+ :-)  )
+</p>
+</body>
+</html>

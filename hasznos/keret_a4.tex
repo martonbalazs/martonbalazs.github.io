@@ -1,0 +1,207 @@
+%2017-08-15
+% Basic description, this is where everyone starts: lshort.pdf, look it up in google.
+% As you will guess, % is for comments in the tex file. These won't be read by LaTeX. Uncomment those you need below:
+
+%\documentclass[draft,a4paper]{article}
+%%%%% draft is useful when want to check for proper linebreaks, picture sizes, etc. It shows you where LaTeX thinks there is a problem.
+%%%%% OR:
+%\documentclass[a4paper]{article}
+\documentclass{article}
+%%%%% of course, remove a4paper in the US. Default is letter size.
+
+%sets geometry for A4 paper
+\usepackage[a4paper, margin=2cm]{geometry}
+% OR:
+%%%%% This below is specifically for A4 paper size: it leaves exactly 2cm margin on an A4 sheet.
+%\setlength{\hoffset}{2cm}
+%\addtolength{\hoffset}{-1in}
+%\addtolength{\hoffset}{-\oddsidemargin}
+%\setlength{\textwidth}{170mm}
+%\setlength{\voffset}{2cm}
+%\addtolength{\voffset}{-1in}
+%\addtolength{\voffset}{-\topmargin}
+%\addtolength{\voffset}{-\headheight}
+%\addtolength{\voffset}{-\headsep}
+%\setlength{\textheight}{257mm}
+%%%%%
+
+
+%\usepackage[magyar]{babel}
+%\usepackage{t1enc}
+%\usepackage[latin2]{inputenc} VAGY:
+%\usepackage[utf8]{inputenc}
+%%%%% these are for typesetting Hungarian text (accented characters, hyphenation).
+
+\usepackage[leqno,intlimits]{amsmath}
+%%%%% This is important, as it contains the basic math stuff. leqno means equation numbers are on the left, not on the right. intlimits puts limits of integrals in top/bottom as opposed to next to the integral sign.
+
+%%\usepackage{amssymb}
+%%%%% This one is for math symbols like \mathbb R
+
+%%\usepackage{bbm}
+%%%%% For indicator function as \mathbbm{1}
+
+\usepackage{amsthm}
+%%%%% Theorem, lemma, proof etc. environments
+
+%%\usepackage{hyperref}
+%%%%% This one gives clickable links for equations and references in the pdf file.
+
+%\usepackage{showkeys} %***
+%%%%% This one is very useful: it shows you in the dvi/pdf the codes for your references; try it after you have some equation labels (uncomment it)!
+
+%\usepackage{refcheck}
+%%%%% Need to check this, from P Mora.
+
+%\usepackage{color}
+%\usepackage{soul}
+%\setstcolor{red}
+%%%%% With these, you can highlight text like a marker, or cross things out. Look up the manual of the soul package on the Web.
+
+%%%\usepackage{pst-all}
+%%%\usepackage{pstricks-add}
+%%%%% These are extensions to pstricks, see below
+
+%\usepackage{pstricks}
+%\usepackage{graphicx}
+%%\usepackage{multido}
+%%\usepackage{calc}
+%%%%% These are the ones I use for drawing pictures. Look up pstricks in google, then --> documentation. Don't need this for first tries with LaTeX.
+
+%\usepackage{enumerate}
+%\usepackage{enumitem}
+%%%%% With these you can let the enumerate environment know what type of lists you prefer (eg. (a), (b), (c); or maybe [i], [ii], [iii], [iv], etc.)
+
+%\usepackage{array}
+%%%%% This one contains nice extensions to the tabular environments (that is, tables).
+
+%%%\usepackage{pifont}
+%%%%% Usage: \ding{number}, funny symbols in addition to standard LaTeX ones.
+
+%\usepackage[super]{nth}
+%\nth{1}, \nth{2}, \nth{3}, \nth{4} for 1st, 2nd, 3rd, 4th, etc
+
+\pagestyle{empty}
+%%%%% This makes LaTeX forget about headers, page numbers, etc. Comment it out if you need page numbers.
+
+%\psset{unit=1pt}
+%\psset{linewidth=0.5pt}
+%%%%% This sets units for drawing with pstricks, see above.
+
+\newtheorem{tm}{Theorem}[section]
+\newtheorem{lm}[tm]{Lemma}
+\newtheorem{pr}[tm]{Proposition}
+%%\newtheorem{rem}[tm]{Remark}
+%%%%% If you need theorem-like environments.
+
+%%\numberwithin{equation}{section}
+%%%%% This gives you nicer equation numbering if you have sections in an article.
+
+%\newcommand*{\hop}{\bigskip\noindent}
+%%%%% Skips without indenting
+
+%\newcommand*{\e}[1]{\text{\rm e}^{#1}}
+%%%%% This is how I make exponentials; usage: $\e{-x}$
+
+%\newcommand*{\di}{\,\text{d}}
+%%%%% This is what I use for "d" in dx in integrals.
+
+%\newcommand*{\dd}[1]{\frac{\text{d}}{\text{d}{#1}}}
+%\newcommand*{\pp}[1]{\frac\partial{\partial{#1}}}
+%%%%% And these for derivatives.
+
+%\newcommand*{\Om}{\Omega}
+%\newcommand*{\om}{\omega}
+%\newcommand*{\vp}{\varphi}
+%\newcommand*{\vr}{\varrho}
+%\newcommand*{\te}{\theta}
+%\newcommand*{\la}{\lambda}
+%\newcommand*{\ve}{\varepsilon}
+%\newcommand*{\de}{\delta}
+%\newcommand*{\al}{\alpha}
+%\newcommand*{\si}{\sigma}
+%\newcommand*{\pt}{\partial}
+
+%\newcommand*{\Rb}{\mathbb R}
+%\newcommand*{\Cb}{\mathbb C}
+%\newcommand*{\Nb}{\mathbb N}
+%\newcommand*{\1b}{\mathbbm1}
+%\newcommand*{\Fc}{\mathcal F}
+%\newcommand*{\Pc}{\mathcal P}
+%\newcommand*{\Nc}{\mathcal N}
+%\newcommand*{\ordo}{\mathfrak o}
+%\newcommand*{\Ordo}{\mathcal O}
+
+%\newcommand*{\Pv}{{\bf P}}
+%\newcommand*{\Ev}{{\bf E}}
+%\newcommand*{\Vv}{{\text{\bf Var}}}
+%\newcommand*{\Cov}{{\text{\bf Cov}}}
+%\newcommand*{\Corr}{{\text{\bf Corr}}}
+
+%\newcommand*{\wih}{\widehat}
+%\newcommand*{\wt}{\widetilde}
+%\newcommand*{\un}[1]{\underline{#1}}
+
+%%\renewcommand\tabularxcolumn[1]{>{\centering\arraybackslash}m{#1}}
+%%%%% This is some advanced tabular stuff I find useful with the tabularx environment. Never mind it.
+
+
+\begin{document}
+
+\title{This is the title}
+
+\author{Alice Bob\footnotemark[1]\thanks{University of XXX}}
+
+\maketitle
+
+\begin{abstract}
+ 
+ Abstract.
+
+\end{abstract}
+
+\section{First section.}
+
+Here comes the Stuff.
+\begin{pr}\label{pr:blabla}
+ This is a proposition.
+\end{pr}
+\begin{proof}
+ Trivial.
+\end{proof}
+Here I cite Proposition \ref{pr:blabla}.
+\begin{tm}[\normalfont Nice Theorem]
+ This is a nice theorem.
+\end{tm}
+\begin{proof}[Proof of blabla]
+ Trivial.
+\end{proof}
+\begin{align}
+ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&=bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\label{eq:one}\\
+ bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb&=cccccccccccccccccccccccccccccccccc\notag
+\end{align}
+In \eqref{eq:one} we have $aaa$ is $bbb$.
+\begin{equation}
+ \begin{aligned}
+  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&=bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\\
+  bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb&=cccccccccccccccccccccccccccccccccc
+ \end{aligned}\label{eq:two}
+\end{equation}
+Equation \eqref{eq:two} is all together.
+
+In \cite{dummy_ref}, the Authors gave a title.
+\begin{multline}
+ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\
+ \begin{aligned}
+  &=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\\
+  &\quad+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb+cccccccccccccccccccccccccccccccccc\\
+  &=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\\
+  &\quad+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb+cccccccccccccccccccccccccccccccccc
+ \end{aligned}\label{eq:three}
+\end{multline}
+
+\bibliographystyle{plain}
+\bibliography{refsmarton}
+% Use BibTeX. It's good fun.
+
+\end{document}

@@ -1,0 +1,9 @@
+#!/bin/bash
+for i in `ls *.ltx`; do
+ ls $i
+ latex `ls $i`
+done
+for i in `ls *.tex`; do
+ ls $i
+ latex `ls $i`
+done

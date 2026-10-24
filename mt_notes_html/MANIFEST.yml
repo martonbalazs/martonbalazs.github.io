@@ -1,0 +1,32 @@
+build_pdf: true
+build_zip: true
+format_version: 2
+license: null
+locale: en
+mathjax_url: https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js
+num_pdf_runs: 1
+root_url: /{base}/
+structure:
+- build_pdf: true
+  content: []
+  formats:
+  - filetype: html
+    format: default
+    url: index.html
+  - filetype: pdf
+    format: default
+    url: mart_thy_notes_tex.pdf
+  is_hidden: false
+  pdf_url: mart_thy_notes_tex.pdf
+  slug: mart_thy_notes_tex
+  source: mart_thy_notes.tex
+  splitlevel: -2
+  title: mart_thy_notes.tex
+  type: standalone
+  url: index.html
+themes:
+- path: .
+  source: default
+  title: Default
+year: 2025
+zipfile: chirun.zip

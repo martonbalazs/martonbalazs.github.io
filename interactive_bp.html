@@ -1,0 +1,109 @@
+<!-- !! Date in file !! -->
+<!DOCTYPE HTML>
+<html>
+<head>
+ <meta name="description" content="UoB Maths Linux servers">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Interactive sessions on BluePebble</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <style>
+  code {font-family: 'Courier New', Courier, monospace; background-color: #EEEEEE}
+  pre.one {font-family: 'Courier New', Courier, monospace; background-color: #EEEEEE; padding-top: 5px; height: 20px}
+  pre {font-family: 'Courier New', Courier, monospace; background-color: #EEEEEE; padding-top: 5px}
+  li {margin:15px}
+ </style>
+</head>
+<body>
+<h2 align="center">
+ Interactive sessions on BluePebble
+</h2>
+<p align="center">
+ Assembled by <a href="index.html" target="_blank">Márton Balázs</a>, IT rep for Maths<br>
+ <font size="-2">last updated: [2025-10-29]</font>
+</p>
+<br>&nbsp;
+<p align="justify">
+ <b>Warning from ACRC:</b> Interactive sessions on compute nodes are not supported on ACRC HPC systems unless submitted to private partitions (e.g., the Scool of Maths' <i>magma</i> partition), or following discussion with the <a href="mailto:hpc-help@bristol.ac.uk">ACRC HPC team</a>. The ACRC HPC team recommend the use of non-interactive batch jobs where possible, since these facilitate efficient job scheduling. Interactive sessions <b>do not</b> bypass the job scheduler and should not be expected to start immediately. Jobs that waste cluster resources may be held or deleted, in accordance with the <a href="https://www.bristol.ac.uk/acrc/high-performance-computing/hpc-systems-policy/hpc-usage-policy/" target="_blank">ACRC HPC usage policy</a>. This includes interactive jobs. Please ensure you use cluster resources responsibly and efficiently.
+</p>
+<p align="justify">
+ These are instructions on getting quick interactive sessions on BluePebble, assuming you already have login to this cluster and a project code. As this is primarily aimed for the School of Mathematics, we'll refer to the HPC project code to be in the form MATHXXXXXX, but this could be in a different format for other faculties/departments.
+</p>
+<p align="justify">
+ The School of Mathematics ringfenced a few of its nodes with the software <a href="http://magma.maths.usyd.edu.au/magma/" target="_blank">Magma</a> installed on them into the <i>magma</i> partition, and we also use this partition for quick interactive testing.
+</p>
+<p align="justify">
+ <b>Important:</b> The <i>magma</i> partition is for quick interactive testing besides making the software Magma available here. If you need to run a large or long-running job (e.g. that takes hours or days) that does not require the Magma package, please remove any reference to the <i>magma</i> partition from the below and use one of the other partitions on BluePebble, such as the default <i>compute</i> partition.
+</p>
+<p align="justify">
+ We use maple/xmaple as an example but comsol, magma, wolfram/wolframnb, etc work similarly.
+</p>
+<h3>If you don't need a graphical interface</h3>
+<p align="justify">
+ <ol>
+  <li>
+   Connect to the login node, as described <a href="https://www.acrc.bris.ac.uk/protected/hpc-docs/connecting/index.html" target="_blank">here</a>. For this you don't need X11 forwarding.
+  </li>
+  <li>
+   Once you are on the login node, do
+   <pre class="one">
+    $ srun --account=MATHXXXXXX --partition=magma --mem=1G --time=00:01:00 --mpi=pmi2 --pty bash -i
+   </pre>
+   to get an interactive session on one of our ringfenced nodes for quick interactive sessions. Login nodes are intended for small scale interactive work. This command allows us to create an interactive session on a compute node for more intensive interactive work. Notice that the above gives you a terminal for 1 minute with 1 GB memory and the default number of CPU cores (1) - please change this to specify the time and resources you need. Also, remember to save your work often as your terminal will be killed after the requested time.<br>
+   <br>
+   <b>Tip:</b> Without <code>--partition=magma</code> you are in the general BluePebble pool with far more nodes but usually longer waiting times, but this is the place to submit longer, heavy computations rather than our <i>magma</i> partition.
+  </li>
+  <li>
+   In the interactive session do
+   <pre class="one">
+    $ module load apps/maple
+   </pre>
+   (tab works for autocompletions). Then launch
+   <pre class="one">
+    $ maple
+   </pre>
+  </li>
+ </ol>
+</p>
+<h3>For graphical interface (GUI)</h3>
+<p align="justify">
+ <ol>
+  <li>
+   Connect to the login node, as described <a href="https://www.acrc.bris.ac.uk/protected/hpc-docs/connecting/index.html" target="_blank">here</a> including the X11 bits.
+  </li>
+  <li>
+   Once on the login node, do
+   <pre class="one">
+    $ salloc --account=MATHXXXXXX --partition=magma --mem=1G --time=00:01:00
+   </pre>
+   again adjust the command to request the time and resources to what you need, and please remove <code>--partition=magma</code> if you have a heavy job to run for hours or days. This will say something like
+   <pre>
+    salloc: Pending job allocation 6434337
+    salloc: job 6434337 queued and waiting for resources
+    salloc: job 6434337 has been allocated resources
+    salloc: Granted job allocation 6434337
+    salloc: Waiting for resource configuration
+    salloc: Nodes bp1-compute169 are ready for job
+   </pre>
+   In some cases you may need to wait for this allocation to start (e.g., if not using the <i>magma</i> partition).
+  </li>
+  <li>
+   Do
+   <pre class="one">
+    $ ssh -Y bp1-compute169
+   </pre>
+   (using whichever node was allocated to you in the previous step); tab completion works here too. Then
+   <pre class="one">
+    $ module load apps/maple
+   </pre>
+   <pre class="one">
+    $ xmaple
+   </pre>
+   Notice: the GUI for Mathematica launches by 
+   <pre class="one">
+    $ wolframnb
+   </pre>
+  </li>
+ </ol>
+</p>
+</body>
+</html>

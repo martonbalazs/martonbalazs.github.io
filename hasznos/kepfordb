@@ -1,0 +1,7 @@
+#!/bin/bash
+# ImageMagick
+mkdir balrott
+for i in `ls *.*`; do 
+ echo "`ls $i` --> balrott/`ls $i | sed -e 's/\./-\./'`"
+ magick $i -rotate 270 balrott/`ls $i | sed -e 's/\./-\./'`
+done

@@ -1,0 +1,29 @@
+#!/bin/bash
+mkdir eknelkuli
+for i in `ls *.html`
+do
+cat "$i" | sed \
+-e 's/\á/\&aacute\;/g' \
+-e 's/\Á/\&Aacute\;/g' \
+-e 's/\é/\&eacute\;/g' \
+-e 's/\É/\&Eacute\;/g' \
+-e 's/\í/\&iacute\;/g' \
+-e 's/\Í/\&Iacute\;/g' \
+-e 's/\ó/\&oacute\;/g' \
+-e 's/\Ó/\&Oacute\;/g' \
+-e 's/\ö/\&ouml\;/g' \
+-e 's/\Ö/\&Ouml\;/g' \
+-e 's/\õ/\&\#337\;/g' \
+-e 's/\Õ/\&\#336\;/g' \
+-e 's/\&otilde\;/\&\#337\;/g' \
+-e 's/\&Otilde\;/\&\#336\;/g' \
+-e 's/\ú/\&uacute\;/g' \
+-e 's/\Ú/\&Uacute\;/g' \
+-e 's/\ü/\&uuml\;/g' \
+-e 's/\Ü/\&Uuml\;/g' \
+-e 's/\û/\&\#369\;/g' \
+-e 's/\Û/\&\#368\;/g' \
+-e 's/\&ucirc\;/\&\#369\;/g' \
+-e 's/\&Ucirc\;/\&\#368\;/g' \
+> eknelkuli/"$i"
+done

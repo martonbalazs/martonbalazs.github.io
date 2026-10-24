@@ -1,0 +1,345 @@
+% 08.11.06
+% This is a commented example on how I make pdf-animations in Beamer. (It was part of a popularizing talk I gave at Budapest University of Technology and Economics.)
+
+% I compile with "latex", "latex" again, then "dvipdf" in a standard linux texlive environment. Probably works in other settings too, but e.g. didn't work for me with pdflatex for some reason.
+
+% Animations are known to work in Acrobat Reader full screen mode only. (This stuff seems to require heavy x-window data flow. Therefore animations are slower than usual via remote x-windows systems, like thin clients powered by a server.)
+
+% I use the beamer package, 
+% see e.g. http://latex-beamer.sourceforge.net/ or http://sourceforge.net/docman/?group_id=92412.
+% With short titles (compress) and possibly use some convenient abbreviations for colors:
+\documentclass[compress,xcolor=dvipsnames]{beamer}
+
+% I like pstricks to draw pictures, see e.g. http://tug.org/PSTricks/main.cgi?file=doc/docs
+\usepackage{pstricks}
+
+% multido is a very nice package for repeated actions with pstricks I'm not using here, but worth looking at:
+%\usepackage{multido}
+
+% calc allows for calculations of different counters:
+\usepackage{calc}
+
+% This sets the times font which I found nice for presentations:
+\usepackage{times}
+
+% This sets the unit and linewidth for pstricks globally:
+\psset{unit=1pt}
+\psset{linewidth=0.5pt}
+
+% In beamer one chooses an outertheme and a colortheme. This basically sets if the titlebar is on top, on left, of which color, etc, see the users' guide. I like "split" and "dolphin".
+\useoutertheme{split}
+\usecolortheme{dolphin}
+
+% This line kills the usual navigation symbols on the bottom right. I'm not using them and I think it's better not to have them there:
+\setbeamertemplate{navigation symbols}{}
+
+% I don't need a footline either:
+\setbeamertemplate{footline}{}
+
+% These are the colors I found to fit well with "split" and "dolphin" in the headline. I think it says to use the structure color provided by the color theme with 70% and black with 30% weight and write with white on the right hand-side of the titlebar.
+\setbeamercolor{palette primary}{use=structure,bg=structure.fg!70!black,fg=white}
+
+% Sets the color of the subtitle
+\setbeamercolor{subtitle}{fg=Orange}
+
+% These are the definitions of counters used all around the animations.
+\newcount\xl
+\newcount\xc
+\newcounter{aa}
+\newcounter{ab}
+\newcounter{ac}
+\newcounter{ad}
+\newcounter{ae}
+\newcounter{aea}
+\newcounter{af}
+\newcounter{afa}
+\newcounter{ag}
+\newcounter{ah}
+\newcounter{ai}
+\newcounter{aj}
+\newcounter{cga}
+\newcounter{cgb}
+
+% This sets a new color I call "expl" (for "explaining") to yelloworange
+\setbeamercolor{expl}{fg=YellowOrange}
+
+% This provides a command that allows to use the defined color "expl" as text color ([fg] as foreground):
+\newcommand*{\expl}[1]{{\usebeamercolor[fg]{expl}#1}}
+
+% This sets a color called "cola" to be olivegreen with cga% weight, and background color that is, white, with 100-cga% weight. When the counter cga moves later on, this will give the dissolving effect of the text:
+\setbeamercolor{cola}{fg=OliveGreen!\thecga!averagebackgroundcolor}
+
+% This provides a command that allows to use the defined color "cola" as text color ([fg] as foreground):
+\newcommand*{\cola}[1]{{\usebeamercolor[fg]{cola}#1}}
+
+% Same with colb, using counter cgb:
+\setbeamercolor{colb}{fg=Black!\thecgb!averagebackgroundcolor}
+\newcommand*{\colb}[1]{{\usebeamercolor[fg]{colb}#1}}
+
+% This draws a car named after Trabant, to be used in a pstricks picture. Circles, lines and arcs given in pstricks syntax:
+\newcommand*{\trabi}{
+\pscircle(5,2){2}
+\pscircle(15,2){2}
+\psline(2,2)(0,2)(0,6)(2,6)(4,10)(14,10)(17,6)(20,5)(20,2)(18,2)
+\psline(2,6)(18,6)
+\psline(9,2)(9,10)
+\psarc(5,2){3}{0}{180}
+\psline(8,2)(12,2)
+\psarc(15,2){3}{0}{180}
+}
+
+% This draws the same car with a dashed line after it that represents strong braking:
+\newcommand*{\trabifek}{
+\pscircle(5,2){2}
+\pscircle(15,2){2}
+\psline(2,2)(0,2)(0,6)(2,6)(4,10)(14,10)(17,6)(20,5)(20,2)(18,2)
+\psline(2,6)(18,6)
+\psline(9,2)(9,10)
+\psarc(5,2){3}{0}{180}
+\psline(8,2)(12,2)
+\psarc(15,2){3}{0}{180}
+\psline[linecolor=red,linestyle=dashed,dash=3pt 1pt](-15,2)(0,1)
+}
+
+\title{Animation example}
+\author{M\'arton Bal\'azs}
+\subtitle{{\small Use it in Acroread or Okular Full Screen Mode}\\
+{\small The source has it all explained}}
+\date{Budapest, November 6, 2008.}
+\institute{BUTE}
+
+\begin{document}
+
+% This produces the titlepage with the above data:
+\frame{\titlepage}
+
+% This produces the table of contents
+\frame{\tableofcontents}
+
+% Here is the first section, to be included in the table of contents. "Jams" to be included in the titlebar, "Traffic jams" to be included in the table of contents.
+\section[Jams]{Traffic jams}
+
+% Subsection with "Emerging" in the titlebar, long title in the table of contents.
+\subsection[Emerging]{Emergence of traffic jams}
+
+% First frame with blue title "Emergence of traffic jams"
+\begin{frame}{Emergence of traffic jams}
+\begin{center}
+
+% Here starts the picture of size 300 x 40 points.
+\begin{pspicture*}(300,40)
+
+% Animations are done with slides within a frame. Here we say that slides no. 2..51 should move on by themselves, without the speaker pushing any buttons.
+\animate<2-51>
+
+% Here we fix that slides 2..51 should move forward after 0.1 seconds each.
+\transduration<2-51>{0.1}
+
+% This sets the value of the counter \xl linearly within slides with value 0 on slide 1 and 100 on slide 51 (therefore advancing 2 in each step).
+\animatevalue<1-51>{\xl}{0}{100}
+
+% From now on, \xl will be the driving object for all animations.
+
+% This sets the counter aa as 270+\xl. This is the position of the rightmost car. Since it advances at constant speed, not much to do here. When it leaves the margin pspicture* makes it sure that it's not displayed anymore.
+\setcounter{aa}{270+\the\xl}
+
+% This actually puts the first car (\trabi) at position (aa, 0):
+\rput(\theaa,0){\trabi}
+
+% Set position and display the second car from right.
+\setcounter{ab}{240+\the\xl}
+\rput(\theab,0){\trabi}
+
+% Third car:
+\setcounter{ac}{210+\the\xl}
+\rput(\theac,0){\trabi}
+
+% Fourth car:
+\setcounter{ad}{180+\the\xl}
+\rput(\thead,0){\trabi}
+
+% Now comes the fifth car. This is the first one that needs to brake.
+% The counter ae will work while the car is fast. The velocity is 6 times the velocity of the slow cars, and -30 shifts it so that it arrives to where it should after braking:
+\setcounter{ae}{-30+6*\the\xl}
+
+% The fifth car is only running fast for the first 16 slides:
+\only<-16>{\rput(\theae,0){\trabi}}
+
+% From slides 17 to 19 it still runs fast, but it has the braking dashed line behind, so we use \trabifek rather than \trabi:
+\only<17-19>{\rput(\theae,0){\trabifek}}
+
+% This will be the position for the fifth car after it slowed down. The speed is now 1, and 150 is the shift needed for a smooth transition, since on slide 19 \xl=2*(19-1)=36 (recall \animatevalue above), and the car was at position ae=-30+6*\xl=-30+6*36=186, while on slide 20 it will be on position af=150+\xl=150+38=188:
+\setcounter{af}{150+\the\xl}
+
+% Put the fifth car in the traffic jam, starting with slide 20.
+\only<20->{\rput(\theaf,0){\trabi}}
+
+
+% Same with the sixth car:
+\setcounter{ag}{-150+6*\the\xl}
+\only<-24>{\rput(\theag,0){\trabi}}
+\only<25-27>{\rput(\theag,0){\trabifek}}
+\setcounter{ah}{120+\the\xl}
+\only<28->{
+\rput(\theah,0){\trabi}}
+
+% Same with the seventh car:
+\setcounter{ai}{-300+6*\the\xl}
+\only<-36>{\rput(\theai,0){\trabi}}
+\only<37-39>{\rput(\theai,0){\trabifek}}
+\setcounter{aj}{90+\the\xl}
+\only<40->{
+\rput(\theaj,0){\trabi}}
+
+% This is the road:
+\psline(0,0)(300,0)
+\end{pspicture*}
+\end{center}
+%
+% The last slide we animated was no. 51. Therefore appearance of the 52th slide is automatic, but slide 52 will not move by itself. Only starting from that slide we write the text below. \uncover makes it sure that the space for this text is there even when it's not visible. If you don't need that space, use \only.
+\uncover<52->{
+%
+% \structure gives blue color:
+We notice the slowly moving cars \structure{\(\leadsto\)} have to brake hard.
+
+\bigskip
+%
+% \alert gives red:
+\alert{The end of the traffic jam is sharp.}}
+
+\bigskip
+%
+% And this is shown on slide no. 53 only, to be moved onto by the speaker:
+\uncover<53>{\expl{This is part of the reason freeways are dangerous.}}
+\end{frame}
+
+% Second subsection, with titlebar "Dissolving", table of contents will have "Dissolution of traffic jams".
+\subsection[Dissolving]{Dissolution of traffic jams}
+
+% Second frame with blue headline:
+\begin{frame}{Dissolution of traffic jams}
+
+% Here we animate the cars in slides 2..91
+\animate<2-91>
+
+% And the text will disappear/appear on slides 93..102. Do not want to move slide no. 92 and the last slide no. 102 by itself.
+\animate<93-101>
+
+% On slides 2..11 only the lights will flash (this is how Hungarian railway crossing traffic lights look like). Hence slides will follow in 0.5 second intervals:
+\transduration<2-11>{0.5}
+
+% On slides 12..91 cars will move, slides follow in 0.1 seconds:
+\transduration<12-91>{0.1}
+
+% On slides 93..102 the text will disappear/appear, one step every 0.3 seconds:
+\transduration<93-101>{0.3}
+
+% This counter will drive the moving cars on slides 12-92. Its values
+% - are 0, for slides 1..12
+% - increase by one on each slide 12..92
+% - are 80 for all slides above 92.
+% That means that anything moved by this counter will only move on slides 12..92.
+\animatevalue<12-92>{\xl}{0}{80}
+
+% This counter will help in the dissolving text. Its value stays 0 up to slide 92, then it changes by 10 on each slide 92..102.
+\animatevalue<92-102>{\xc}{0}{100}
+
+\begin{center}
+\begin{pspicture*}(300,40)
+
+% The first car on the right starts with speed 12 right away. It soon leaves the screen, but \pspicture* above makes it sure that it's not displayed after it left the picture boundary.
+\setcounter{aa}{180+12*\the\xl}
+\rput(\theaa,0){\trabi}
+
+
+% Set the counter ab to move the second car, but
+\setcounter{ab}{117+9*\the\xl}
+
+% the second car stays put until the slide 15 (\only<-15>): its position is 150.
+\only<-15>{\rput(150,0){\trabi}}
+
+% Starting from slide 16, the counter ab starts moving the second car. Notice that on slide 16 the value of \xl is already 4, hence ab=117+9*4=153, so it starts nicely from position 150. Then in the next step it accelerates to speed 9 (the factor in front of \the\xl above).
+\only<16->{\rput(\theab,0){\trabi}}
+
+
+% The third car. Stays put up to slide 18, then starts moving with velocity 6.
+\setcounter{ac}{84+6*\the\xl}
+\only<-18>{\rput(120,0){\trabi}}
+\only<19->{\rput(\theac,0){\trabi}}
+
+
+% The fourth car. Starts with velocity 4 on the 22th slide.
+\setcounter{ad}{54+4*\the\xl}
+\only<-21>{\rput(90,0){\trabi}}
+\only<22->{\rput(\thead,0){\trabi}}
+
+
+% The fifth car accelerates in two stages. The counter ae will drive it with speed 3, and aea will give it speed 4.
+\setcounter{ae}{24+3*\the\xl}
+\setcounter{aea}{4*\the\xl-16}
+
+% The fifth car stays put at position 60 until slide 24.
+\only<-24>{\rput(60,0){\trabi}}
+
+% On slide 25, \xl=13, hence ae=24+3*13=63 is the first move. Velocity 3 motion lasts to slide 51 and position ae=24+3*\xl=24+3*39=141.
+\only<25-51>{\rput(\theae,0){\trabi}}
+
+% On slide 52, the fifth car starts moving with speed 4. Its position on slide 52 is aea=4*\xl-16=4*40-16=144. Compare this with 141 on slide 51, and you see that the transition is smooth.
+\only<52->{\rput(\theaea,0){\trabi}}
+
+
+% The sixth car starts off on slide 28, velocity 2, accelerates to velocity 4on slide 56. (Funny how the additive constant for af turns out to be just zero for a smooth start from position 30 on slide 28.)
+\setcounter{af}{2*\the\xl}
+\setcounter{afa}{4*\the\xl-88}
+\only<-27>{\rput(30,0){\trabi}}
+\only<28-55>{\rput(\theaf,0){\trabi}}
+\only<56->{\rput(\theafa,0){\trabi}}
+
+
+% This is the road:
+\psline(0,0)(300,0)
+
+% The pole for the traffic light
+\psline(220,0)(220,20)
+
+% The black body of the traffic light
+\pspolygon[fillstyle=solid,fillcolor=black](215,35)(226,30)(220,20)
+
+% Now comes the blinking red on slides 1..8. Recall that \transduration was 0.5 seconds above for these slides.
+% Draw in red...
+{\psset{linecolor=red}
+
+% ... a filled circle of radius 2, centered (218.5, 31) on slides 1, 3, 5, 7 only...
+\only<1,3,5,7>{\qdisk(218.5,31){2}}
+% ... and a filled circle of radius 2, centered (223, 29) on slides 2, 4, 6, 8 only.
+\only<2,4,6,8>{\qdisk(223,29){2}}}
+
+% Draw in white...
+{\psset{linecolor=white}
+% ... a filled circle on slides 10 (duration 05 seconds), then 12-16 (duration five times 0.1 seconds, recall the transdurations above), then do not draw it for five slides (0.1 seconds each), and so on.
+\only<10,12-16,22-26, 32-36, 42-46, 52-56, 62-66, 72-76, 82-86, 92->{\qdisk(220.5,25){2}}}
+\end{pspicture*}
+\end{center}
+
+% This sets the color variable cgb to decrease from 100 to 0 on slides 92..102, recall how \xc was animated at the beginning of the frame.
+\setcounter{cgb}{100-\the\xc}
+
+% This uses definition \colb with counter cgb from the beginning of the file to make the text disappear:
+\uncover<92->{\colb{Long and slow acceleration for cars in the back}}
+
+\bigskip
+% This just sets cga=\xc, turning from 0 to 100 on slides 92..102:
+\setcounter{cga}{\the\xc}
+
+% And uses \cola to make the text appear with the help of the counter cga:
+\uncover<93->{\cola{Dissolution of the jam is not sharp.}}
+\end{frame}
+
+% All that \section*{} does is it opens an empty section. Therefore the titles in the titlebar stop being emphasized:
+\section*{}
+\begin{frame}
+\begin{center}
+{\large{\structure{All cars are gone now.}}}
+\end{center}
+\end{frame}
+\end{document}

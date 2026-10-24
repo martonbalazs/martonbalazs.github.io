@@ -1,0 +1,192 @@
+<!-- 2013.08.28 -->
+<HTML><HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+<link href="main.css" rel="stylesheet" type="text/css">
+<TITLE> Git gyorstalpaló </TITLE></HEAD>
+<body bgcolor="FFFACD">
+<h1><p align=center>Git gyorstalpaló</p></h1>
+<p class="null">
+ <span class="nonu"><a href="miagit.html">&gt; <b>Mi is az a Git?</b></a></span><br>
+ <br>
+ <span class="nonu"><a href="telep.html">&gt; <b>Telepítés</b></a></span><br>
+ <br>
+ <span class="nonu"><a href="hasznal.html">&gt; <b>Használat (alapok)</b></a></span><br>
+ <br>
+ <span class="nonu"><a href="index.html">&or;</a></span> <b>Központi ssh repository telepítése</b> (elsősorban az ssh Git <i>Szerver</i> üzemeltetőjének szól)<br>
+</p>
+<p class="egy">
+ Alább, hogy hogy kell Gitosist telepíteni egy <i>Szerver</i> nevű Linux/Unix gépre. Forrás: <a href="http://www.hackido.com/2010/01/installing-git-on-server-ubuntu-or.html" target="_blank">itt</a>, és <a href="http://scie.nti.st/2007/11/14/hosting-git-repositories-the-easy-and-secure-way" target="_blank">itt</a>. Ehhez kell egy telepített Git, lásd <a href="teleplin.html">feljebb</a>. Ezután telepíteni kell a Gitosis csomagot, nálam otthon Synapticból ment, ha mégsem menne automatikusan, akkor először python setup tool, majd giten keresztül lehúzzuk a Gitosist:<br>
+ <br>
+ <table>
+  <tr>
+   <td class="kod">
+    $ sudo apt-get install python-setuptools
+   </td>
+   <td>
+    &nbsp;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td class="kod">
+    $ git clone git://eagain.net/gitosis.git
+   <td>
+   <td>
+    &nbsp;
+   </td>
+   <td align="left">
+    valamilyen (pl. tmp) könyvtárban
+   </td>
+  </tr>
+  <tr>
+   <td class="kod">
+    $ cd gitosis
+   </td>
+   <td>
+    &nbsp;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td class="kod">
+    $ sudo python setup.py install
+   </td>
+   <td>
+    &nbsp;
+   </td>
+   <td>
+   </td>
+  </tr>
+ </table> 
+ <br>
+ Ezután létre kell hozni egy usert a <i>Szerver</i>en. Ehhez a userhez senki sem tud majd belépni, kizárólag a Gitet fogja kiszolgálni. A rendszergazda biztos tudja ha esetleg valamit máshogy kell csinálni az alábbiakban, én a leírások és a saját naív elképzelésem alapján ezt gondoltam (a usert <i>projfelh</i>-nek hívjuk majd):<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    sudo adduser \
+   </td>
+  </tr>
+  <tr>
+   <td>
+    &nbsp;--system \
+   </td>
+  </tr>
+  <tr>
+   <td>
+    &nbsp;--shell /bin/sh \
+   </td>
+  </tr>
+  <tr>
+   <td>
+    &nbsp;--gecos 'git version control' \
+   </td>
+  </tr>
+  <tr>
+   <td>
+    &nbsp;--group \
+   </td>
+  </tr>
+  <tr>
+   <td>
+    &nbsp;--disabled-password \
+   </td>
+  </tr>
+  <tr>
+   <td>
+    &nbsp;--home /home/projfelh \
+   </td>
+  </tr>
+  <tr>
+   <td>
+    &nbsp;projfelh
+   </td>
+  </tr>
+ </table> 
+ <br>
+ Ezután a <i>projfelh</i> adminisztrátora generál egy rsa kulcspárt aminek a publikus részét a <i>Szerver</i>en meg kell mondani a Gitosis-nak:<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ sudo -H -u projfelh gitosis-init &lt; id_rsa.pub
+   </td>
+  </tr>
+ </table> 
+ <br>
+ Végül kicsit gatyába kell rázni valami engedélyeket (ez nálam otthon egy symlink, és nem is volt szükség erre a lépésre...) :<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    $ sudo chmod 755 /home/sztoch/nokinasn/repositories/gitosis-admin.git/hooks/post-update
+   </td>
+  </tr>
+ </table> 
+ <br>
+ Ha minden jól ment, idáig tart az a rész, amihez a rendszergazda segítségére van szükség. Ezután a <i>projfelh</i> adminisztrátora tudja majd adminisztrálni a központi adatbázist. Ez természetesen a git protokollon keresztül fog menni, a <i>projfelh@valami.szerver.hu:gitosis-admin.git</i> repón keresztül (lásd <a href="gitcml.html">használat</a>). Természetesen egyéb projektekhez egyéb git felhasználót lehet létrehozni, melyeket más adminisztrálhat.<br>
+ <br>
+ Új <i>proba</i> project repójának létrehozása:<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    [group proba]
+   </td>
+  </tr>
+  <tr>
+   <td>
+    members = email@elso email@masodik ...
+   </td>
+  </tr>
+  <tr>
+   <td>
+    writable = proba
+   </td>
+  </tr>
+ </table> 
+ <br>
+ a <i>gitosis.conf</i> fileban. Itt figyelni kell, hogy az email címek megegyezzenek az rsa publikus kulcsban szereplőkkel. A <i>keydir</i> könyvtárba pedig be kell másolni a résztvevők publikus kulcsát (<i>email@cím.pub</i> néven, figyeljünk az extra <i>.pub</i>-ra a végén!).
+ A <i>proba</i> projectet csak olvashatják az alábbi emberek:<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    [group proba_csak_olv]
+   </td>
+  </tr>
+  <tr>
+   <td>
+    members = email@elso.csak.olv email@masodik.csak.olv ...
+   </td>
+  </tr>
+  <tr>
+   <td>
+    readonly = proba
+   </td>
+  </tr>
+ </table> 
+ <br>
+ A writable és a readonly mögé tetszőleges számú repó is felsorolható.<br>
+ <br>
+ <i>members</i> listákat rövidíteni is lehet:<br>
+ <br>
+ <table class="kod">
+  <tr>
+   <td>
+    [group rovid]
+   </td>
+  </tr>
+  <tr>
+   <td>
+    members = email@elso.a.rovidben email@masodik.a.rovidben ...
+   </td>
+  </tr>
+ </table> 
+ <br>
+ Ezek után a további <i>members</i> részekben a <i>@rovid</i> alias behelyettesíti a megfelelő emaileket.
+</p>
+</body>
+</HTML>

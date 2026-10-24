@@ -1,0 +1,235 @@
+#!/bin/bash
+# 2017-02-02
+
+# Various stats from UoB style exam results.
+#
+# Use as: uobestat file [no of A questions] [no of B questions] <options>
+# options are listed if no correct number of them given
+# File is of the format Cand.No;desk;A1;A2;A3;A4;A5;B1;B2;comment
+# only lines starting with a number are considered.
+#
+
+if [ "$4" = "a" ]; then
+ cat "$1" |
+ awk -F\; -v ano="$2" 'BEGIN {
+  printf("C.no	desk	")
+  for (i=1; i<(1+ano); i+=1) printf("A"i"	");
+  print("Sum A")
+ }
+ {
+  if ($1 + 0 == $1) {
+   asum=0
+   printf($1"	"$2"	")
+   for (i=3; i<(3+ano); i+=1) {
+    asum=asum+$i
+    printf($i"	")
+   }
+   print(asum)
+  };
+ }'
+
+elif [ "$4" = "b" ]; then
+ cat "$1" |
+ awk -F\; -v ano="$2" -v bno="$3" 'BEGIN {
+  printf("C.no	desk	")
+  for (i=1; i<(1+bno); i+=1) printf("B"i"	");
+  print("Sum B")
+ }
+ {
+  if ($1 + 0 == $1) {
+   bsum=0
+   printf($1"	"$2"	")
+   for (i=(3+ano); i<(3+ano+bno); i+=1) {
+    bsum=bsum+$i
+    printf($i"	")
+   }
+   print(bsum)
+  };
+ }'
+
+elif [ "$4" = "abs" ]; then
+ cat "$1" |
+ awk -F\; -v ano="$2" -v bno="$3" 'BEGIN {
+  printf("C.no	desk		")
+  for (i=1; i<(1+ano); i+=1) printf("A"i"	");
+  printf("	")
+  for (i=1; i<(1+bno); i+=1) printf("B"i"	");
+  printf("	")
+  print("Sum A	Sum B		Sum")
+ }
+ {
+  if ($1 + 0 == $1) {
+   asum=0
+   bsum=0
+   printf($1"	"$2"		")
+   for (i=3; i<(3+ano); i+=1) {
+    asum=asum+$i
+    printf($i"	")
+   }
+   printf("	")
+   for (i=(3+ano); i<(3+ano+bno); i+=1) {
+    bsum=bsum+$i
+    printf($i"	")
+   }
+   printf("	")
+   print(asum"	"bsum"		"asum+bsum)
+  };
+ }'
+
+elif [ "$4" = "s" ]; then
+ cat "$1" |
+ awk -F\; 'BEGIN {
+  print("C.no	desk	Sum")
+ }
+ {
+  if ($1 + 0 == $1) {
+   sum=0
+   for (i=3; i<(3+ano+bno); i+=1) sum=sum+$i;
+   printf($1"	"$2"	")
+   print(sum)
+  };
+ }' ano="$2" bno="$3"
+
+elif [ "$4" = "v" ]; then
+ cat "$1" |
+ awk -F\; -v ano="$2" -v bno="$3" 'BEGIN {
+  for (i=3; i<(3+ano+bno); i+=1) su[i]=0;
+  nos=0
+  for (i=1; i<=ano; i+=1) printf("A"i"	");
+  for (i=1; i<=bno; i+=1) printf("B"i"	");
+  print("Sum A	Sum B	Sum	No of students")
+ }
+ {
+  if ($1 + 0 == $1) {
+   for (i=3; i<(3+ano+bno); i+=1) su[i]=su[i]+$i;
+   nos=nos+1
+  };
+ }
+ END {
+  for (i=3; i<(3+ano+bno); i+=1) av[i]=su[i]/nos;
+  suma=0
+  sumb=0
+  for (i=3; i<(3+ano+bno); i+=1) {
+   printf("%3.2f %s",av[i],"	")
+  }
+  for (i=3; i<(3+ano); i+=1) {
+   suma=suma+av[i]
+  }
+  for (i=(3+ano); i<(3+ano+bno); i+=1) {
+   sumb=sumb+av[i]
+  }
+  printf("%3.2f%s%3.2f%s%3.2f%s%3.0f\n",suma,"	",sumb,"	",suma+sumb,"	",nos)
+ }'
+
+elif [ "$4" = "h" ]; then
+
+ elej=${1%.*}
+ #k=v3$elej`date +%N`
+ k=v3$elej`date +%y%m%d_%H%M%S`_`strings /dev/urandom | tr -dc a-z-0-9 | tr -d - | head -c5`
+ mkdir /tmp/$k
+ chmod 700 /tmp/$k/
+ gnufile=/tmp/$k/"$elej"_gnu.txt
+ rawfile=/tmp/$k/"$elej"_raw.csv
+ scaledfile=/tmp/$k/"$elej"_raw_scaled.csv
+
+ cat "$1" |
+ awk -F\; ' {
+  if ($1 + 0 == $1) {
+   sum=0
+   for (i=3; i<(3+ano+bno); i+=1) sum=sum+$i;
+   print(sum)
+  };
+ }' ano="$2" bno="$3" > "$rawfile"
+
+ msarg=`echo "markscaler \"$5\" \"$6\" $rawfile"`
+ eval "$msarg"
+
+ nol=`wc -l "$rawfile" | awk '{ print($1) }'`
+
+ paste -d \	 "$rawfile" "$scaledfile" |
+ 
+ sort -g |
+
+ awk -F $'\t' -v nol="$nol" 'BEGIN {
+ print("Raw	   %	Scaled		"nol" students")
+ raws=0
+ scs=0
+ fl=0
+ th=0
+ sii=0
+ si=0
+ f=0
+ hf=0
+ }
+ {
+ printf("%3.0f%s%3.0f%s%3.2f\n",$1,"	",100*NR/nol,"%	",$2)
+ raws=raws+$1
+ scs=scs+$2
+ if ($2 >= 84.5 ) hf=hf+1;
+ if ($2 >= 69.5 && $2 < 84.5) f=f+1;
+ if ($2 >= 59.5 && $2 < 69.5) si=si+1;
+ if ($2 >= 49.5 && $2 < 59.5) sii=sii+1;
+ if ($2 >= 39.5 && $2 < 49.5) th=th+1;
+ if ($2 < 39.5) fl=fl+1;
+ }
+ END {
+ print("Averages (of "NR" students):")
+ printf("%3.2f%s%3.2f\n",raws/NR,"		",scs/NR)
+ print("")
+ print("Classes:")
+ printf("%s%3.0f%s%3.0f%s\n","85+:	",hf,"	",hf/NR*100,"%")
+ printf("%s%3.0f%s%3.0f%s\n","1:	",f,"	",f/NR*100,"%")
+ printf("%s%3.0f%s%3.0f%s\n","2i:	",si,"	",si/NR*100,"%")
+ printf("%s%3.0f%s%3.0f%s\n","2ii:	",sii,"	",sii/NR*100,"%")
+ printf("%s%3.0f%s%3.0f%s\n","3:	",th,"	",th/NR*100,"%")
+ printf("%s%3.0f%s%3.0f%s\n","fail:	",fl,"	",fl/NR*100,"%")
+ }'
+
+ cat "$scaledfile" |
+
+ awk -F\; 'BEGIN {
+  for (i=0; i<=100; i+=1) h[i]=0;
+ }
+ {
+  for (i=0; i<=100; i+=1) {
+   if ($1 >= i-0.5 && $1 < i+0.5)
+    h[i]=h[i]+1 ;
+  }
+ }
+ END {
+  for (i=0; i<=100; i+=1) print(i" "h[i]" ");
+ }' > "$gnufile"
+
+gnuplot -persist <<EOF
+set xrange [-1:101]
+set xtics 5
+set style fill solid 0.3
+set xtics rotate out
+plot "$gnufile" using 1:2 with boxes notitle
+EOF
+
+ l=1
+ while [ -n "$l" ]; do
+  sleep 1
+  l=`lsof 2>/dev/null +d /tmp/$k`
+ done
+ rm -f -R /tmp/$k
+
+else
+
+ echo "Use as: uobestat <file> [no of A questions] [no of B questions] <options>"
+ echo "File must be of the format Cand.No;desk;A1;A2;A3;A4;A5;B1;B2;comment"
+ echo "Only lines starting with a number are considered. Field separator must be ; ."
+ echo "Options are (no - please):"
+ echo "a	print sum of section A marks for individual students"
+ echo "b	print sum of section B marks for individual students"
+ echo "s	print total sum for individual students"
+ echo "abs	print all three above"
+ echo "v	print averages"
+ echo "h	show scaled histogram"
+ echo "		needs \"f_1 f_2 ... f_k\" \"t_1 t_2 .. t_k\""
+ echo "		where k is any integer at least 2, f_1 is the smallest possible raw mark, f_1...f_k is a strictly increasing sequence, f_k is the highest possible raw mark,"
+ echo "		t_1...t_k is a non-decreasing sequence of scaled marks that correspond in order to the raw marks f_1...f_k."
+ echo "		Only integers are allowed in scaling scheme."
+fi
+

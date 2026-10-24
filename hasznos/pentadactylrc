@@ -1,0 +1,14 @@
+"1.0b6.1 (created: 2011/03/09 09:25:18)
+
+loadplugins '\.(js|penta)$'
+group user
+set activate=
+set autocomplete=
+set showtabline=multitab
+set wildmode=list:full
+:set! browser.tabs.closeWindowWithLastTab=false
+set hlfind
+
+" vim: set ft=pentadactyl:
+
+:set! javascript.options.methodjit.chrome=false

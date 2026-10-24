@@ -1,0 +1,105 @@
+<!-- !! Date in file !! -->
+<!DOCTYPE HTML>
+<html>
+<head>
+ <meta name="description" content="UoB Maths Linux servers">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>UoB Maths Linux servers</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <style>
+  code {font-family: 'Courier New', Courier, monospace}
+  pre.one {font-family: 'Courier New', Courier, monospace; background-color: #EEEEEE; padding-top: 5px; height: 20px}
+  pre {font-family: 'Courier New', Courier, monospace; background-color: #EEEEEE; padding-top: 5px}
+  li {margin:15px}
+ </style>
+</head>
+<body>
+<h2 align="center">
+ Connecting to UoB Maths servers from a Linux box
+</h2>
+<p align="center">
+ Assembled by <a href="https://people.maths.bris.ac.uk/~mb13434/" target="_blank">Márton Balázs</a>, IT rep for Maths<br>
+ <font size="-2">last updated: [2025-07-10]</font>
+</p>
+<br>&nbsp;
+<p align="justify">
+<b>Please note, your local Linux machine is not backed up by IT</b>, hence the importance of connecting to UoB servers. The NSF mapping of Heilbronn homes to <code>e.maths</code> below is no longer in place after our move to Fry.
+</p>
+<p align="justify">
+ Throughout, <code>[username]</code> is your UoB username in the format <code>ab12345</code>. Here is a summary about <a href="https://uob.sharepoint.com/sites/itservices/SitePages/fits-maths-storage.aspx"> servers</a> that might need to be reached (<a href="https://uob.sharepoint.com/sites/itservices/SitePages/fits-maths-cream.aspx" target="_blank">Cream</a>, <a href="https://www.bristol.ac.uk/acrc/high-performance-computing/" target="_blank">Blue Pebble or Blue Crystal</a> are not covered, but should work very similarly):
+ <ul>
+  <li>
+   Microsoft's OneDrive, accessible via a web browser interface from Linux. One can also connect via <code>rclone</code>, please see <a href="rclone_uob_od.html">here</a>.
+  </li>
+  <li>
+   <code>seis.bris.ac.uk</code>, the University <b>Linux bastion server</b> and <b>UoB homepage server</b>. UPDATE as of the 10<sup>th</sup> July, 2025: this server is now also put behind VPN from outside Campus, which kind of beats the bastion server role. It accepts interactive <code>ssh</code> connection, and a webpage put in its
+   <pre class="one">
+/home/[username]/public_html/
+   </pre> folder can be publicly accessed as <code>http://seis.bris.ac.uk/~username/</code>.
+  </li>
+  <li>
+   <code>personal-webpages.maths.bris.ac.uk</code>, the <b>Maths homepage server</b>. It can only be connected from the internal UoB network (or via VPN). A webpage put in its
+   <pre class="one">
+/home/[username]/public_html/
+   </pre>
+   folder can be publicly accessed as <code>http://www.maths.bris.ac.uk/~username/</code>.
+  </li>
+  <li>
+   <code>e.maths.bris.ac.uk</code>, the <b>Linux Maths personal storage space</b>, backed up. It used to work through <code>scp, sshfs, rsync,...</code> and <code>smb, cifs</code> only, but it now also accepts interactive sessions through <code>ssh</code> login.
+  </li>
+ </ul>
+</p>
+<p align="justify">
+ These servers can be accessed via <code>smb</code> and <code>cifs</code>, see some of this <a href="https://uob.sharepoint.com/sites/itservices/SitePages/fits-maths-storage.aspx" target="_blank"> here</a> or <a href="https://uob.sharepoint.com/sites/itservices/SitePages/fits-maths-ubuntu-samba.aspx" target="_blank">here</a>. However, <code>smb</code> seems to mess up Linux file permissions, while <code>cifs</code> asks for sudo rights and can be a drawback with synchronisation tools like <code>rsync</code>. Hence this little page is to describe access to the last three of the above servers via <code>ssh, scp, sshfs, rsync</code>.
+</p>
+<p align="justify">
+The server <b><code>seis</code></b> could be accessed from both inside and outside the University in the usual secure ways until the 10<sup>th</sup> July, 2025:
+ <pre class="one">
+ssh -X [username]@seis.bris.ac.uk
+ </pre>
+ <pre class="one">
+sshfs [username]@seis.bris.ac.uk:/home/[username]/ ~/local_mount_point/
+ </pre>
+ <pre class="one">
+scp [file] [username]@seis.bris.ac.uk:/home/[username]
+ </pre>
+ <pre class="one">
+rsync -[options] -e ssh [local dir]/ [username]@seis.bris.ac.uk:/home/[username]/[remote dir]/
+ </pre>
+ or <code>fish</code> (as the <code>Shell link</code> in <code>mc</code>). An <code>sshfs</code> session should be terminated by
+ <pre class="one">
+fusermount -u ~/local_mount_point/
+ </pre>
+ after usage as lost connections can result in pausing the local filesystem. From the 10<sup>th</sup> July, 2025, seis is put behind VPN from outside Campus.
+</p>
+<p align="justify">
+ Access to the servers <b><code>personal-webpages</code></b> and <b><code>e</code></b> is done in a <b>similar</b> way <b>from within the UoB network</b>. I personally use rsync in my startup and bye-bye scripts to publish my webpage on <code>personal-webpages</code> and back up other files to <code>e</code>, see more about this <a href="rsync_uob.html">here</a>.
+</p>
+<p align="justify">
+From <b>outside the UoB network</b>, one can use either <a href="https://uob.sharepoint.com/sites/itservices/SitePages/vpn.aspx" target="_blank">VPN</a> (<a href="https://uob.sharepoint.com/sites/itservices/SitePages/vpn-china.aspx" target="_blank">here is a version for students connecting from China</a>) after which there is no need for what's below here, or <code>seis</code> to build an <b>ssh tunnel</b> to <code>personal-webpages</code> and <code>e</code> in the following way. On your local machine, create or add to the file
+ <pre class="one">
+~/.ssh/config
+ </pre>
+ the following lines:
+ <pre>
+Host personal-webpages.maths.bris.ac.uk
+	User [username]
+	ProxyCommand ssh [username]@seis.bris.ac.uk nc personal-webpages.maths.bris.ac.uk 22
+
+Host e.maths.bris.ac.uk
+	User [username]
+	ProxyCommand ssh [username]@seis.bris.ac.uk nc e.maths.bris.ac.uk 22
+ </pre>
+ Once this is done, everything works as usual (except password is asked twice, once by <code>seis</code> and then by <code>personal-webpages</code> or <code>e</code>). E.g.,
+ <pre class="one">
+sshfs [username]@personal-webpages.maths.bris.ac.uk:/home/[username]/ ~/local_mount_point/
+ </pre>
+</p>
+<p align="justify">
+An alternative to <code>ProxyCommand</code> is <code>ProxyJump</code>, see e.g., <a href="https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Proxies_and_Jump_Hosts#Passing_Through_One_or_More_Gateways_Using_ProxyJump" target="_blank">here</a>.
+</p>
+<p align="justify">
+ In all of the above you can use ssh keys, and possibly ssh-agent, to avoid entering your password several times. In this case <b>a strong passphrase for ssh keys and a time limit on ssh-agent is strongly advised</b>.
+</p>
+</body>
+</html>
