@@ -1,0 +1,79 @@
+#!/bin/bash
+# 2015.06.04
+
+# Usage:
+# markscaler "f_1 f_2 ... f_k" "t_1 t_2 .. t_k" [file]
+# where k is any integer at least 2, f_1 is the smallest possible raw mark, f_1...f_k is a strictly increasing sequence, f_k is the highest possible raw mark,
+# t_1...t_k is a non-decreasing sequence of scaled marks that correspond in order to the raw marks f_1...f_k.
+# Only integers are allowed in scaling scheme.
+#
+# input file: a csv file with a single column of raw mark numbers.
+# output is the scaled marks, plus a log with the scale parameters.
+
+raw=($1)
+scaled=($2)
+real='^[0-9]+([.][0-9]+)?$'
+
+# Let's do some tests.
+
+if [ "${#raw[@]}" -ne "${#scaled[@]}" ] ; then
+ echo "The numbers of arguments don't match!"
+ exit
+fi
+
+for (( i=1; i<${#raw[@]}; i++ ))
+do
+ if [[ ${raw[i-1]} -ge ${raw[i]} ]] || [[ ${scaled[i-1]} -gt ${scaled[i]} ]] ; then
+  echo "I have problems with the order of the arguments."
+  exit
+ fi
+done
+
+if [[ ! -f "$3" ]] ; then
+ echo "Can't find the file $3. Usage: markscaler [raw] [scaled] [file]."
+ exit
+fi
+
+ffront=${3%.*}
+fsc="$ffront"_scaled.csv
+
+if [[ -f "$fsc" ]] ; then
+ read -p "File $fsc exists, overwrite? [y]" nos
+ if [ "$nos" != "y" ] ; then
+  echo "Haven't done anything, bye."
+  exit
+ else
+  rm $fsc
+ fi
+fi
+
+
+# And now the real thing.
+
+while read line
+do
+ crm=$line
+ csm="oops"
+ if [[ ! $crm =~ $real ]] ; then
+  echo "$crm in the file $3 is not a number."
+  >&2 echo "$crm in the file $3 is not a number."
+  exit
+ fi
+
+ for (( i=1; i<${#raw[@]}; i++ ))
+ do
+  comp=`echo "${raw[i]} >= $crm" | bc`
+  if [ $comp -eq 1 ] ; then
+   csm=`echo "scale=6;(${scaled[i]}-${scaled[i-1]})/(${raw[i]}-${raw[i-1]})*($crm-${raw[i-1]})+${scaled[i-1]}" | bc`
+   #echo "${raw[i-1]}; $crm; ${raw[i]}"
+   break
+  fi
+ done
+# If out of range to above:
+ if [ "$csm" == "oops" ] ; then
+  i=$((${#raw[@]}-1))
+  csm=`echo "scale=6;(${scaled[i]}-${scaled[i-1]})/(${raw[i]}-${raw[i-1]})*($crm-${raw[i-1]})+${scaled[i-1]}" | bc`
+  #echo "${raw[i-1]}; $crm; ${raw[i]}"
+ fi
+ echo "$csm"
+done < $3 >> "$fsc"

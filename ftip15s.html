@@ -1,0 +1,756 @@
+<!-- 2015.08.01 -->
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<STYLE TYPE="text/css">
+.red
+{
+color:FF3030
+}
+</STYLE>
+<TITLE>Further Topics in Probability, Spring 2015</TITLE>
+</HEAD>
+<!--
+<body bgcolor="FFFACD">
+ -->
+<body bgcolor="008080">
+<h2><p align=center>Further Topics in Probability, Spring 2015</p></h2>
+<br>&nbsp;
+<table align=center>
+<tr><td align=right><a href="index.html" target="_blank">Márton Balázs</a></td><td></td><td></td></tr>
+<tr><td align=right><b>Email:</b></td><td></td><td>m.balazs@our_city.ac.countrycode</td></tr>
+<tr><td align=right><b>Tel:</b></td><td></td><td>+44 (0)117 928-7991</td></tr>
+<tr><td align=right><b>Office:</b></td><td></td><td>Maths 3.7</td></tr>
+<tr><td align=right><b>Office hours:</b></td><td>&nbsp;</td><td>Mondays 14:30 - 15:30 on teaching weeks, Maths 3.7</td></tr>
+<tr><td></td><td></td><td><i>except for the 16th of February, which is cancelled.</i></td></tr>
+<!--
+<tr><td align=right><b>Final exam:</b></td><td></td>
+<td><i>will be announced here soon.</i></td></tr>
+-->
+</table>
+<br>&nbsp;
+<br>&nbsp;
+<table align=center><tr><td>
+<ul>
+<li>The <a href="http://www.maths.bris.ac.uk/study/undergrad/current_units/unit/?id=794" target="_blank">unit description for level H/6</a>, including assessment methods, texts, syllabus.
+<br>&nbsp;
+<li>The <a href="http://www.maths.bris.ac.uk/study/undergrad/current_units/unit/?id=795" target="_blank">unit description for level M/7</a>, including assessment methods, texts, syllabus.
+<br>&nbsp;
+<li>Calculators of an approved type (non-programmable, no text facility) are allowed in the examination.
+<br>&nbsp;
+<li> Remark on the Tues 2pm exercise classes (see the schedule below): we'll discuss (homework) problems, review stuff as necessary, look at more examples, but no new material is covered on these occasions. These classes are likely to help you, but they are not mandatory.
+<br>&nbsp;
+<li> Remark on the assessments: there will be no distinction between levels H/6 and M/7 regarding homeworks. Six homework sets will be assigned, see the schedule below. From each of these, you can collect 17 homework marks. On the exam, you can collect 100 exam marks. Your final score will be computed using the formula [homework marks]*0.2 + [exam marks]*0.8. This score will be compared to the standard 0-100 scale. (Yes, you have a gift value of 0.4.)
+<br>&nbsp;
+<li> A few more remarks on the exam: for both levels, final examination will be 2½-hour long, will consist of five questions out of which the best four answers will be used for assessment. The difference between levels H/6 and M/7 will only be the required depth of reproducing proofs in the exam. On H/6 I can ask for at most a couple of words about how a proof goes. On M/7, I can ask for proofs in details.
+<br>&nbsp;
+<li><a href="normal-table.pdf" target="_blank">The standard normal distribution</a> in pdf. You will be given this table on the exam.
+<br>&nbsp;
+<li><a href="prob1_and_beyond.html" target="_blank">Extended slides/notes of elementary probability</a>. Some of it can be used as reference and refreshment for parts of the Probability 1 and Advanced Probability 2 units. Other portions we will cover in class, and some we will not touch. Below you'll see links to relevant parts of this material. Please notice that these links are <b>by no means meant to fully cover our material</b>, nor will all parts of all of them be assessed. They rather serve as background reading. (They are actually part of lecture notes for a rather strong first probability unit I used to teach before.)
+</ul>
+</td></tr></table>
+<p align="center">
+ Below is a detailed schedule. Topics of future events are plans, and can change. Topics of past events serve as log.<br>
+ Homeworks are/will also be posted here: just click those with a link below. They are due in class, or in the blue locker with my name on the ground floor of the Main Maths Building.<br>
+ Homework solutions will appear on Blackboard, please email me if you have problem accessing these.
+</p>
+<p align="center">
+ I was thinking about going over the <a href="http://link.springer.com/article/10.1007/BF01013465" target="_blank">ingenious proof of the SLLN by N. Etemadi</a>, but decided to stay with the classical way instead. You are welcome to check out his way of doing it!
+</p>
+<p align="center">
+ Came across <a href="https://www.youtube.com/watch?v=LKnqECcg6Gw" target="_blank">this illustration</a> of Jensen's inequality: square-root of the average &ne; average of the square-root.
+</p>
+<br>&nbsp;
+<table align="center" border="1" cellpadding="2" rules="groups" style="border-collapse: collapse; border: 1px solid black">
+ <colgroup></colgroup><colgroup></colgroup><colgroup></colgroup>
+ <tbody>
+  <tr>
+   <th>
+    Day
+   </th>
+   <th>
+    Topics
+   </th>
+   <th>
+    Homework due:
+   </th>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Mon 26 Jan, 13:00, Maths SM4
+    </b>
+   </td>
+   <td>
+    Review of the unit, <a href="NegBin_Hypergeom.pdf" target="_blank">basic discrete distributions</a>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+    Tue 27 Jan, 9:00, Maths SM4
+   </b>
+   </td>
+   <td>
+    Convolution (discrete cases)
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    Tue 27 Jan, 14:00, Phys 3.34
+   </td>
+   <td>
+    <i>Ex. Class (Neg.Binom and Uniform convolution; Residue Thm.)</i>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+    Thu 29 Jan, 15:00, Med C44
+   </b>
+   </td>
+   <td>
+    <a href="joint_cont_distr.pdf" target="_blank">Convolution (Gaussian)</a>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Mon 2 Feb, 13:00, Maths SM4
+    </b>
+   </td>
+   <td>
+    Convolution (Cauchy)
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+    Tue 3 Feb 9:00, Maths SM4
+   </b>
+   </td>
+   <td>
+    Convolution (Cauchy, Exponential)
+   </td>
+   <td align="center">
+     --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    Tue 3 Feb, 14:00, Phys 3.34
+   </td>
+   <td>
+    <i>Ex. Class (Convolutions)</i>
+   </td>
+   <td align="center">
+    <a href="hw1_ftip15s.pdf">HW1</a>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 5 Feb, 15:00, Med C44
+   </b>
+   </td>
+   <td>
+    <a href="Poisson_process.pdf" target="_blank">Poisson process</a>, Chi square; Generating functions (properties)
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Mon 9 Feb, 13:00, Maths SM4
+    </b>
+   </td>
+   <td>
+    Generating functions (examples; of convolutions)
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 10 Feb, 9:00, Maths SM4
+    </b>
+   </td>
+   <td>
+    Generating functions (random no. of summands, Galton-Watson process)
+   </td>
+   <td align="center">
+     --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    Tue 10 Feb, 14:00, Phys 3.34
+   </td>
+   <td>
+    <i>Ex. Class (Generating functions)</i>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 12 Feb, 15:00, Med C44
+    </b>
+   </td>
+   <td>
+    Generating functions (Galton-Watson process)
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Mon 16 Feb, 13:00, Maths SM4
+    </b>
+   </td>
+   <td>
+    Generating functions (random walk: level 1 hitting time)
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+    Tue 17 Feb, 9:00, Maths SM4
+   </b>
+   </td>
+   <td>
+    Generating functions (random walk, weak convergence)
+   </td>
+   <td align="center">
+     --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    Tue 17 Feb, 14:00, Phys 3.34
+   </td>
+   <td>
+    <i>Ex. Class (Generating functions)</i>
+   </td>
+   <td align="center">
+    <a href="hw2_ftip15s.pdf">HW2</a>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 19 Feb, 15:00, Med C44
+    </b>
+   </td>
+   <td>
+    Generating functions (Poisson approximation)
+   </td>
+   <td align="center">
+     --
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Mon 23 Feb, 13:00, Maths SM4
+    </b>
+   </td>
+   <td>
+    <a href="Bernoulli_LLN.pdf" target="_blank">Weak Law of Large Numbers</a>, <a href="Stirling_DeMoivre_Laplace.pdf" target="_blank">Stirling's formula</a>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 24 Feb, 9:00, Maths SM4
+    </b>
+   </td>
+   <td>
+    <a href="Normal_normed.pdf" target="_blank">Normal distribution</a>, <a href="Stirling_DeMoivre_Laplace.pdf" target="_blank">DeMoivre Laplace CLT</a>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+     Tue 24 Feb, 14:00, Phys 3.34
+   </td>
+   <td>
+    <i>Ex. Class (Generating fcts, WLLN, Stirling's formula)</i>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 26 Feb, 15:00, Med C44
+    </b>
+   </td>
+   <td>
+    <a href="Stirling_DeMoivre_Laplace.pdf" target="_blank">DeMoivre Laplace CLT</a>
+   </td>
+   <td align="center">
+     --
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Mon 2 Mar, 13:00, Maths SM4
+    </b>
+   </td>
+   <td>
+    <a href="meas_th_prob.pdf" target="_blank">Measure Theory (basic notions, probability)</a>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 3 Mar, 9:00, Maths SM4
+    </b>
+   </td>
+   <td>
+    <a href="meas_th_prob.pdf" target="_blank">Measure Theory</a>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    Tue 3 Mar, 14:00, Phys 3.34
+   </td>
+   <td>
+    <i>Ex. Class (DeMoivre Laplace CLT), <a href="Bernoulli_LLN.pdf" target="_blank">Weierstrass Approx. Thm.</a></i>
+   </td>
+   <td align="center">
+    <a href="hw3_ftip15s.pdf">HW3</a>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 5 Mar, 15:00, Med C44
+    </b>
+   </td>
+   <td>
+    Probabilistic tools
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Mon 9 Mar, 13:00, Maths SM4
+    </b>
+   </td>
+   <td>
+    Probabilistic tools
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+    Tue 10 Mar, 9:00, Maths SM4
+   </b>
+   </td>
+   <td>
+    Notions of convergence
+   </td>
+   <td align="center">
+     --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    Tue 10 Mar, 14:00, Phys 3.34
+   </td>
+   <td>
+    <i>Ex. Class (Types of convergences)</i>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 12 Mar, 15:00, Med C44
+    </b>
+   </td>
+   <td>
+    Convergences; Strong Law of Large Numbers (Kolmogorov's ineq.)
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Mon 16 Mar, 13:00, Maths SM4
+    </b>
+   </td>
+   <td>
+    Strong Law of Large Numbers (Kolmogorov-Khinchin, Toeplitz, Kronecker)
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+    Tue 17 Mar, 9:00, Maths SM4
+   </b>
+   </td>
+   <td>
+    Kolmogorov's Thm, SLLN
+   </td>
+   <td align="center">
+     --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    Tue 17 Mar, 14:00, Phys 3.34
+   </td>
+   <td>
+    <i>Ex. Class (Convergences, SLLN)</i>
+   </td>
+   <td align="center">
+    <a href="hw4_ftip15s.pdf">HW4</a>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 19 Mar, 15:00, Med C44
+    </b>
+   </td>
+   <td>
+    Characteristic Functions
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Mon 23 Mar, 13:00, Maths SM4
+    </b>
+   </td>
+   <td>
+    Characteristic Functions (Inversion formula)
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 24 Mar, 9:00, Maths SM4
+    </b>
+   </td>
+   <td>
+    Inversion formula, Weak Convergence
+   </td>
+   <td align="center">
+     --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    Tue 24 Mar, 14:00, Phys 3.34
+   </td>
+   <td>
+    <i>Ex. Class (Characteristic functions, Weak convergence)</i>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 26 Mar, 15:00, Med C44
+    </b>
+   </td>
+   <td>
+    Weak Convergence, CLT (Prokhorov's Thm)
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td colspan="3" align="center">
+    <i>
+     Easter vacation
+    </i>
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Mon 20 Apr, 13:00, Maths SM4
+    </b>
+   </td>
+   <td>
+    Weak Convergence, CLT (Continuity Lemma)
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 21 Apr, 9:00, Maths SM4
+    </b>
+   </td>
+   <td>
+    Weak Convergence, WLLN, CLT
+   </td>
+   <td align="center">
+     --
+   </td>
+  </tr>
+  <tr>
+   <td>
+     Tue 21 Apr, 14:00, Phys 3.34
+   </td>
+   <td>
+    <i>Ex. Class (LLN, Characteristic functions, Lindeberg Thm)</i>
+   </td>
+   <td align="center">
+    <a href="hw5_ftip15s.pdf">HW5</a>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 23 Apr, 15:00, Med C44
+    </b>
+   </td>
+   <td>
+    Weak Convergence, CLT (Comments on the CLT)
+    <!--
+    Weak Convergence, CLT (Coupon collector, elements of Large Deviations)
+    -->
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Mon 27 Apr, 13:00, Maths SM4
+    </b>
+   </td>
+   <td>
+    Renewal Theory (LLN, Delayed renewals)
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 28 Apr, 9:00, Maths SM4
+    </b>
+   </td>
+   <td>
+    Renewal Theory (Renewal theorems, stationary renewals)
+   </td>
+   <td align="center">
+     --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    Tue 28 Apr, 14:00, Phys 3.34
+   </td>
+   <td>
+    <i>Ex. Class (Age, renewal equation, renewal theorems)</i>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 30 Apr, 15:00, Maths C44
+    </b>
+   </td>
+   <td>
+    Renewal Theory (residual time, proofs)
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <i>Mon 4 May</i>
+   </td>
+   <td colspan="2" align="center">
+    <i>Bank holiday</i>
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Tue 5 May, 9:00, Maths SM4
+    </b>
+   </td>
+   <td>
+    Renewal Theory (Proofs)
+   </td>
+   <td align="center">
+     --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    Tue 5 May, 14:00, Phys 3.34
+   </td>
+   <td>
+    <i>Ex. Class (Gaps, terminating renewal)</i>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 7 May, 15:00, Med C44
+    </b>
+   </td>
+   <td>
+    Renewal Theory (Proofs, renewal paradox, length-biased sampling)
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+   </td>
+   <td>
+    <i>
+     Fri 8 May, 16:00: HW6 deadline only
+    </i>
+   </td>
+   <td align="center">
+    <a href="hw6_ftip15s.pdf">HW6</a>
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Tue 12 May, 10:00, Maths SM3
+    </b>
+   </td>
+   <td>
+    Q&amp;A session
+   </td>
+   <td align="center">
+     --
+   </td>
+  </tr>
+ </tbody>
+</table>
+<br>&nbsp;
+<br>&nbsp;
+<hr align=center width=30%>
+<br>&nbsp;
+<p align=center>
+If you have any questions, please contact me (see on top). Below is my schedule.<br>
+<br>&nbsp;
+<iframe src="https://www.google.com/calendar/embed?title=M.%20Bal%C3%A1zs%20schedule&amp;mode=WEEK&amp;height=400&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=bristol.ac.uk_gj9d7p7a5s0lfbhvge3aq9j4p4%40group.calendar.google.com&amp;color=%232F6309&amp;src=bristol.ac.uk_vbpjns17uon71f630dit50urpo%40group.calendar.google.com&amp;color=%232952A3&amp;src=77q6gepe08n9hbqdd91om074u8%40group.calendar.google.com&amp;color=%23B1440E&amp;ctz=Europe%2FLondon" style=" border-width:0 " width="600" height="400" frameborder="0" scrolling="no"></iframe>
+</p>
+<br>&nbsp;
+<hr align=center width=30%>
+<p align=center>
+To the <a href="teach.html">teaching page</a>
+</p>
+</body>
+</html>

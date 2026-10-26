@@ -1,0 +1,7 @@
+#!/bin/bash
+# ImageMagick
+mkdir felezett
+for i in `ls *.*`; do 
+ echo "`ls $i` --> felezett/`ls $i | sed -e 's/\./-\./'`"
+ magick $i -resize 50% felezett/`ls $i | sed -e 's/\./-\./'`
+done

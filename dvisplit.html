@@ -1,0 +1,43 @@
+<!-- 2013.08.28 -->
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<TITLE>How to split a dvi file</TITLE>
+<STYLE TYPE="text/css">
+<!--
+.aligned
+   {
+   text-align:justify;
+   }
+-->
+</STYLE>
+</HEAD>
+<body bgcolor="FFFACD">
+<h3><p align=center><u>How to split a dvi file to the text and the references</u></p></h3>
+<br>&nbsp;
+<p class="aligned">The problem originates from NSF grant-making, where one of the most convenient ways to upload the Project Description is doing it in dvi format. Once one is able to split the content and the references to separate dvi files! This page is created to describe how to make such a split. It worked for me, no guaranty it will work for everyone.</p>
+
+<p class="aligned">Assume one has a "proposal.tex" file which has the correct page numbering, and which includes all references. I also assume that "proposal.tex" is using bibtex, although I'm pretty sure that something similar to these tricks also works out without bibtex. I also assume that there is a "\newpage" command before the bibliography. (Furthermore, I assume that there is no file named "propfirst.*" and "propbib.*" in the directory where "proposal.tex" is.)</p>
+
+<table align=center cellpadding=7>
+<tr><td nowrap><u>Step 1:</u></td><td><p class="aligned">&gt; cp proposal.tex propfirst.tex [enter]</p></td></tr>
+<tr><td nowrap><u>Step 2:</u></td><td><p class="aligned">&gt; cp proposal.tex propbib.tex [enter]</p></td></tr>
+<tr><td nowrap><u>Step 3:</u></td><td><p class="aligned">Cut everything out from "propfirst.tex" between the "\newpage" preceding the bibliography and "\end{document}", including that "\newpage", but not "\end{document}". Then save the file.</p></td></tr>
+<tr><td nowrap><u>Step 4:</u></td><td><p class="aligned">Cut everything out from "propbib.tex" between "\begin{document}" and the "\newpage" preceding the bibliography, including this "\newpage", but not "\begin{document}". Then save the file.</p></td></tr>
+<tr><td nowrap><u>Step 5:</u></td><td><p class="aligned">latex "proposal.tex", bibtex it, then latex it twice (sometimes it's needed three times). So now we have the correct and final "proposal.aux" and "proposal.bbl" files.</p></td></tr>
+<tr><td nowrap><u>Step 6:</u></td><td><p class="aligned">&gt; cp proposal.aux propfirst.aux [enter]</p></td></tr>
+<tr><td nowrap><u>Step 7:</u></td><td><p class="aligned">&gt; cp proposal.bbl propbib.bbl [enter]</p></td></tr>
+<tr><td nowrap><u>Step 8:</u></td><td><p class="aligned">&gt; latex propfirst.tex [enter] (only once!)</p></td></tr>
+<tr><td nowrap><u>Step 9:</u></td><td><p class="aligned">&gt; latex propbib.tex [enter]</p></td></tr>
+<tr><td nowrap><u>Step 10:</u></td><td><p class="aligned">&gt; latex propbib.tex [enter]   (again)</p></td></tr>
+<tr><td nowrap><u>Step 11:</u></td><td><p class="aligned">Enjoy the files "propfirst.dvi" and "propbib.dvi". :-)</p></td></tr>
+</table>
+<br>&nbsp;
+<hr noshade:>
+<br>&nbsp;
+<p align=center>
+<a href="util.html">Back to the utilities</a>
+</p>
+</body>
+</HTML>

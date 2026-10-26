@@ -1,0 +1,84 @@
+<!-- 2013.08.28 -->
+<HTML><HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+<link href="main.css" rel="stylesheet" type="text/css">
+<TITLE> Git gyorstalpaló </TITLE></HEAD>
+<body bgcolor="FFFACD">
+<h1><p align=center>Git gyorstalpaló</p></h1>
+<p class="null">
+ <span class="nonu"><a href="miagit.html">&gt; <b>Mi is az a Git?</b></a></span><br>
+ <br>
+ <span class="nonu"><a href="telep.html">&gt; <b>Telepítés</b></a></span><br>
+ <br>
+ <span class="nonu"><a href="index.html">&or;</a></span> <b>Használat (alapok)</b><br>
+</p>
+<p class="egy">
+ A leírásban lesz majd egy <i>adminisztrátor</i>, aki egy <i>Szerver</i> nevű gép központi ssh adatbázisát fogja adminisztrálni. Ez lehet különböző a <i>Szerver</i> rendszergazdájától. Mielőtt a Git-hez hozzászólnánk, szükségünk lesz egy ssh kulcsra, ezzel fog a későbbiekben a <i>Szerver</i> nevű gép központi adatbázisa azonosítani minket. Akinek van már ilyen, az a publikus kulcsát küldje el az <i>adminisztrátor</i>nak emailben. Akinek nincs még, nyisson egy terminált: linuxon ahogy szokta, Windowsban rá kell kattintani a Git Bash ikonra. Ezekbe be kell írni, hogy<br>
+ <br>
+ <table>
+  <tr>
+   <td class="kod">
+    $ ssh-keygen -C '<i>sajat@email.cimunk</i>'
+   </td>
+   <td>
+    <br>&nbsp;
+   </td>
+   <td align="left">
+    linuxon, vagy
+   </td>
+  </tr>
+  <tr>
+   <td class="kod">
+    $ ssh-keygen.exe -C '<i>sajat@email.cimunk</i>'
+   </td>
+   <td>
+    <br>&nbsp;
+   </td>
+   <td align="left">
+    Windowson.
+   </td>
+  </tr>
+ </table>
+ <br>
+ Ez felajánlja, hogy a home könyvtáron belül a .ssh/ -ba tegye a kulcsot, ezt fogadjuk el. (Ha itt van már egy <i>id_rsa</i> illetve <i>id_rsa.pub</i> nevű kulcs, akkor NE írjuk felül, hanem emailben küldjük el az <i>adminisztrátor</i>nak az itt már régebbről meglevő <i>id_rsa.pub</i> filet.) Egy jelszót is megadhatunk, én ezt nem adtam meg, üresen enterrel is el lehet küldeni (kétszer), gondolom ha valaki akar itt megadhat valamit. Két file jön így létre a .ssh könyvtárban, pontosabban:<br>
+ <br>
+ <table>
+  <tr>
+   <td align="left">
+    <i>~/.ssh/id_rsa</i> és <i>id_rsa.pub</i>
+   </td>
+   <td>
+    &nbsp;&nbsp;
+   </td>
+   <td align="left">
+    Linuxon,
+   </td>
+  </tr>
+  <tr>
+   <td align="left">
+    <i>C:\Users\[usernév]\.ssh\id_rsa</i> és <i>id_rsa.pub</i>
+   </td>
+   <td>
+    &nbsp;&nbsp;
+   </td>
+   <td>
+    Windowson.
+   </td>
+  </tr>
+ </table>
+ <br>
+ Az id_rsa file a privát kulcsunk, vigyázzunk rá mint a szemünk fényére, senki sem láthatja soha az életben. <b>A dolog csak akkor fog működni, ha a privát kulcs az előbbi könyvtárakban van, és <i>id_rsa</i>-nak hívják.</b> Az id_rsa.pub file a publikus kulcsunk, ezt bárki láthatja. Ezt kell elküldeni az <i>adminisztrátor</i>nak emailben, ő beteszi a <i>Szerver</i>-en a megfelelő helyre (ssh repó adminisztrálását lásd lejjebb), e kulcs és mindenki saját privát kulcsának összehasonlítása alapján fog mindenkit engedélyezni a <i>Szerver</i> adatbázisa.<br>
+ <br>
+ A Git-et az alábbi három mód közül bármelyikben használhatjuk:<br>
+ <br>
+ <span class="nonu"><a href="gitext.html">&gt; <b>Git Extensions</b></a></span> (Windows, ezt ajánlom)<br>
+ <br>
+ <span class="nonu"><a href="gitgui.html">&gt; <b>Git Gui</b></a></span> (ha gui kell Linuxra, de Windowsra is van)<br>
+ <br>
+ <span class="nonu"><a href="gitcml.html">&gt; <b>Parancssorból</b></a></span> (én ezt használom, kommentáljam? ;-) )<br>
+</p>
+<p class="null">
+ <span class="nonu"><a href="gitosis.html">&gt; <b>Központi ssh repository telepítése</b></a></span> (elsősorban az ssh Git <i>Szerver</i> üzemeltetőjének szól)<br>
+</p>
+</body>
+</HTML>

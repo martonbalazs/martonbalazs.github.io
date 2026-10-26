@@ -1,0 +1,412 @@
+%04.12.27
+%###############################################################################################################
+%# This is a semi-automatic LaTeX file for following homework and exam points and for grading.                 #
+%# Only integer points, empty entries, or "-" are accepted, the latter meaning no work at the given assignment.#
+%# The code below assumes 11 homeworks, two midterm exams, and a final,                                        #
+%# these settings can be adjusted by some copy-paste.                                                          #
+%# The worst homework is dropped, then the sum is computed, and a grade is assigned                            #
+%# based on the grading preferences set.                                                                       #
+%# Averages and average grades are also computed. Students dropping the course                                 #
+%# or getting an Incomplete are also handled.                                                                  #
+%#                                                                                                             #
+%# Data concerning the course is entered at the beginning, students' points are entered at the end of the file.#
+%#                                                                                                             #
+%###############################################################################################################
+
+\documentclass[draft]{article}
+\usepackage{array}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage{hhline}
+
+%Adjusting the margins
+\setlength{\marginparwidth}{0pt}
+\addtolength{\textwidth}{200pt}
+\addtolength{\hoffset}{-100pt}
+\addtolength{\textheight}{100pt}
+\setlength{\voffset}{-50pt}
+\setlength{\fboxsep}{1pt}
+\pagestyle{empty}
+
+\newcommand*{\un}{\underline}
+\newcommand*{\fb}[1]{\fbox{#1}}
+
+%Defining the minimum points needed for grades. Can change it anytime (e.g. after curving).
+
+\newcounter{ga}\setcounter{ga}{365}               %Minimum for A
+\newcounter{gab}\setcounter{gab}{350}             %Minimum for AB
+\newcounter{gb}\setcounter{gb}{320}               %Minimum for B
+\newcounter{gbc}\setcounter{gbc}{305}             %Minimum for BC
+\newcounter{gc}\setcounter{gc}{270}               %Minimum for C
+\newcounter{gd}\setcounter{gd}{230}               %Minimum for D
+
+%Defining the maximum points which can be earned for homeworks and exams.
+
+\newcounter{hwa}\setcounter{hwa}{10}              %Max. points for homework 1
+\newcounter{hwb}\setcounter{hwb}{10}              %Max. points for homework 2
+\newcounter{hwc}\setcounter{hwc}{10}              %Max. points for homework 3
+\newcounter{hwd}\setcounter{hwd}{10}              %Max. points for homework 4
+\newcounter{hwe}\setcounter{hwe}{10}              %Max. points for homework 5
+\newcounter{hwf}\setcounter{hwf}{10}              %Max. points for homework 6
+\newcounter{hwg}\setcounter{hwg}{10}              %Max. points for homework 7
+\newcounter{hwh}\setcounter{hwh}{10}              %Max. points for homework 8
+\newcounter{hwi}\setcounter{hwi}{10}              %Max. points for homework 9
+\newcounter{hwj}\setcounter{hwj}{10}              %Max. points for homework 10
+\newcounter{hwk}\setcounter{hwk}{10}              %Max. points for homework 11
+\newcounter{exa}\setcounter{exa}{80}              %Max. points for midterm 1
+\newcounter{exb}\setcounter{exb}{80}              %Max. points for midterm 2
+\newcounter{fex}\setcounter{fex}{140}             %Max. points for the final
+
+\newcounter{drop}\setcounter{drop}{10}            %The max. value which can be dropped with the worst homework,
+                                                  %should agree with the max. points for each homework
+
+%This computes the maximum points during the semester: homeworks + exams - the max. points to be dropped
+\newcounter{max}\setcounter{max}{\thehwa+\thehwb+\thehwc+\thehwd+\thehwe+\thehwf+\thehwg+\thehwh+\thehwi+\thehwj+\thehwk+\theexa+\theexb+\thefex-\thedrop}
+
+%Temporary counters for computing the grades
+\newcounter{sumax}
+\newcounter{gaout}
+\newcounter{gabout}
+\newcounter{gbout}
+\newcounter{gbcout}
+\newcounter{gcout}
+\newcounter{gdout}
+
+%##################################################################################
+%#Change the number of these counters below if there are more / less assignments. #
+%##################################################################################
+
+%Counters with the values of the homeworks
+\newcounter{sa}
+\newcounter{sb}
+\newcounter{sc}
+\newcounter{sd}
+\newcounter{se}
+\newcounter{sf}
+\newcounter{sg}
+\newcounter{sh}
+\newcounter{si}
+\newcounter{sj}
+\newcounter{sk}
+%Exams
+\newcounter{ea}
+\newcounter{eb}
+\newcounter{ef}
+
+%Counters showing the type of homeworks (0: not due yet, 1: no work, 2: graded)
+\newcounter{saa}
+\newcounter{sab}
+\newcounter{sac}
+\newcounter{sad}
+\newcounter{sae}
+\newcounter{saf}
+\newcounter{sag}
+\newcounter{sah}
+\newcounter{sai}
+\newcounter{saj}
+\newcounter{sak}
+%Exams
+\newcounter{eaa}
+\newcounter{eab}
+\newcounter{eaf}
+
+%Counters adding up points of given homeworks over students; needed for the averages
+\newcounter{ava}
+\newcounter{avb}
+\newcounter{avc}
+\newcounter{avd}
+\newcounter{ave}
+\newcounter{avf}
+\newcounter{avg}
+\newcounter{avh}
+\newcounter{avi}
+\newcounter{avj}
+\newcounter{avk}
+%Exams
+\newcounter{eva}
+\newcounter{evb}
+\newcounter{evf}
+%Sum of points; not counted in the average if grade is given manually (dropped course, Incomplete)
+\newcounter{sav}
+%Grade; not counted in the average if grade is given manually (dropped course, Incomplete)
+\newcounter{gav}
+
+%Counters counting the number of graded homeworks
+\newcounter{coa}
+\newcounter{cob}
+\newcounter{coc}
+\newcounter{cod}
+\newcounter{coe}
+\newcounter{cof}
+\newcounter{cog}
+\newcounter{coh}
+\newcounter{coi}
+\newcounter{coj}
+\newcounter{cok}
+%Exams
+\newcounter{cea}
+\newcounter{ceb}
+\newcounter{cef}
+%Sum of points; not counted in the average if grade is given manually (dropped course, Incomplete)
+\newcounter{cs}
+%Grade; not counted in the average if grade is given manually (dropped course, Incomplete)
+\newcounter{cg}
+
+\newcounter{s}                                    %This will be the sum of points for a student
+\newcounter{min}                                  %This is the worst homework to be dropped from the sum
+\newcounter{mini}                                 %This is the index of the worst homework
+\newcounter{out}                                  %This computes the maximum possible points at present
+\newcounter{gt}                                   %This is needed when computing the average final grade
+
+%Computes the final grades, also adds the counters for the average final grade.
+\newcommand*{\grade}[2]{%                         %#1: sum, #2: out of what.
+\ifthenelse{\equal{#2}{0}}{}{%                    %Does nothing if out of zero.
+\setcounter{sumax}{{#1}*\themax}%                 %Sum * possible max points during the semester
+\setcounter{gaout}{\thega*{#2}}%                  %Grade limit points * the current out of
+\setcounter{gabout}{\thegab*{#2}}%
+\setcounter{gbout}{\thegb*{#2}}%
+\setcounter{gbcout}{\thegbc*{#2}}%
+\setcounter{gcout}{\thegc*{#2}}%
+\setcounter{gdout}{\thegd*{#2}}%
+\addtocounter{cg}{1}\ifthenelse{\thesumax<\thegdout}{F}{\ifthenelse{\thesumax<\thegcout}{D\addtocounter{gav}{2}}{\ifthenelse{\thesumax<\thegbcout}{C\addtocounter{gav}{4}}{\ifthenelse{\thesumax<\thegbout}{BC\addtocounter{gav}{5}}{\ifthenelse{\thesumax<\thegabout}{B\addtocounter{gav}{6}}{\ifthenelse{\thesumax<\thegaout}{AB\addtocounter{gav}{7}}{A\addtocounter{gav}{8}}}}}}}}}                                           %Compares the products above, writes grades, 
+                                                  %adds average counters for the grade average.
+                                                  %Grades are counted twice in order to having integers (e.g. AB).
+
+%Same as \grade above, but doesn't touch the counters for grade average.
+\newcommand*{\gradenav}[2]{%
+\ifthenelse{\equal{#2}{0}}{}{%
+\setcounter{sumax}{{#1}*\themax}%
+\setcounter{gaout}{\thega*{#2}}%
+\setcounter{gabout}{\thegab*{#2}}%
+\setcounter{gbout}{\thegb*{#2}}%
+\setcounter{gbcout}{\thegbc*{#2}}%
+\setcounter{gcout}{\thegc*{#2}}%
+\setcounter{gdout}{\thegd*{#2}}%
+\ifthenelse{\thesumax<\thegdout}{F}{\ifthenelse{\thesumax<\thegcout}{D}{\ifthenelse{\thesumax<\thegbcout}{C}{\ifthenelse{\thesumax<\thegbout}{BC}{\ifthenelse{\thesumax<\thegabout}{B}{\ifthenelse{\thesumax<\thegaout}{AB}{A}}}}}}}}
+
+%Temporary counters for division
+\newcounter{int}
+\newcounter{fr}
+\newcounter{x}
+\newcounter{y}
+\newcounter{frr}
+
+%Divides two positive integers to two decimals, also makes an almost good rounding
+\newcommand*{\indiv}[2]{% 
+\setcounter{x}{#1}%                                              %Numerator
+\setcounter{y}{#2}%                                              %Denominator
+\ifthenelse{\they>0}{%                                           %See if the denominator is positive
+\setcounter{int}{\thex/\they}%                                   %The fraction's integer part
+\setcounter{fr}{100*\thex/\they-100*\theint}%                    %The decimal part
+\setcounter{frr}{10000*\thex/\they-10000*\theint-100*\thefr}%    %This is the rounded part
+\ifthenelse{\thefrr<50}{}{\addtocounter{fr}{1}}%                 %Round up if needed
+\ifthenelse{\thefr<10}{\theint.0\thefr}{\theint.\thefr}%         %Complete the fraction part with the leading zero
+                                                                 %if needed
+}{}}%                                                            %Do nothing if the denominator is zero
+
+%Read and evaluate the names and the first 8 assignments, i.e. set the points, and the types to 0, 1, 2.
+\newcommand*{\sa}[9]{%
+{#1}%
+\ifthenelse{\equal{#2}{}}{\setcounter{sa}{0}\setcounter{saa}{0}}{\ifthenelse{\equal{#2}{-}}{\setcounter{sa}{0}\setcounter{saa}{1}}{\setcounter{sa}{#2}\setcounter{saa}{2}}}%
+\ifthenelse{\equal{#3}{}}{\setcounter{sb}{0}\setcounter{sab}{0}}{\ifthenelse{\equal{#3}{-}}{\setcounter{sb}{0}\setcounter{sab}{1}}{\setcounter{sb}{#3}\setcounter{sab}{2}}}%
+\ifthenelse{\equal{#4}{}}{\setcounter{sc}{0}\setcounter{sac}{0}}{\ifthenelse{\equal{#4}{-}}{\setcounter{sc}{0}\setcounter{sac}{1}}{\setcounter{sc}{#4}\setcounter{sac}{2}}}%
+\ifthenelse{\equal{#5}{}}{\setcounter{sd}{0}\setcounter{sad}{0}}{\ifthenelse{\equal{#5}{-}}{\setcounter{sd}{0}\setcounter{sad}{1}}{\setcounter{sd}{#5}\setcounter{sad}{2}}}%
+\ifthenelse{\equal{#6}{}}{\setcounter{se}{0}\setcounter{sae}{0}}{\ifthenelse{\equal{#6}{-}}{\setcounter{se}{0}\setcounter{sae}{1}}{\setcounter{se}{#6}\setcounter{sae}{2}}}%
+\ifthenelse{\equal{#7}{}}{\setcounter{sf}{0}\setcounter{saf}{0}}{\ifthenelse{\equal{#7}{-}}{\setcounter{sf}{0}\setcounter{saf}{1}}{\setcounter{sf}{#7}\setcounter{saf}{2}}}%
+\ifthenelse{\equal{#8}{}}{\setcounter{sg}{0}\setcounter{sag}{0}}{\ifthenelse{\equal{#8}{-}}{\setcounter{sg}{0}\setcounter{sag}{1}}{\setcounter{sg}{#8}\setcounter{sag}{2}}}%
+\ifthenelse{\equal{#9}{}}{\setcounter{sh}{0}\setcounter{sah}{0}}{\ifthenelse{\equal{#9}{-}}{\setcounter{sh}{0}\setcounter{sah}{1}}{\setcounter{sh}{#9}\setcounter{sah}{2}}}%
+&%
+}
+
+%Read and evaluate the remaining 6 assignments, i.e. set the points and the types to 0, 1, 2.
+%Copy these lines with more / less counters if the no. of homeworks or exams is different.
+\newcommand*{\sbe}[6]{%
+\ifthenelse{\equal{#1}{}}{\setcounter{si}{0}\setcounter{sai}{0}}{\ifthenelse{\equal{#1}{-}}{\setcounter{si}{0}\setcounter{sai}{1}}{\setcounter{si}{#1}\setcounter{sai}{2}}}%
+\ifthenelse{\equal{#2}{}}{\setcounter{sj}{0}\setcounter{saj}{0}}{\ifthenelse{\equal{#2}{-}}{\setcounter{sj}{0}\setcounter{saj}{1}}{\setcounter{sj}{#2}\setcounter{saj}{2}}}%
+\ifthenelse{\equal{#3}{}}{\setcounter{sk}{0}\setcounter{sak}{0}}{\ifthenelse{\equal{#3}{-}}{\setcounter{sk}{0}\setcounter{sak}{1}}{\setcounter{sk}{#3}\setcounter{sak}{2}}}%
+%The three exams
+\ifthenelse{\equal{#4}{}}{\setcounter{ea}{0}\setcounter{eaa}{0}}{\ifthenelse{\equal{#4}{-}}{\setcounter{ea}{0}\setcounter{eaa}{1}}{\setcounter{ea}{#4}\setcounter{eaa}{2}}}%
+\ifthenelse{\equal{#5}{}}{\setcounter{eb}{0}\setcounter{eab}{0}}{\ifthenelse{\equal{#5}{-}}{\setcounter{eb}{0}\setcounter{eab}{1}}{\setcounter{eb}{#5}\setcounter{eab}{2}}}%
+\ifthenelse{\equal{#6}{}}{\setcounter{ef}{0}\setcounter{eaf}{0}}{\ifthenelse{\equal{#6}{-}}{\setcounter{ef}{0}\setcounter{eaf}{1}}{\setcounter{ef}{#6}\setcounter{eaf}{2}}}%
+}
+
+%Computes the sums, contributes to the averages, fills up the tabular.
+\newcommand*{\sce}[1]{%                                                    %The argument can be an alternate grade here.
+\setcounter{min}{10000}\setcounter{mini}{0}%
+%Find the worst homework, set {min} to its value and {mini} to its index
+%Copy these lines with more / less counters if the no. of homeworks or exams is different.
+\ifthenelse{\themin>\thesa}{\setcounter{min}{\thesa}\setcounter{mini}{1}}{}%
+\ifthenelse{\themin>\thesb}{\setcounter{min}{\thesb}\setcounter{mini}{2}}{}%
+\ifthenelse{\themin>\thesc}{\setcounter{min}{\thesc}\setcounter{mini}{3}}{}%
+\ifthenelse{\themin>\thesd}{\setcounter{min}{\thesd}\setcounter{mini}{4}}{}%
+\ifthenelse{\themin>\these}{\setcounter{min}{\these}\setcounter{mini}{5}}{}%
+\ifthenelse{\themin>\thesf}{\setcounter{min}{\thesf}\setcounter{mini}{6}}{}%
+\ifthenelse{\themin>\thesg}{\setcounter{min}{\thesg}\setcounter{mini}{7}}{}%
+\ifthenelse{\themin>\thesh}{\setcounter{min}{\thesh}\setcounter{mini}{8}}{}%
+\ifthenelse{\themin>\thesi}{\setcounter{min}{\thesi}\setcounter{mini}{9}}{}%
+\ifthenelse{\themin>\thesj}{\setcounter{min}{\thesj}\setcounter{mini}{10}}{}%
+\ifthenelse{\themin>\thesk}{\setcounter{min}{\thesk}\setcounter{mini}{11}}{}%
+\ifthenelse{\equal{\themini}{0}}{\setcounter{min}{0}}{}%
+%Contributing to the averages, filling the tabular according to types 0, 1, 2, boxing the worst homework.
+%Copy these lines with more / less counters if the no. of homeworks or exams is different.
+\addtocounter{ava}{\thesa}\ifthenelse{\equal{\thesaa}{0}}{}{\ifthenelse{\equal{\thesaa}{1}}{-}{\addtocounter{coa}{1}\ifthenelse{\themini=1}{\fb{\thesa}}{\thesa}}}&%
+\addtocounter{avb}{\thesb}\ifthenelse{\equal{\thesab}{0}}{}{\ifthenelse{\equal{\thesab}{1}}{-}{\addtocounter{cob}{1}\ifthenelse{\themini=2}{\fb{\thesb}}{\thesb}}}&%
+\addtocounter{avc}{\thesc}\ifthenelse{\equal{\thesac}{0}}{}{\ifthenelse{\equal{\thesac}{1}}{-}{\addtocounter{coc}{1}\ifthenelse{\themini=3}{\fb{\thesc}}{\thesc}}}&%
+\addtocounter{avd}{\thesd}\ifthenelse{\equal{\thesad}{0}}{}{\ifthenelse{\equal{\thesad}{1}}{-}{\addtocounter{cod}{1}\ifthenelse{\themini=4}{\fb{\thesd}}{\thesd}}}&%
+\addtocounter{ave}{\these}\ifthenelse{\equal{\thesae}{0}}{}{\ifthenelse{\equal{\thesae}{1}}{-}{\addtocounter{coe}{1}\ifthenelse{\themini=5}{\fb{\these}}{\these}}}&%
+\addtocounter{avf}{\thesf}\ifthenelse{\equal{\thesaf}{0}}{}{\ifthenelse{\equal{\thesaf}{1}}{-}{\addtocounter{cof}{1}\ifthenelse{\themini=6}{\fb{\thesf}}{\thesf}}}&%
+\addtocounter{avg}{\thesg}\ifthenelse{\equal{\thesag}{0}}{}{\ifthenelse{\equal{\thesag}{1}}{-}{\addtocounter{cog}{1}\ifthenelse{\themini=7}{\fb{\thesg}}{\thesg}}}&%
+\addtocounter{avh}{\thesh}\ifthenelse{\equal{\thesah}{0}}{}{\ifthenelse{\equal{\thesah}{1}}{-}{\addtocounter{coh}{1}\ifthenelse{\themini=8}{\fb{\thesh}}{\thesh}}}&%
+\addtocounter{avi}{\thesi}\ifthenelse{\equal{\thesai}{0}}{}{\ifthenelse{\equal{\thesai}{1}}{-}{\addtocounter{coi}{1}\ifthenelse{\themini=9}{\fb{\thesi}}{\thesi}}}&%
+\addtocounter{avj}{\thesj}\ifthenelse{\equal{\thesaj}{0}}{}{\ifthenelse{\equal{\thesaj}{1}}{-}{\addtocounter{coj}{1}\ifthenelse{\themini=10}{\fb{\thesj}}{\thesj}}}&%
+\addtocounter{avk}{\thesk}\ifthenelse{\equal{\thesak}{0}}{}{\ifthenelse{\equal{\thesak}{1}}{-}{\addtocounter{cok}{1}\ifthenelse{\themini=11}{\fb{\thesk}}{\thesk}}}&%
+%Same with the exams, no boxing here.
+\addtocounter{eva}{\theea}\ifthenelse{\equal{\theeaa}{0}}{}{\ifthenelse{\equal{\theeaa}{1}}{-}{\theea\addtocounter{cea}{1}}}&%
+\addtocounter{evb}{\theeb}\ifthenelse{\equal{\theeab}{0}}{}{\ifthenelse{\equal{\theeab}{1}}{-}{\theeb\addtocounter{ceb}{1}}}&%
+\addtocounter{evf}{\theef}\ifthenelse{\equal{\theeaf}{0}}{}{\ifthenelse{\equal{\theeaf}{1}}{-}{\theef\addtocounter{cef}{1}}}&%
+\setcounter{out}{0}%
+%Compute the possible points: counting if already happened
+%Copy these lines with more / less counters if the no. of homeworks or exams is different.
+\ifthenelse{\equal{\thesaa}{0}}{}{\addtocounter{out}{\thehwa}}%
+\ifthenelse{\equal{\thesab}{0}}{}{\addtocounter{out}{\thehwb}}%
+\ifthenelse{\equal{\thesac}{0}}{}{\addtocounter{out}{\thehwc}}%
+\ifthenelse{\equal{\thesad}{0}}{}{\addtocounter{out}{\thehwd}}%
+\ifthenelse{\equal{\thesae}{0}}{}{\addtocounter{out}{\thehwe}}%
+\ifthenelse{\equal{\thesaf}{0}}{}{\addtocounter{out}{\thehwf}}%
+\ifthenelse{\equal{\thesag}{0}}{}{\addtocounter{out}{\thehwg}}%
+\ifthenelse{\equal{\thesah}{0}}{}{\addtocounter{out}{\thehwh}}%
+\ifthenelse{\equal{\thesai}{0}}{}{\addtocounter{out}{\thehwi}}%
+\ifthenelse{\equal{\thesaj}{0}}{}{\addtocounter{out}{\thehwj}}%
+\ifthenelse{\equal{\thesak}{0}}{}{\addtocounter{out}{\thehwk}}%
+%Exams
+\ifthenelse{\equal{\theeaa}{0}}{}{\addtocounter{out}{\theexa}}%
+\ifthenelse{\equal{\theeab}{0}}{}{\addtocounter{out}{\theexb}}%
+\ifthenelse{\equal{\theeaf}{0}}{}{\addtocounter{out}{\thefex}}%
+%Subtract the max. possible dropped points if all homeworks are handed in.
+%Copy these lines with more / less counters if the no. of homeworks or exams is different.
+\ifthenelse{\equal{\thesaa}{0}}{}{%
+\ifthenelse{\equal{\thesab}{0}}{}{%
+\ifthenelse{\equal{\thesac}{0}}{}{%
+\ifthenelse{\equal{\thesad}{0}}{}{%
+\ifthenelse{\equal{\thesae}{0}}{}{%
+\ifthenelse{\equal{\thesaf}{0}}{}{%
+\ifthenelse{\equal{\thesag}{0}}{}{%
+\ifthenelse{\equal{\thesah}{0}}{}{%
+\ifthenelse{\equal{\thesai}{0}}{}{%
+\ifthenelse{\equal{\thesaj}{0}}{}{%
+\ifthenelse{\equal{\thesak}{0}}{}{\addtocounter{out}{-\thedrop}}}}}}}}}}}}%
+\ifthenelse{\equal{\theout}{0}}{}{%                                       %Does nothing if no possible points at all yet
+%Handling the sum and contributing the average counters if the final grade is not marked alternatively.
+\setcounter{s}{\thesa+\thesb+\thesc+\thesd+\these+\thesf+\thesg+\thesh+\thesi+\thesj+\thesk+\theea+\theeb+\theef-\themin}\ifthenelse{\equal{#1}{}}{\addtocounter{sav}{\thes}\addtocounter{cs}{1}}{}\thes/\theout}&% 
+\ifthenelse{\equal{#1}{}}{\grade{\thes}{\theout}}{#1}\\                   %Filling the final grade
+\hline}
+
+%This command gives a bottom line with the average points.
+%Copy these lines with more / less counters if the no. of homeworks or exams is different.
+%Also adjust \hhline accordingly.
+\newcommand{\ave}{
+\hhline{|=================|}
+{\bf Average:}&%
+\indiv{\theava}{\thecoa}&%
+\indiv{\theavb}{\thecob}&%
+\indiv{\theavc}{\thecoc}&%
+\indiv{\theavd}{\thecod}&%
+\indiv{\theave}{\thecoe}&%
+\indiv{\theavf}{\thecof}&%
+\indiv{\theavg}{\thecog}&%
+\indiv{\theavh}{\thecoh}&%
+\indiv{\theavi}{\thecoi}&%
+\indiv{\theavj}{\thecoj}&%
+\indiv{\theavk}{\thecok}&%
+%Exams
+\indiv{\theeva}{\thecea}&%
+\indiv{\theevb}{\theceb}&%
+\indiv{\theevf}{\thecef}&%
+%The sum
+\indiv{\thesav}{\thecs}/\theout&%
+%The grade
+\indiv{\thegav}{2*\thecg}\\                      %Grades were double counted.
+\hline}
+
+%Adds a bottom line which grades the averages. To be more accurate, it gives \gradenav upscaled points.
+%Copy these lines with more / less counters if the no. of homeworks or exams is different.
+%Also adjust \hhline accordingly.
+\newcommand{\avegr}{
+\hhline{|=================|}
+{\bf Graded average:}&%
+\ifthenelse{\equal{\thecoa}{0}}{}{\gradenav{\theava*1000/\thecoa}{1000*\thehwa}}&%
+\ifthenelse{\equal{\thecob}{0}}{}{\gradenav{\theavb*1000/\thecob}{1000*\thehwb}}&%
+\ifthenelse{\equal{\thecoc}{0}}{}{\gradenav{\theavc*1000/\thecoc}{1000*\thehwc}}&%
+\ifthenelse{\equal{\thecod}{0}}{}{\gradenav{\theavd*1000/\thecod}{1000*\thehwd}}&%
+\ifthenelse{\equal{\thecoe}{0}}{}{\gradenav{\theave*1000/\thecoe}{1000*\thehwe}}&%
+\ifthenelse{\equal{\thecof}{0}}{}{\gradenav{\theavf*1000/\thecof}{1000*\thehwf}}&%
+\ifthenelse{\equal{\thecog}{0}}{}{\gradenav{\theavg*1000/\thecog}{1000*\thehwg}}&%
+\ifthenelse{\equal{\thecoh}{0}}{}{\gradenav{\theavh*1000/\thecoh}{1000*\thehwh}}&%
+\ifthenelse{\equal{\thecoi}{0}}{}{\gradenav{\theavi*1000/\thecoi}{1000*\thehwi}}&%
+\ifthenelse{\equal{\thecoj}{0}}{}{\gradenav{\theavj*1000/\thecoj}{1000*\thehwj}}&%
+\ifthenelse{\equal{\thecok}{0}}{}{\gradenav{\theavk*1000/\thecok}{1000*\thehwk}}&%
+%Exams
+\ifthenelse{\equal{\thecea}{0}}{}{\gradenav{\theeva*1000/\thecea}{1000*\theexa}}&%
+\ifthenelse{\equal{\theceb}{0}}{}{\gradenav{\theevb*1000/\theceb}{1000*\theexb}}&%
+\ifthenelse{\equal{\thecef}{0}}{}{\gradenav{\theevf*1000/\thecef}{1000*\thefex}}&%
+%The sum
+\ifthenelse{\equal{\thecs}{0}}{}{\gradenav{\thesav*1000/\thecs}{1000*\theout}}&%
+%This is the last entry, computes the average grade.
+\ifthenelse{\equal{\thecg}{0}}{}{\setcounter{gt}{\thegav*500/\thecg}% This is 1000 * the average 
+\ifthenelse{\thegt<500}{F}{\ifthenelse{\thegt<1500}{D}{\ifthenelse{\thegt<2250}{C}{\ifthenelse{\thegt<2750}{BC}{\ifthenelse{\thegt<3250}{B}{\ifthenelse{\thegt<3750}{AB}{A}}}}}}}
+\\
+\hline}
+
+\begin{document}
+\begin{center}
+{\bf Math 9999, Lec.\ 9\\
+Homework and exam points}\\
+The Instructor\\
+{\bf Fall, 2004-2005}
+
+\bigskip\bigskip
+%Replace {small} by {tiny} in case the page is too small.
+\begin{small}
+%Tabular header, adjust to the number of assignments 
+\begin{tabular}{|@{\,}l@{\,}||@{\,}c@{\,}|@{\,}c@{\,}|@{\,}c@{\,}|@{\,}c@{\,}|@{\,}c@{\,}|@{\,}c@{\,}|@{\,}c@{\,}|@{\,}c@{\,}|@{\,}c@{\,}|@{\,}c@{\,}|@{\,}c@{\,}||@{\,}c@{\,}|@{\,}c@{\,}|@{\,}c@{\,}|@{\,}>{\bf}c@{\,}||@{\,}>{\bf}c@{\,}|}
+\hline
+{\bf Name}&{\bf 1}&{\bf 2}&{\bf 3}&{\bf 4}&{\bf 5}&{\bf 6}&{\bf 7}&{\bf 8}&{\bf 9}&{\bf 10}&{\bf 11}&{\bf EX.1}&{\bf EX.2}&{\bf F.EX}&{\bf Sum}&{\bf Gr}\\
+\hhline{|=================|}
+%#############################################################################################
+%# Write the entries below. Acceptable are empty spaces, "-" meaning no work, and numbers.   #
+%# Anything found in the last entry appears directly. This is for manually entering a grade, #                      
+%# and then the sum and grade average is not influenced by that student.                     #
+%# Use in case of dropping or Incomplete.                                                    #
+%#############################################################################################
+\sa{Student One}{}{}{}{}{}{}{}{}\sbe{}{}{}{}{}{}\sce{}
+\sa{Student Two}{}{}{}{}{}{}{}{}\sbe{}{}{}{}{}{}\sce{}
+\sa{Student Three}{}{}{}{}{}{}{}{}\sbe{}{}{}{}{}{}\sce{}
+\sa{Student Four}{}{}{}{}{}{}{}{}\sbe{}{}{}{}{}{}\sce{}
+\ave                                                        %This computes the averages
+\avegr                                                      %This grades the averages
+\end{tabular}
+
+\bigskip\bigskip
+%This is a tabular showing the point limits for grades. Works with the data given at the beginning.
+\begin{tabular}{|c|c|c|}
+\hline
+{\bf Grade}&{\bf Accomplishment level}&{\bf Points}\\
+\hhline{|=|=|=|}
+A&superior&$\ge\thega$\\
+\hline
+AB&excellent&$\in[\thegab,\,\thega)$\\
+\hline
+B&proficient&$\in[\thegb,\,\thegab)$\\
+\hline
+BC&good&$\in[\thegbc,\,\thegb)$\\
+\hline
+C&acceptable&$\in[\thegc,\,\thegbc)$\\
+\hline
+D&mediocre&$\in[\thegd,\,\thegc)$\\
+\hline
+F&unacceptable&$<\thegd$\\
+\hline
+\end{tabular}
+\end{small}
+\end{center}
+\end{document}

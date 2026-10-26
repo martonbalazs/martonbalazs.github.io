@@ -1,0 +1,21 @@
+#!/bin/bash
+# mencoder; ffmpeg; http://therning.org/niklas/node/160
+# http://askubuntu.com/questions/83711/how-can-i-rotate-a-video
+# http://stackoverflow.com/questions/3937387/rotating-videos-with-ffmpeg
+
+mkdir nometa
+
+for i in `ls *.*`; do 
+ echo "`ls $i` --> nometa/`ls $i | sed -e 's/\./-\./'`"
+ if [[ "$HOSTNAME" == "mivivo" ]]
+ then
+  ###ffmpeg -hwaccel vaapi -i "$i" -map_metadata 0 -metadata:s:v:0 rotate=0 -strict -2 nometa/`ls $i | sed -e 's/\./-\./'`	#CPU encode, lassabb
+  ffmpeg -vaapi_device:v /dev/dri/renderD128 -hwaccel vaapi -i "$i" -vf 'format=nv12,hwupload' -vcodec hevc_vaapi -b:v 5M -map_metadata 0 -metadata:s:v:0 rotate=0 -strict -2 nometa/`ls $i | sed -e 's/\./-\./'`
+  ###ffmpeg -hwaccel vaapi -i "$i" -vf 'format=nv12,hwupload' -vcodec h264_vaapi -b:v 5M -map_metadata 0 -metadata:s:v:0 rotate=0 -strict -2 nometa/`ls $i | sed -e 's/\./-\./'`	#Fos
+  #ffmpeg -hwaccel vaapi -i "$i" -vf 'format=nv12,hwupload' -vcodec hevc_vaapi -map_metadata 0 -metadata:s:v:0 rotate=0 -strict -2 nometa/`ls $i | sed -e 's/\./-\./'`	#Nincs bitrata, file hasonloan nagy az eredetihez
+  ###ffmpeg -hwaccel vaapi -i "$i" -vf 'format=nv12,hwupload' -vcodec h264_vaapi -map_metadata 0 -metadata:s:v:0 rotate=0 -strict -2 nometa/`ls $i | sed -e 's/\./-\./'`	#Nincs bitrata, file oriasi lett.
+ else
+  ffmpeg -i "$i" -b:v 5M -map_metadata 0 -metadata:s:v:0 rotate=0 -strict -2 nometa/`ls $i | sed -e 's/\./-\./'`
+ fi
+done
+

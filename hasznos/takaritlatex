@@ -1,0 +1,64 @@
+#!/bin/bash
+# Clean latex's mess.
+
+# Usage: takaritlatex   OR takaritlatex [file]
+
+types="aux blg dvi idx ilg ind log out thm toc pdf ps nav snm"
+
+if [ -z "$1" ]
+then
+ for i in $types
+ do
+  for j in *.$i
+  do
+   if [ -f "$j" ]
+   then
+    elej=${j%.*}
+    if [[ -f "$elej.tex" ]] || [[ -f "$elej.ltx" ]]
+    then
+     filelist=("${filelist[@]}" "$j")
+    else
+     echo "Files $elej.tex or $elej.ltx don't exist, not cleaning $j."
+    fi
+   fi
+  done
+ done
+else
+ elej=${1%.*}
+ for i in $types
+ do
+  for j in "$elej.$i"
+  do
+   if [ -f "$j" ]
+   then
+    if [[ -f "$elej.tex" ]] || [[ -f "$elej.ltx" ]]
+    then
+     filelist=("${filelist[@]}" "$j")
+    else
+     echo "Files $elej.tex or $elej.ltx don't exist, not cleaning $j."
+    fi
+   fi
+  done
+ done
+fi
+
+if [ -z "$filelist" ]
+then
+ echo "Things are clean."
+ exit
+fi
+
+echo "Deleting: ${filelist[@]}"
+tetszik="a"
+echo "Can I? y/n"
+read tetszik
+if [ "$tetszik" == "y" ]
+then
+ for j in "${filelist[@]}"
+ do
+  rm "$j"
+ done
+ exit
+fi
+
+echo "Haven't done anything."

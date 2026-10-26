@@ -1,0 +1,172 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{martonsdefs}[2020/4/21 Marton's favourite definitions]
+
+\renewcommand{\Re}{\operatorname{\mathfrak{Re}}}
+\renewcommand{\Im}{\operatorname{\mathfrak{Im}}}
+\newcommand*{\hop}{\bigskip\noindent}
+\newcommand*{\hep}{\bigskip\noindent}
+\newcommand*{\hip}{\smallskip\noindent}
+\newcommand*{\e}[1]{\text{\rm e}^{#1}}
+\newcommand*{\di}{\,\text{d}}
+\newcommand*{\dd}[1]{\frac{\text{d}}{\text{d}{#1}}}
+\newcommand*{\ddd}[1]{\frac{\text{d}^2}{\text{d}{#1}^2}}
+\newcommand*{\pp}[1]{\frac\partial{\partial{#1}}}
+\newcommand*{\ppp}[1]{\frac{\partial^2}{\partial{#1}^2}}
+\newcommand*{\Om}{\Omega}
+\newcommand*{\om}{\omega}
+\newcommand*{\vp}{\varphi}
+\newcommand*{\vr}{\varrho}
+\newcommand*{\te}{\theta}
+\newcommand*{\la}{\lambda}
+\newcommand*{\ga}{\gamma}
+\newcommand*{\ve}{\varepsilon}
+\newcommand*{\de}{\delta}
+\newcommand*{\al}{\alpha}
+\newcommand*{\be}{\beta}
+\@ifpackageloaded{siunitx}{}{\newcommand*{\si}{\sigma}} %Conflict... :-(
+\@ifpackageloaded{bbm}{\newcommand*{\oneb}{\mathbbm1}}{}
+\@ifpackageloaded{xfrac}{\newcommand*{\kmh}{\,\ensuremath{\sfrac{\text{km}}{\text h}} }}{}
+\@ifpackageloaded{xfrac}{\newcommand*{\mps}{\,\ensuremath{\sfrac{\text m}{\text s}}\ }}{}
+\@ifpackageloaded{xfrac}{\newcommand*{\mpss}{\,\ensuremath{\sfrac{\text m}{{\text s}^2}}\ }}{}
+\@ifpackageloaded{xfrac}{\newcommand*{\kwt}{\,\ensuremath{\sfrac{\text{kW}}{\text t}}\ }}{}
+\newcommand*{\ze}{\zeta}
+\newcommand*{\pt}{\partial}
+\newcommand*{\Cb}{\mathbb C}
+\newcommand*{\Nb}{\mathbb N}
+\newcommand*{\Qb}{{\mathbb Q}}
+\newcommand*{\Rb}{\mathbb R}
+\newcommand*{\Zb}{\mathbb Z}
+\newcommand*{\Ac}{\mathcal A}
+\newcommand*{\Bc}{\mathcal B}
+\newcommand*{\Cc}{\mathcal C}
+\newcommand*{\Dc}{\mathcal D}
+\newcommand*{\Ec}{\mathcal E}
+\newcommand*{\Fc}{\mathcal F}
+\newcommand*{\Gc}{\mathcal G}
+\newcommand*{\Hc}{\mathcal H}
+\newcommand*{\Ic}{\mathcal I}
+\newcommand*{\Jc}{\mathcal J}
+\newcommand*{\Lc}{\mathcal L}
+\newcommand*{\Kc}{\mathcal K}
+\newcommand*{\Mc}{\mathcal M}
+\newcommand*{\Nc}{\mathcal N}
+\newcommand*{\Pc}{\mathcal P}
+\newcommand*{\Rc}{\mathcal R}
+\newcommand*{\Sc}{\mathcal S}
+\newcommand*{\Tc}{\mathcal T}
+\newcommand*{\Uc}{\mathcal U}
+\newcommand*{\Vc}{\mathcal V}
+\newcommand*{\Wc}{\mathcal W}
+\newcommand*{\pf}{\mathfrak p}
+\newcommand*{\qf}{\mathfrak q}
+\newcommand*{\Yc}{\mathcal Y}
+\newcommand*{\Zc}{\mathcal Z}
+\newcommand*{\Bk}{\mathfrak B}
+\newcommand*{\ordo}{\mathfrak o}
+\newcommand*{\Ordo}{\mathcal O}
+\newcommand*{\Pv}{{\bf P}}
+\newcommand*{\Ev}{{\bf E}}
+\newcommand*{\Pb}{{\mathbb P}}
+\newcommand*{\xb}{{\mathbf x}}
+\newcommand*{\yb}{{\mathbf y}}
+\newcommand*{\zb}{{\mathbf z}}
+\newcommand*{\sbq}{\subseteq}
+\newcommand*{\spq}{\supseteq}
+\newcommand*{\wto}{\overset{\text w}{\longrightarrow}}
+\newcommand*{\wh}{\widehat}
+\newcommand*{\pto}{\overset{\Pb}{\longrightarrow}}
+\newcommand*{\lpto}{\overset{L^p}{\longrightarrow}}
+%\newcommand*{\Eb}{{\mathbb E}}
+%\newcommand*{\Vv}{{\text{\bf Var}}}
+%\newcommand*{\Cov}{{\text{\bf Cov}}}
+%\newcommand*{\Corr}{{\text{\bf Corr}}}
+\newcommand*{\wih}{\widehat}
+\newcommand*{\wt}{\widetilde}
+\newcommand*{\un}[1]{\underline{#1}}
+\newcommand*{\1}{$^\bullet$}
+\newcommand*{\2}{$^{\bullet\bullet}$}
+\newcommand*{\3}{$^{\bullet\bullet\bullet}$}
+\newcommand*{\4}{$^{\bullet\bullet\bullet\bullet}$}
+\newcommand*{\5}{$^{\bullet\bullet\bullet\bullet\bullet}$}
+\newcommand*{\6}{$^{\bullet\bullet\bullet\bullet\bullet\bullet}$}
+\newcommand*{\half}{$^\text{\tiny\LEFTCIRCLE}$}
+\newcommand*{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand*{\ce}[1]{\left\lceil#1\right\rceil}
+\def\toinp{\buildrel{\Pv}\over{\longrightarrow}}
+\def\tomb{\buildrel\ensuremath{\mathbf{a.s.}}\over\longrightarrow}
+\@ifpackageloaded{amsmath}{\DeclareMathOperator{\Res}{Res}}{}
+\@ifpackageloaded{amsmath}{\DeclareMathOperator{\Eb}{{\mathbb E}}}{}
+\@ifpackageloaded{amsmath}{\DeclareMathOperator{\Fb}{{\mathbb F}}}{}
+\@ifpackageloaded{amsmath}{\DeclareMathOperator{\Vv}{{\mathbb Var}}}{}
+\@ifpackageloaded{amsmath}{\DeclareMathOperator{\Lip}{{Lip}}}{}
+\@ifpackageloaded{amsmath}{\DeclareMathOperator{\Cov}{{\mathbb Cov}}}{}
+\@ifpackageloaded{amsmath}{\DeclareMathOperator{\Corr}{{\mathbb Corr}}}{}
+\@ifpackageloaded{amsmath}{\DeclareMathOperator{\SD}{{\mathbb S\mathbb D}}}{}
+\@ifpackageloaded{amsmath}{\DeclareMathOperator{\ch}{{cosh}}}{}
+\@ifpackageloaded{amsmath}{\DeclareMathOperator{\fr}{{frac}}}{}
+\@ifpackageloaded{amsmath}{\DeclareMathOperator{\arctg}{{arctg}}}{}
+\@ifpackageloaded{amsmath}{\DeclareMathOperator{\arcctg}{{arcctg}}}{}
+%\DeclareMathOperator{\Res}{Res}
+%\DeclareMathOperator{\Pb}{{\mathbb P}}
+%\DeclareMathOperator{\Eb}{{\mathbb E}}
+%\DeclareMathOperator{\Vv}{{\mathbb Var}}
+%\DeclareMathOperator{\Cov}{{\mathbb Cov}}
+%\DeclareMathOperator{\Corr}{{\mathbb Corr}}
+\newcommand*{\expl}[1]{{\usebeamercolor[fg]{expl}#1}}
+\newcommand*{\prcite}[1]{{\usebeamercolor[fg]{olgr}\footnotesize{[#1]}}}
+
+% Use \usepackage[super]{nth} instead: \nth{42}
+\newcommand*{\tth}{\textsuperscript{th} }
+\newcommand*{\tst}{\textsuperscript{st} }
+\newcommand*{\tnd}{\textsuperscript{nd} }
+\newcommand*{\trd}{\textsuperscript{rd} }
+
+% https://tex.stackexchange.com/questions/225599/contour-integrals-of-different-kind
+% Needs amssymb tikz
+\newcommand\MyDupCont{%
+ \tikz[overlay]
+ {
+  \draw[->](0.3,-0.1)arc(0:180:0.3);
+  \draw[->](-0.3,-0.1)--(0.3,-0.1);
+ }
+}
+
+\newcommand\MyCupCont{%
+ \tikz[overlay]
+ {
+  \draw[->](0.3,-0.1)arc(0:180:0.3);
+ }
+}
+
+\newcommand\MyDdnCont{%
+ \tikz[overlay]
+ {
+  \draw[->](0.3,0.1)arc(180:0:-0.3);
+  \draw[->](-0.3,0.1)--(0.3,0.1);
+ }
+}
+
+\newcommand\MyCdnCont{%
+ \tikz[overlay]
+ {
+  \draw[->](0.3,0.1)arc(180:0:-0.3);
+ }
+}
+
+\def\IntKern{}
+\newcommand\MySymbolint[2][0pt]{%
+ \mathchoice
+ {\def\IntKern{\dimexpr-.6\wd0+#1\relax}\Symbolint\displaystyle\displaystyle{\scalebox{.8}{$#2$}}}%
+ {\def\IntKern{\dimexpr-.62\wd0+#1\relax}\Symbolint\textstyle\textstyle{\scalebox{.6}{$#2$}}}%
+ {\def\IntKern{\dimexpr-.642\wd0+#1\relax}\Symbolint\scriptstyle\scriptscriptstyle{\scalebox{.45}{$#2$}}}%
+ {\def\IntKern{\dimexpr-.67\wd0+#1\relax}\Symbolint\scriptscriptstyle\scriptscriptstyle{\scalebox{.35}{$#2$}}}%
+ \!\int}
+\newcommand\Symbolint[3]{%
+ {\setbox0=\hbox{$#1{#2#3}{\int}$ }%
+ \vcenter{\hbox{\ \ $#2#3$ }}\kern\IntKern}
+}
+
+\def\dupint{\MySymbolint\MyDupCont}
+\def\cupint{\MySymbolint\MyCupCont}
+\def\ddnint{\MySymbolint\MyDdnCont}
+\def\cdnint{\MySymbolint\MyCdnCont}

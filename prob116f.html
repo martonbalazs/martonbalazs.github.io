@@ -1,0 +1,748 @@
+<!-- 2017-08-19 -->
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-utf8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<STYLE TYPE="text/css">
+.red
+{
+color:FF3030
+}
+</STYLE>
+<TITLE>Probability 1, Autumn 2016</TITLE>
+</HEAD>
+<!--
+<body bgcolor="FFFACD">
+-->
+<body bgcolor="008080">
+<h2><p align=center>Probability 1 (MATH11300), Autumn 2016</p></h2>
+<br>&nbsp;
+<table align=center>
+<tr><td align=right><a href="http://www.maths.bris.ac.uk/~mb13434/" target="_blank">Márton Balázs</a></td><td></td><td></td></tr>
+<tr><td align=right><b>Email:</b></td><td></td><td>m.balazs@our_city.ac.countrycode</td></tr>
+<tr><td align=right><b>Tel:</b></td><td></td><td>+44 (0)117 928-7991</td></tr>
+<tr><td align=right><b>Office:</b></td><td></td><td>Maths bld. 3.7</td></tr>
+<!--
+<tr><td align=right><b>Drop in Sessions:</b></td><td>&nbsp;</td><td><i>will be announced here soon.</i></td></tr>
+-->
+<tr><td align=right><b>Drop in Sessions:</b></td><td>&nbsp;</td><td>Tuesdays 5pm-6pm in teaching weeks, Maths bld. 3.7</td></tr>
+<tr><td></td><td></td><td><i>except for the 15th of November, which is cancelled.</i></td></tr>
+<tr><td align=right><b>Q&A Session:</b></td><td>&nbsp;</td><td>10:00am, 9 January, Chemistry LT4. <i>Bring your own questions.</i></td></tr>
+</table>
+<br>&nbsp;
+<br>&nbsp;
+<table align=center><tr><td>
+<ul>
+ <li>The <a href="http://www.bristol.ac.uk/maths/study/undergraduate/units1617/levelc4hunits/probability1/" target="_blank">official unit description</a>, including assessment methods, texts, syllabus, etc.
+ <!--
+ <li>The official unit description, including assessment methods, texts, syllabus, etc. will be added here soon.
+ -->
+<br>&nbsp;
+<li> Mathematics is best learned via examples. <b>It is extremely important that you attend lectures, problem classes and tutorials, solve and hand in homework problems on your own</b>.
+<br>&nbsp;
+<li><a href="prob1_slides_lec_balazs_16f.pdf">The lecture slides</a> in pdf. They have gaps, come to lectures. Lectures are recorded but blackboard is <b>not</b> captured. (<i>Last modified: 24 Oct. 2016.</i>)
+<br>&nbsp;
+<li><a href="prob1_slides_exc_balazs_16f.pdf">Slides helping the problem class</a> in pdf. Most of problem class material is <i>not</i> featured here and will be on the blackboard instead! Come to problem classes. (<i>Last modified: 22 Sep. 2016.</i>)
+<br>&nbsp;
+<li>Homework given out on two weeks will be assessed and counts 10% towards the final mark. Respective due dates are 10am, Friday 4<sup>th</sup> November and 10am, Friday 2<sup>nd</sup> December.
+<br>&nbsp;
+<li><a href="normal-table.pdf">The standard normal distribution</a> in pdf. You will be given a similar table on the exam.
+<br>&nbsp;
+<li>The recommended text is: <i>Probability 1 (compiled from the first 8 chapters of "A First Course in Probability" by S. Ross), Pearson Custom Publishing.</i> Alternatively, the Library has copies of <i>A First Course in Probability</i> by S. Ross. These are identical for the parts we cover, and have plenty of practice problems, should you find the problem sheets too restricted.
+<br>&nbsp;
+<li>You can find additional material <a href="prob1_and_beyond.html" target="_blank">here</a>. Except for the lecture slides (similar to those we'll use this year), nothing from there is needed for this unit, nothing will be assessed, nothing is to be handed in. It's simply there for those interested or for further reference once you need to engage a bit more in basic probability. There are nice and interesting problems, and additional material beyond the scope of this unit. I'm happy to discuss about any of that stuff on my drop-in sessions.
+<!--
+<br>&nbsp;
+<li><a href="g_ps/unit_pathways_prob_16s.pdf">Unit choice supplement for studies in probability</a> in pdf. This is a document to help unit choices for those planning on serious probability studies after the first year. As some units build on each other, it is rather important to make the correct choices in time. Similar guides on a few other areas are available on <a href="https://www.bris.ac.uk/maths/intranet/students/unitchoices/index.html" target="_blank">Intranet</a>.
+<br>&nbsp;
+<li><i>A detailed schedule will appear here before teaching starts, please check back later.</i>
+-->
+<br>&nbsp;
+<li><a href="ep_prob115f.pdf">Here</a> is a mock exam from last year. This exam is intended for you to see the style of questions on the exam. Please notice that
+<ul>
+ <li> No two exams are of the same difficulty, the real thing could be easier or more difficult for some.
+ <li> Solving this mock exam does not, in any sense, give you a full preparation for the exam. This is a random selection of some material from the unit, as well as the real exam is. But mind independence.
+ <li> It is probably a good idea to solve it under exam-like circumstances (only statistical tables allowed, 90 minutes time). Once you solved it, you could check your answers with its solutions (available on Blackboard).
+</ul>
+<br>
+<li><a href="prob1_review1_visualiser_16f.pdf">Here</a> are the visualiser sheets from our first review class on the 13<sup>th</sup> December. And <a href="prob1_review2_visualiser_16f.pdf">here</a> from the second review class on the 15<sup>th</sup>. We finished the review on the 16<sup>th</sup>, see <a href="prob1_review3_visualiser_16f.pdf">here</a>. Notice that these are just sketches of what we did in this unit, far from being complete!
+</ul>
+</td></tr></table>
+<p align="center">
+ Below is a detailed schedule. Topics of future events are plans, and can change. Topics of past events serve as log.<br>
+ Problem sheets will be available as the teaching block proceeds, with links in the last column. They include mandatory homework, deadlines to be found in the pdf.<br>
+ Solutions will be available on Blackboard once the due date is passed.
+</p>
+<br>&nbsp;
+<table align="center" border="1" cellpadding="2" rules="groups" style="border-collapse: collapse; border: 1px solid black">
+ <colgroup></colgroup><colgroup></colgroup><colgroup></colgroup>
+ <tbody>
+  <tr>
+   <th>
+    Day
+   </th>
+   <th>
+    Topics
+   </th>
+   <th>
+    Problem sheet
+   </th>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Tue 27 Sep, 13:00
+    </b>
+   </td>
+   <td>
+    1. Elementary Combinatorics (<a href="div01prob116f.html" target="_blank">Diversion: Enigma Machine</a>)
+   </td>
+   <td align="center" rowspan="3">
+    <a href="sheet01_prob1_16f.pdf">Sheet 1</a>
+   </td>
+   <!--
+   <td align="center">
+    <a href="sheet01_prob1_16f.pdf">Sheet 1</a>
+   </td>
+   -->
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 29 Sep, 9:00
+   </b>
+   </td>
+   <td>
+     1. Sample space, axioms of probability
+   </td>
+   <!--
+   <td align="center">
+    (sol. avail. on Blackboard)
+   </td>
+   -->
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Fri 30 Sep, 9:00
+   </b>
+   </td>
+   <td>
+    <i>
+     Problem class
+    </i>
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Tue 4 Oct, 13:00
+    </b>
+   </td>
+   <td>
+    1. Simple properties of probability
+   </td>
+   <td align="center" rowspan="3">
+    <a href="sheet02_prob1_16f.pdf">Sheet 2</a>
+   </td>
+   <!--
+   <td align="center">
+    <a href="sheet02_prob1_16f.pdf">Sheet 2</a>
+   </td>
+   -->
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 6 Oct, 9:00
+   </b>
+   </td>
+   <td>
+     1. Equally likely outcomes (<a href="div02prob116f.html" target="_blank">Diversions</a>)
+   </td>
+   <!--
+   <td align="center">
+    (sol. avail. on Blackboard)
+   </td>
+   -->
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Fri 7 Oct, 9:00
+   </b>
+   </td>
+   <td>
+    <i>
+     Problem class
+    </i>
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Tue 11 Oct, 13:00
+    </b>
+   </td>
+   <td>
+    2. Conditional probability
+   </td>
+   <td align="center" rowspan="3">
+    <a href="sheet03_prob1_16f.pdf">Sheet 3</a>
+   </td>
+   <!--
+   <td align="center">
+    <a href="sheet03_prob1_16f.pdf">Sheet 3</a>
+   </td>
+   -->
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 13 Oct, 9:00
+   </b>
+   </td>
+   <td>
+     2. Law of Total Probability, Bayes Thm
+   </td>
+   <!--
+   <td align="center">
+    (sol. avail. on Blackboard)
+   </td>
+   -->
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Fri 14 Oct, 9:00
+   </b>
+   </td>
+   <td>
+    <i>
+     Problem class
+    </i>
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Tue 18 Oct, 13:00
+    </b>
+   </td>
+   <td>
+    2. Independence (<a href="div04prob116f.html" target="_blank">Diversion: Toilets and coins</a>)
+   </td>
+   <td align="center" rowspan="3">
+   <!--
+    Sheet 4
+    -->
+    <a href="sheet04_prob1_16f.pdf">Sheet 4</a>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 20 Oct, 9:00
+   </b>
+   </td>
+   <td>
+     2. Independence, conditional independence
+   </td>
+   <!--
+   <td align="center">
+    (sol. avail. on Blackboard)
+   </td>
+   -->
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Fri 21 Oct, 9:00
+   </b>
+   </td>
+   <td>
+    <i>
+     Problem class
+    </i>
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Tue 25 Oct, 13:00
+    </b>
+   </td>
+   <td>
+    3. Discrete random variables, mass fct (<a href="div05prob116f.html" target="_blank">Diversion: Random numbers</a>)
+   </td>
+   <td align="center">
+   <!--
+    Sheet 5
+   -->
+    <a href="sheet05_prob1_16f.pdf">Sheet 5</a>
+  </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 27 Oct, 9:00
+   </b>
+   </td>
+   <td>
+     3. Expectation, variance
+   </td>
+   <td align="center">
+    <a href="ashw1_prob1_16f.pdf">assessed HW 1</a>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Fri 28 Oct, 9:00
+   </b>
+   </td>
+   <td>
+    <i>
+     Problem class
+    </i>
+   </td>
+   <td align="center">
+    <a href="1st_year_homework_submission_cover_sheet.pdf">cover sheet</a>
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Tue 1 Nov, 13:00
+    </b>
+   </td>
+   <td>
+    3. Bernoulli, Binomial Poisson random variables
+   </td>
+   <td align="center" rowspan="3">
+   <!--
+    Sheet 6
+   -->
+    <a href="sheet06_prob1_16f.pdf">Sheet 6</a>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 3 Nov, 9:00
+   </b>
+   </td>
+   <td>
+     3. Poisson, Geometric random variables
+   </td>
+   <!--
+   <td align="center">
+    (sol. avail. on Blackboard)
+   </td>
+   -->
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Fri 4 Nov, 9:00
+   </b>
+   </td>
+   <td>
+    <i>
+     Problem class
+    </i>
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Tue 8 Nov, 13:00
+    </b>
+   </td>
+   <td>
+    4. Continuous random variables
+   </td>
+   <td align="center" rowspan="3">
+    <a href="sheet07_prob1_16f.pdf">Sheet 7</a>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 10 Nov, 9:00
+   </b>
+   </td>
+   <td>
+     4. Uniform, Exponential random variables
+   </td>
+   <!--
+   <td align="center">
+    (sol. avail. on Blackboard)
+   </td>
+   -->
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Fri 11 Nov, 9:00
+   </b>
+   </td>
+   <td>
+    <i>
+     Problem class
+    </i>
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Tue 15 Nov, 13:00
+    </b>
+   </td>
+   <td>
+    4. Normal, DeMoivre-Laplace CLT, transformations of distributions
+   </td>
+   <td align="center" rowspan="3">
+    <a href="sheet08_prob1_16f.pdf">Sheet 8</a>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 17 Nov, 9:00
+   </b>
+   </td>
+   <td>
+    5. Joint and conditional distributions, independent variables (<a href="https://www.youtube.com/watch?v=ud_frfkt1t0" target="_blank">and a diversion</a>)
+   </td>
+   <!--
+   <td align="center">
+    (sol. avail. on Blackboard)
+   </td>
+   -->
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Fri 18 Nov, 9:00
+   </b>
+   </td>
+   <td>
+    <i>
+     Problem class
+    </i>
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Tue 22 Nov, 13:00
+    </b>
+   </td>
+   <td>
+     5. Discrete convolutions, Gamma distribution
+   </td>
+   <td align="center">
+    <a href="sheet09_prob1_16f.pdf">Sheet 9</a>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 24 Nov, 9:00
+   </b>
+   </td>
+   <td>
+    6. Properties of expectations. Variance, covariance
+   </td>
+   <td align="center">
+    <a href="ashw2_prob1_16f.pdf">assessed HW 2</a>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Fri 25 Nov, 9:00
+   </b>
+   </td>
+   <td>
+    <i>
+     Problem class
+    </i>
+   </td>
+   <td align="center">
+    <a href="1st_year_homework_submission_cover_sheet.pdf">cover sheet</a>
+   <!--
+    (sol. avail. on Blackboard)
+   -->
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Tue 29 Nov, 13:00
+    </b>
+   </td>
+   <td>
+     6. Variance, covariance, correlation
+   </td>
+   <td align="center" rowspan="3">
+    <a href="sheet10_prob1_16f.pdf">Sheet 10</a>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 1 Dec, 9:00
+   </b>
+   </td>
+   <td>
+    6. Conditional expectation
+   </td>
+   <!--
+   <td align="center">
+    (sol. avail. on Blackboard)
+   </td>
+   -->
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Fri 2 Dec, 9:00
+   </b>
+   </td>
+   <td>
+    <i>
+     Problem class
+    </i>
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Tue 6 Dec, 13:00
+    </b>
+   </td>
+   <td>
+     6. Moment generating fcts.
+   </td>
+   <td align="center" rowspan="3">
+    <a href="sheet11_prob1_16f.pdf">Sheet 11</a>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 8 Dec, 9:00
+   </b>
+   </td>
+   <td>
+    7. Markov's, Chebyshev's ineq, Weak Law of Large Numbers, CLT
+   </td>
+   <!--
+   <td align="center">
+    (sol. avail. on Blackboard)
+   </td>
+   -->
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Fri 9 Dec, 9:00
+   </b>
+   </td>
+   <td>
+    <i>
+     Problem class
+    </i>
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Tue 13 Dec, 13:00
+    </b>
+   </td>
+   <td>
+    <i>
+     Review
+    </i>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 15 Dec, 9:00
+   </b>
+   </td>
+   <td>
+    <i>
+     Review
+    </i>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Fri 16 Dec, 9:00
+   </b>
+   </td>
+   <td>
+    <i>
+     Problem class
+    </i>
+    (and <a href="https://www.youtube.com/watch?v=5kC5k5QBqcc" target="_blank">here</a> is a final diversion for you. Merry Christmas!)
+   </td>
+   <td>
+   </td>
+  </tr>
+ </tbody>
+</table>
+<br>&nbsp;
+<br>&nbsp;
+<hr align=center width=30%>
+<br>&nbsp;
+<p align=center>
+ If you have any questions, please contact me (see on top).
+ <!-- Alternatively, you can leave anonymous feedback here:<br>
+ <form method="post" name="myemailform" action="form_prob116f.php">
+  <div align="center">
+   <textarea name="message" maxlength="1000" cols="45" rows="8"></textarea>
+   <br>&nbsp;
+   <input type="submit" value="Send feedback">
+  </div>
+ </form>
+ -->
+</p>
+<table align="center">
+ <tr><td>
+  <dl>
+   <dt><b>Q.:</b> [Administrative questions about receiving results, or the resit period.]</dt>
+   <dd><b>A.:</b> Please note that <a href="mailto:math-info@bristol.ac.uk">math-info</a> is much better suited to answering these questions, I'm not fully aware of all the details.</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> Can you give an example of where we'd use the formula on slide 172 please?</dt>
+   <dd><b>A.:</b> All transformation problems can be solved by the method we covered, we have not used this formula explicitly anywhere. But if you carefully follow what happens with the density under a monotone transformation of a continuous variable then this will be the general answer.</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> Can you explain 9.1(a) more please?</dt>
+   <dd><b>A.:</b> By the memoryless property, a device with exponential lifetime is as good if bought used (and therefore is still working) as new. Therefore the remaining lifetime is still the same exponential distribution. As the problem says about two devices, their lifetimes can be assumed to be independent, one radio set should not be influenced by the other. Thus, we are looking at the probability that two independent Exponential(1/6) variables both survive 6 years, in other words their lifetimes <i>X</i>&geq;6 and <i>Y</i>&geq;6. This is 1-<i>F</i>(6) for each of them, which get multiplied by independence. From there one just substitutes the Exponential(1/6) distribution function.</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> In Jan 2015 paper A2, how is <b>E</b><i>X</i>=0?</dt>
+   <dd><b>A.:</b> The mass function is symmetric around <i>z</i>=0, and the mean exists so it must be zero.</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> What is the expectation/variance of the indicator?</dt>
+   <dd><b>A.:</b> Please check pages 91 and 101 of the lecture slides.</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> If a question asks us to use a specific technique such as the multiplication rule, would we get credited for simply stating the formula, even if we didn't know how to apply it?</dt>
+   <dd><b>A.:</b> It depends on the problem and the details of your solution, but in general it is a good idea to add as much <b>relevant</b> details as you can, even if you don't provide a full solution. Of course the best is if you know how to use our statements and formulas like the multiplication rule.</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> Are we allowed to bring a piece of paper to the exams with the formulas? I'm only asking because we can for physics and was wondering if it was the same for probability.</dt>
+   <dd><b>A.:</b> No, please scroll down 10 questions.</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> I'm not sure how the answer came about in Q9.8, could you possibly explain thank you!</dt>
+   <dd><b>A.:</b> Two things happen there: the marginal mass function of <i>Y</i> is calculated first (just look at the number of cases the largest number is <i>j</i>), then the formula for conditional mass functions is applied. To this order, the joint also needs to be calculated, see Q8.15(c).</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> If we make an error and carry that error forward will we lose all marks or still get marks for working?</dt>
+   <dd><b>A.:</b> We give partial credits for partial solutions that point in the right direction, even if its input contains errors.</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> Question 11.2, I can't figure out how you've solved the sum to infinity to get your answer.</dt>
+   <dd><b>A.:</b> Rearrange the summand into constants * [e<sup><i>t</i></sup> * (1-<i>p</i>)]<sup><i>k</i></sup>. From here it is the geometric series sum formula with common ratio [e<sup><i>t</i></sup> * (1-<i>p</i>)].</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> When using the De Moivre-Laplace theorem why do we have to extend the range by plus and minus 0.5?</dt>
+   <dd><b>A.:</b> It's called the continuity correction, and it helps accuracy. This has to do with the fact that we try to approximate a discrete distribution (Binomial) with a continuous one (Normal). The best guess for an integer <i>k</i> is, from a continuous point of view, the interval (<i>k</i>-0.5, <i>k</i>+0.5], that's where the correction comes from. In the exam you don't need to do this correction (unless the problem asks for an approximation of <b>P</b>{<i>X</i>=<i>k</i>}, rather than <b>P</b>{<i>X</i>&leq;<i>k</i>}).</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> If the answer to a question is of the form <i>n</i> choose <i>k</i>, should we leave the answer in this form or use the <i>n</i>!/[<i>k</i>!(<i>n</i>-<i>k</i>)!] formula to work out an exact number?</dt>
+   <dd><b>A.:</b> I'd be happy if you worked out 3 choose 1, or even 4 choose 2. But you can leave 891 choose 178 as is. Hope this helps.</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> How do you calculate <b>Var</b>(<i>g</i>(<i>X</i>)) for a random variable <i>X</i>? Can't find it in the lecture slides.</dt>
+   <dd><b>A.:</b> Please be creative and don't expect everything readily available in the slides. We definitely have all knowledge to do this: <b>Var</b>(<i>g</i>(<i>X</i>))=<b>E</b>(<i>g</i><sup>2</sup>(X))-[<b>E</b>(<i>g</i>(<i>X</i>))]<sup>2</sup>. As <i>g</i><sup>2</sup>(<i>X</i>) is just another function of <i>X</i>, we know how to calculate its mean. And we have covered how to do <b>E</b>(<i>g</i>(<i>X</i>)) itself.</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> Question 4.10 ("Cities <i>A</i>, <i>B</i>, <i>C</i>, <i>D</i>...") [...] Is it possible for you to show us how it's done in a cleaner method? The question asks to go to you if we want to know. Thanks :)</dt>
+   <dd><b>A.:</b> Absolutely! But it's much faster explained on the board than written up. So please indeed come to me and I'm happy to show. Scroll down to the bottom of this page for my availability and let me know which time you come. Alternatively, you can ask about this on the Q&amp;A session.</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> Do we have to achieve 40% in the exam to pass probability 1? Or if we have for example 5% from the assessed homeworks then can we get 35% in the exam to make a total of 40% overall?</dt>
+   <dd><b>A.:</b> Sorry, I have to refer to the <a href="http://www.bristol.ac.uk/maths/study/undergraduate/units1617/levelc4hunits/probability1/" target="_blank">unit description</a> or if that doesn't help then <a href="mailto:math-info@bristol.ac.uk">math-info</a> for this. But how about aiming much higher to make sure a good result follows?</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> In the mark scheme for the mock paper, some answers show very little working out. How much working out is required to get full marks on a question?</dt>
+   <dd><b>A.:</b> The answers as shown in the mark scheme worth full marks. You can refer to facts (like for example the mean of Geometric) seen in the lectures without proof, unless the problem explicitly asks for working these out. When marking, <b>we need to see how you arrived to the answer</b>; you can simply refer to results covered in class (unless proof is explicitly asked for), or when new arguments are required then we need to see the details of your steps towards the solution.</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> Are we allowed to take in a one double sided, A4 sized sheet of notes into the exam?</dt>
+   <dd><b>A.:</b> <b> No notes are allowed</b>, only a pre-printed statistical table (that includes a normal table) will be provided for you by the University.</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> Are the answers for the problem sheets availabe?</dt>
+   <dd><b>A.:</b> Solutions of all (assessed and non-assessed) problem sheets, and of the mock exam are available on Blackboard.</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> In the exam, do Section A and Section B cover different topics? Or is it completely random?</dt>
+   <dd><b>A.:</b> Both section A and B contain random questions; topics might or might not overlap.</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> Can we use a calculator in the exam?</dt>
+   <dd><b>A.:</b> No, calculators are not allowed. Please check the <a href="http://www.bristol.ac.uk/maths/study/undergraduate/units1617/levelc4hunits/probability1/" target="_blank">unit description</a> (also linked above). Unless asked otherwise by the problem, you can leave your answer in a form that only needs to be calculated. Exception is the normal table where I need to see that you know how to look up the numerical values.</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> Go to slide 241... I have seen this in so many proofs and don't understand when it is ok to use?? Like slide 202-203</dt>
+   <dd><b>A.:</b> Expectations and sums with <b>non-random</b> boundaries can generally be swapped. The important difference is that on slide 241 the summation boundary, N, is <b>random</b>. Random variables cannot be pulled over expectations (only over conditional expectations conditioned on this random variable itself). That's why one cannot swap sum and expectation here.</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> Will we get our marks for the second assessed homework before the christmas break?</dt>
+   <dd><b>A.:</b> We aim to have them marked and scrutinised by mid week 12, after which you'll be able to pick up your scripts. Please keep checking your email from our Admin in the coming days regarding details.</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> Are we going to get a formula booklet in the exam?</dt>
+   <dd><b>A.:</b> No formula booklet will be available on the exam, formulas need to be memorised. There are not <i>so</i> many of them. A statistical table booklet will be provided, from which the normal table, similar to <a href="normal-table.pdf">this one</a>, can be looked up.</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> What is the Conditional Law of Total Probability (lecture slides, p. 77)?</dt>
+   <dd><b>A.:</b> It is the red bit on that page, namely, P{A|B} = P{A|B&amp;F}*P{F|B} + P{A|B&amp;F<sup>c</sup>}*P{F<sup>c</sup>|B}.</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> Please add more mock papers.</dt>
+   <dd><b>A.:</b> A few past papers are available on Intranet. As I tried to emphasize, I don't think looking at mock/past papers is a good way of preparing. Make sure materials from the lectures and problem classes are well understood and learnt. Then there are plenty of practice problems on our sheets, and the book has even more problems to look into.</dd>
+   <br>&nbsp;
+   <dt><b>Q.:</b> Mark scheme to January 2014 paper?</dt>
+   <dd><b>A.:</b> See the previous line. I think Intranet has enough papers and solutions to give an impression of what the exam will look like, I recommend looking at the class materials rather than even more exam solutions. Furthermore, the 2013/14 exam was prepared by the previous instructor of Probability 1, in a slightly different style, which might confuse students.</dd>
+  </dl>
+ </td></tr>
+</table>
+<p align=center>
+ <br>&nbsp;
+ <br>&nbsp;
+</p>
+ <hr align=center width=30%>
+<p align=center>
+ <br>&nbsp;
+If you have any questions, please contact me (see on top). Click <a href="https://outlook.office365.com/owa/calendar/24e913f958614025984e1a0cd99decfb@bristol.ac.uk/0668f0a2e418490cbee1fb9da0e74cd817843726480619144259/calendar.html" target="_blank">here</a> to see my schedule.<br>
+ <!--
+ Below is my schedule.<br>
+<br>&nbsp;
+<iframe src="https://www.google.com/calendar/embed?title=M.%20Bal%C3%A1zs%20schedule&amp;mode=WEEK&amp;height=400&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=bristol.ac.uk_gj9d7p7a5s0lfbhvge3aq9j4p4%40group.calendar.google.com&amp;color=%232F6309&amp;src=bristol.ac.uk_vbpjns17uon71f630dit50urpo%40group.calendar.google.com&amp;color=%232952A3&amp;src=77q6gepe08n9hbqdd91om074u8%40group.calendar.google.com&amp;color=%23B1440E&amp;ctz=Europe%2FLondon" style=" border-width:0 " width="600" height="400" frameborder="0" scrolling="no"></iframe>
+ -->
+</p>
+<br>&nbsp;
+<hr align=center width=30%>
+<p align=center>
+To the <a href="teach.html">teaching page</a>
+</p>
+</body>
+</html>

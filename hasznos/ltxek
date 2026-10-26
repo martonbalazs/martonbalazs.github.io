@@ -1,0 +1,57 @@
+#!/bin/bash
+# 11.3.4
+
+# Bash parameter expansion
+veg=${1##*.}
+elej=${1%.*}
+
+ok=0
+if [ -f "$elej".ltx ]; then
+cat "$elej".ltx | sed \
+-e 's/\\'`echo -e "\047"`'a/\á/g' \
+-e 's/\\'`echo -e "\047"`'A/\Á/g' \
+-e 's/\\'`echo -e "\047"`'e/\é/g' \
+-e 's/\\'`echo -e "\047"`'E/\É/g' \
+-e 's/\\'`echo -e "\047"`'\\i /\í/g' \
+-e 's/\\'`echo -e "\047"`'I/\Í/g' \
+-e 's/\\'`echo -e "\047"`'o/\ó/g' \
+-e 's/\\'`echo -e "\047"`'O/\Ó/g' \
+-e 's/\\\"o/\ö/g' \
+-e 's/\\\"O/\Ö/g' \
+-e 's/\\H o/\õ/g' \
+-e 's/\\H O/\Õ/g' \
+-e 's/\\'`echo -e "\047"`'u/\ú/g' \
+-e 's/\\'`echo -e "\047"`'U/\Ú/g' \
+-e 's/\\\"u/\ü/g' \
+-e 's/\\\"U/\Ü/g' \
+-e 's/\\H u/\û/g' \
+-e 's/\\H U/\Û/g' \
+> "$elej"_ek.ltx
+ok=1
+fi
+if [ -f "$elej".tex ]; then
+cat "$elej".tex | sed \
+-e 's/\\'`echo -e "\047"`'a/\á/g' \
+-e 's/\\'`echo -e "\047"`'A/\Á/g' \
+-e 's/\\'`echo -e "\047"`'e/\é/g' \
+-e 's/\\'`echo -e "\047"`'E/\É/g' \
+-e 's/\\'`echo -e "\047"`'\\i /\í/g' \
+-e 's/\\'`echo -e "\047"`'I/\Í/g' \
+-e 's/\\'`echo -e "\047"`'o/\ó/g' \
+-e 's/\\'`echo -e "\047"`'O/\Ó/g' \
+-e 's/\\\"o/\ö/g' \
+-e 's/\\\"O/\Ö/g' \
+-e 's/\\H o/\õ/g' \
+-e 's/\\H O/\Õ/g' \
+-e 's/\\'`echo -e "\047"`'u/\ú/g' \
+-e 's/\\'`echo -e "\047"`'U/\Ú/g' \
+-e 's/\\\"u/\ü/g' \
+-e 's/\\\"U/\Ü/g' \
+-e 's/\\H u/\û/g' \
+-e 's/\\H U/\Û/g' \
+> "$elej"_ek.tex
+ok=1
+fi
+if [ $ok = 0 ]; then
+echo 'Nem találom azt, hogy' "$elej"'.ltx, sem azt, hogy' "$elej"'.tex'.
+fi

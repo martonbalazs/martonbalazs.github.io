@@ -1,0 +1,678 @@
+<!-- 2020-01-24 -->
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<STYLE TYPE="text/css">
+.red
+{
+color:FF3030
+}
+</STYLE>
+<TITLE>Further Topics in Probability, Spring 2019</TITLE>
+</HEAD>
+<!--
+<body bgcolor="FFFACD">
+ -->
+<body bgcolor="008080">
+<h2><p align=center>Further Topics in Probability, Spring 2019</p></h2>
+<br>&nbsp;
+<table align=center>
+<tr><td align=right></td><td></td><td>Joseph Najnudel; <a href="index.html" target="_blank">Márton Balázs</a></td></tr>
+<tr><td align=right><b>Email:</b></td><td></td><td>joseph.najnudel@our_city.ac.countrycode; m.balazs@our_city.ac.countrycode</td></tr>
+<tr><td align=right><b>Offices:</b></td><td></td><td>4.09 Howard House; 3.7 Main Bld</td></tr>
+<tr><td align=right><b>Drop in Sessions:</b></td><td>&nbsp;</td><td><!--<i>To be announced soon.</i>-->Wednesdays 11:30 - 12:30, 4.09 Howard House (Weeks 13-18); 3.7 Maths (Weeks 19-24)</td></tr>
+<!--
+<tr><td></td><td></td><td><i>except for the 8th of March, which is cancelled.</i></td></tr>
+-->
+<tr><td align=right><b>Q&amp;A Session:</b></td><td>&nbsp;</td><td><!--<i>To be announced soon.</i>-->Tuesday 28<sup>th</sup> May, 9:00am, SM3. <i>Please prepare with questions.</i></td></tr>
+</table>
+<br>&nbsp;
+<br>&nbsp;
+<table align=center><tr><td>
+<ul>
+<li>The <a href="http://www.bristol.ac.uk/maths/undergraduate/units1819/levelh6units/furthertopicsinprobability3/" target="_blank">unit description for level H/6</a>, including assessment methods, texts, syllabus.
+<br>&nbsp;
+<li>The <a href="http://www.bristol.ac.uk/maths/undergraduate/units1819/levelm7units/further-topics-in-probability-34-mathm0018/" target="_blank">unit description for level M/7</a>, including assessment methods, texts, syllabus.
+<br>&nbsp;
+<li>Calculators are <b>not</b> allowed in the examination.
+<!--
+<br>&nbsp;
+<li> Remark on the Tues 2pm exercise classes (see the schedule below): we'll discuss (homework) problems, review stuff as necessary, look at more examples, but no new material is covered on these occasions. These classes are likely to help you, but they are not mandatory.
+-->
+<br>&nbsp;
+<li> Remark on the assessments: there will be no distinction between levels H/6 and M/7 regarding homeworks. Six homework sets will be assigned, see the schedule below. Our marking deadline is the class one week after the respective due dates. From each of these, you can collect 17 homework marks. Your final mark will be weighted as 20% -- 80% homework mark -- exam mark.
+<br>&nbsp;
+<li> A few more remarks on the exam: for both levels, final examination will be 2½-hour long, will consist of four questions each of which will be used for assessment. The difference between levels H/6 and M/7 will only be the required depth of reproducing proofs in the exam. On H/6 I can ask for at most a couple of words about how a proof goes. On M/7, I can ask for proofs in details.
+<br>&nbsp;
+<li><a href="normal-table.pdf" target="_blank">The standard normal distribution</a> in pdf. You will be given a similar table on the exam.
+<br>&nbsp;
+<li><a href="rev_notes_A_Smith_ftip16s.pdf" target="_blank">Revision notes</a> (<a href="rev_notes_A_Smith_ftip16s_env.pdf" target="_blank" style="color:green">greener version</a>, half the paper) in pdf, written by Aaron Smith, a student in this unit in 2015. Please notice that these notes are <b>by no means meant to fully cover our material</b>, nor will all parts of them be assessed. (<i>Last edited: 25/05/2018.</i>)
+<br>&nbsp;
+<li><a href="prob1_and_beyond.html" target="_blank">Extended slides/notes of elementary probability</a>. Some of it can be used as reference and refreshment for parts of the Probability 1 and Advanced Probability 2 units. Other portions we will cover in class, and some we will not touch. Below you'll see links to relevant parts of this material. Please notice that these links are <b>by no means meant to fully cover our material</b>, nor will all parts of all of them be assessed. They rather serve as background reading. (They are actually part of lecture notes for a rather strong first probability unit I used to teach before.)
+ <!--
+<br>&nbsp;
+<li> A mock exam with solutions is now available on Blackboard. Disclaimer: no two exams are the same, this is just to show you some possible style of how our exam could look like. The topics and difficulty of the questions might vary. Concentrating on past and mock exams is in general NOT a good way of preparation.
+ -->
+</ul>
+</td></tr></table>
+<p align="center">
+ Below is a detailed schedule. Topics of future events are plans, and can change. Topics of past events serve as log.<br>
+ Homeworks are/will also be posted here: just click those with a link below. <span style="color:green">The green version uses less paper to print.</span> They are due at 12:00pm in the blue locker with "Further Topics in Probability" on it on the ground floor of the Main Maths Building.<br>
+ Homework solutions will appear on Blackboard, please email us if you have problem accessing these.
+</p>
+<p align="center">
+ I was thinking about going over the <a href="http://link.springer.com/article/10.1007/BF01013465" target="_blank">ingenious proof of the SLLN by N. Etemadi</a>, but decided to stay with the classical way instead. You are welcome to check out his way of doing it!
+</p>
+<p align="center">
+ Came across <a href="https://www.youtube.com/watch?v=LKnqECcg6Gw" target="_blank">this illustration</a> of Jensen's inequality: square-root of the average &ne; average of the square-root.
+</p>
+<br>&nbsp;
+<table align="center" border="1" cellpadding="2" rules="groups" style="border-collapse: collapse; border: 1px solid black">
+ <colgroup></colgroup><colgroup></colgroup><colgroup></colgroup>
+ <tbody>
+  <tr>
+   <th>
+    Day
+   </th>
+   <th>
+    Topics
+   </th>
+   <th>
+    Homework due:
+   </th>
+  </tr>
+ </tbody>
+ <tbody>
+  <!-- Week 13 -->
+  <tr>
+   <td>
+    <b>
+     Mon 28 Jan
+    </b>
+   </td>
+   <td>
+    Review of the unit, <a href="NegBin_Hypergeom.pdf" target="_blank">basic discrete distributions</a>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 29 Jan
+    </b>
+   </td>
+   <td>
+    <a href="NegBin_Hypergeom.pdf" target="_blank">Basic discrete distributions</a>; convolution (discrete cases)
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 31 Jan
+    </b>
+   </td>
+   <td>
+    <i>Ex. class (Neg.Bin convolution, continuous r.v., <a href="Normal_normed.pdf" target="_blank">Normal distribution</a>)
+     <!--
+     (Neg.bin., Poi., Uniform convolutions)
+     -->
+     </i>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <!-- Week 14 -->
+  <tr>
+   <td>
+    <b>
+     Mon 4 Feb
+    </b>
+   </td>
+   <td>
+    <a href="joint_cont_distr.pdf" target="_blank">Convolution </a><a href="joint_cont_distr_env.pdf" target="_blank" style="color:green">(Gaussian)</a>
+   </td>
+   <td align="center">
+    -- 
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 5 Feb
+    </b>
+   </td>
+   <td>
+    Convolution (Cauchy)
+   </td>
+   <td align="center">
+     --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 7 Feb
+   </b>
+   </td>
+   <td>
+    Convolution (Cauchy<!--, Exponential-->)
+   </td>
+   <td align="center">
+    <a href="hw1_ftip19s.pdf">HW1</a>
+    <a href="hw1_ftip19s_env.pdf" style="color:green">HW1</a>
+    (sol. on Bb.)
+    <!--
+    HW1
+    -->
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Mon 11 Feb
+    </b>
+   </td>
+   <td>
+    Gamma, Chi square distributions
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 12 Feb
+    </b>
+   </td>
+   <td>
+    <a href="Poisson_process.pdf" target="_blank">Poisson process</a>. Generating functions (properties)
+   </td>
+   <td align="center">
+     --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 14 Feb
+    </b>
+   </td>
+   <td>
+    <i>Ex. class (convolutions<!--, generating functions (examples; of convolutions)-->)
+     <!--
+     (Moran's example, neg.bin.+combi. generating fcts)
+     -->
+     </i>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <!-- Week 16 -->
+  <tr>
+   <td>
+    <b>
+     Mon 18 Feb
+    </b>
+   </td>
+   <td>
+    Generating functions (random no. of summands)
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 19 Feb
+    </b>
+   </td>
+   <td>
+    Generating functions (Galton-Watson process)
+   </td>
+   <td align="center">
+     --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 21 Feb
+    </b>
+   </td>
+   <td>
+    Generating functions (Critical G-W process; random walk)
+   </td>
+   <td align="center">
+    <a href="hw2_ftip19s.pdf">HW2</a>
+    <a href="hw2_ftip19s_env.pdf" style="color:green">HW2</a>
+    (sol. on Bb.)
+    <!--
+    HW2
+    -->
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <!-- Week 17 -->
+  <tr>
+   <td>
+    <b>
+     Mon 25 Feb
+    </b>
+   </td>
+   <td>
+    Generating functions (random walk: level 1 hitting time)
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 26 Feb
+    </b>
+   </td>
+   <td>
+    Generating functions (weak convergence)
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 28 Feb
+    </b>
+   </td>
+   <td>
+    <i>Ex. class (fun with generating functions)
+     <!--
+     (Generating functions: Catalan example, two sixes problem)
+     -->
+     </i>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <!-- Week 18 -->
+  <tr>
+   <td>
+    <b>
+     Mon 4 Mar
+    </b>
+   </td>
+   <td>
+    Weak convergence examples, <a href="Bernoulli_LLN.pdf" target="_blank">Weak Law </a><a href="Bernoulli_LLN_env.pdf" target="_blank" style="color:green">of Large Numbers</a>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 5 Mar
+    </b>
+   </td>
+   <td>
+    <a href="Bernoulli_LLN.pdf" target="_blank">Weak Law of </a><a href="Bernoulli_LLN_env.pdf" target="_blank" style="color:green">Large Numbers</a>, <a href="Stirling_DeMoivre_Laplace.pdf" target="_blank">Stirling's </a><a href="Stirling_DeMoivre_Laplace_env.pdf" target="_blank" style="color:green">formula</a>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 7 Mar
+    </b>
+   </td>
+   <td>
+    <a href="Stirling_DeMoivre_Laplace.pdf" target="_blank">Stirling's </a><a href="Stirling_DeMoivre_Laplace_env.pdf" target="_blank" style="color:green">formula</a>, <a href="Stirling_DeMoivre_Laplace.pdf" target="_blank">DeMoivre </a><a href="Stirling_DeMoivre_Laplace_env.pdf" target="_blank" style="color:green">Laplace CLT</a>
+   </td>
+   <td align="center">
+    <a href="hw3_ftip19s.pdf">HW3</a>
+    <a href="hw3_ftip19s_env.pdf" style="color:green">HW3</a>
+    (sol. on Bb.)
+    <!--
+    HW3
+    -->
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Mon 11 Mar
+    </b>
+   </td>
+   <td>
+    <a href="Stirling_DeMoivre_Laplace.pdf" target="_blank">DeMoivre </a><a href="Stirling_DeMoivre_Laplace_env.pdf" target="_blank" style="color:green">Laplace CLT</a>, <a href="meas_th_prob.pdf" target="_blank">Measure Theory </a><a href="meas_th_prob_env.pdf" target="_blank" style="color:green">(basic notions, probability)</a>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 12 Mar
+    </b>
+   </td>
+   <td>
+    <a href="meas_th_prob.pdf" target="_blank">Measure </a><a href="meas_th_prob_env.pdf" target="_blank" style="color:green">Theory</a>
+   </td>
+   <td align="center">
+     --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 14 Mar
+    </b>
+   </td>
+   <td>
+    <i>
+     Ex. class (Generating functions: RW probabilities)
+    </i>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     Mon 18 Mar
+    </b>
+   </td>
+   <td>
+    <a href="meas_th_prob.pdf" target="_blank">Measure </a><a href="meas_th_prob_env.pdf" target="_blank" style="color:green">Theory</a>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 19 Mar
+    </b>
+   </td>
+   <td>
+    Probabilistic tools
+   </td>
+   <td align="center">
+     --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 21 Mar
+    </b>
+   </td>
+   <td>
+    Probabilistic inequalities
+   </td>
+   <td align="center">
+    <a href="hw4_ftip19s.pdf">HW4</a>
+    <a href="hw4_ftip19s_env.pdf" style="color:green">HW4</a>
+    (sol. on Bb.)
+    <!--
+    HW4
+    -->
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <!-- Week 21 -->
+  <tr>
+   <td>
+    <b>
+     Mon 25 Mar
+    </b>
+   </td>
+   <td>
+    Probabilistic inequalities; Convergences
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 26 Mar
+    </b>
+   </td>
+   <td>
+    Convergences; Strong Law of Large Numbers (Kolmogorov's ineq.)
+   </td>
+   <td align="center">
+     --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 28 Mar
+    </b>
+   </td>
+   <td>
+    <i>
+     Ex. class (convergence modes)
+     </i>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <!-- Week 22 -->
+  <tr>
+   <td>
+    <b>
+     Mon 1 Apr
+    </b>
+   </td>
+   <td>
+    Kolmogorov-Khinchin; Toeplitz' lemma
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 2 Apr
+    </b>
+   </td>
+   <td>
+    Kronecker; Kolmogorov's Thm, SLLN
+   </td>
+   <td align="center">
+     --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 4 Apr
+    </b>
+   </td>
+   <td>
+    Characteristic Functions <!--(Inversion formula)-->
+   </td>
+   <td align="center">
+    <a href="hw5_ftip19s.pdf">HW5</a>
+    <a href="hw5_ftip19s_env.pdf" style="color:green">HW5</a>
+    (sol. on Bb.)
+    <!--
+    HW5
+    -->
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <tr>
+   <td colspan="3" align="center">
+    <i>
+     Easter vacation
+    </i>
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <!-- Week 23 -->
+  <tr>
+   <td>
+    <b>
+     Mon 29 Apr
+    </b>
+   </td>
+   <td>
+    Inversion formula <!--and its consequences-->
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 30 Apr
+    </b>
+   </td>
+   <td>
+    Inversion formula<!--, weak convergence (Prokhorov's Thm)-->
+   </td>
+   <td align="center">
+     --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 2 May
+    </b>
+   </td>
+   <td>
+    <i>Ex. class (Characteristic functions)
+     </i>
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+ </tbody>
+ <tbody>
+  <!-- Week 24 -->
+  <tr>
+   <td>
+    <b>
+     <div class="red">Tue 7 May</div>
+    </b>
+   </td>
+   <td>
+    Weak Convergence (<!-- Continuity Lemma -->Prokhorov's Thm)
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Tue 7 May
+    </b>
+   </td>
+   <td>
+    Weak Convergence (Continuity Lemma)
+   </td>
+   <td align="center">
+    --
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>
+     Thu 9 May
+    </b>
+   </td>
+   <td>
+    WLLN, CLT, comments <!--on the CLT (Berry-Esséen, Local CLT, Lindeberg Thm)-->
+   </td>
+   <td align="center">
+    <a href="hw6_ftip19s.pdf">HW6</a>
+    <a href="hw6_ftip19s_env.pdf" style="color:green">HW6</a>
+    (sol. on Bb.)
+    <!--
+    HW6
+    -->
+   </td>
+  </tr>
+ </tbody>
+ <!--
+ <tbody>
+  <tr>
+   <td>
+    <b>
+     TBC
+    </b>
+   </td>
+   <td>
+    Q&amp;A session
+   </td>
+   <td align="center">
+     ..
+   </td>
+  </tr>
+ </tbody>
+ -->
+</table>
+<br>&nbsp;
+<br>&nbsp;
+<hr align=center width=30%>
+<br>&nbsp;
+<p align=center>
+If you have any questions, please contact us (see on top). Click <a href="https://outlook.office365.com/owa/calendar/24e913f958614025984e1a0cd99decfb@bristol.ac.uk/0668f0a2e418490cbee1fb9da0e74cd817843726480619144259/calendar.html" target="_blank">here</a> to see Márton's schedule.<br>
+<!--
+<br>&nbsp;
+<iframe src="https://www.google.com/calendar/embed?title=M.%20Bal%C3%A1zs%20schedule&amp;mode=WEEK&amp;height=400&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=bristol.ac.uk_gj9d7p7a5s0lfbhvge3aq9j4p4%40group.calendar.google.com&amp;color=%232F6309&amp;src=bristol.ac.uk_vbpjns17uon71f630dit50urpo%40group.calendar.google.com&amp;color=%232952A3&amp;src=77q6gepe08n9hbqdd91om074u8%40group.calendar.google.com&amp;color=%23B1440E&amp;ctz=Europe%2FLondon" style=" border-width:0 " width="600" height="400" frameborder="0" scrolling="no"></iframe>
+-->
+</p>
+<br>&nbsp;
+<hr align=center width=30%>
+<p align=center>
+To Márton's <a href="teach.html">teaching page</a>
+</p>
+</body>
+</html>

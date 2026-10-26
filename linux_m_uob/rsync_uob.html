@@ -1,0 +1,100 @@
+<!-- !! Date in file !! -->
+<!DOCTYPE HTML>
+<html>
+<head>
+ <meta name="description" content="Rsync at UoB">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Rsync at the UoB</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <style>
+  code {font-family: 'Courier New', Courier, monospace}
+  pre.one {font-family: 'Courier New', Courier, monospace; background-color: #EEEEEE; padding-top: 5px; height: 20px}
+  pre {font-family: 'Courier New', Courier, monospace; background-color: #EEEEEE; padding-top: 5px}
+  li {margin:15px}
+ </style>
+</head>
+<body>
+<h2 align="center">
+ An rsync example to back up Linux boxes in Maths at UoB
+</h2>
+<p align="center">
+ Assembled by <a href="https://people.maths.bris.ac.uk/~mb13434/" target="_blank">Márton Balázs</a>, IT rep for Maths<br>
+ <font size="-2">last updated: [2019-09-27 Tue]</font>
+</p>
+<p align="justify">
+ This page is here to demonstrate an efficient way of backing up your documents with <code>rsync</code> to our Linux servers in the School of Mathematics. This is just how I do it, there are various other ways and comments are of course always welcome! <i>Be careful and always test your method first to avoid data loss.</i> To review the servers available to us, and set up ssh to connect from in and out of the UoB, please take a look at <a href="index.html">here</a>.
+</p>
+<p align="justify">
+ The main idea is that we don't want to move files by hand as a backup since this is slow and prone to errors. Instead we ask <code>rsync</code> to compare files and upload incrementally those that have a newer version locally. Throughout, <code>[username]</code> is your UoB username in the format <code>ab12345</code>.
+</p>
+<p align="justify">
+If you don't yet have this, create a <code>tmp/</code> directory in your home, this is where sync logs will be written. Create a file somewhere which we'll call <code>[exclusion file]</code>. This will tell rsync which parts of your home you want to exclude from the backup. Contents of this one look like
+</p>
+<pre>
+.*
+tmp/
+public_html/
+</pre>
+<p align="justify">
+as you definitely don't want all the hidden dotfiles to be uploaded, nor your <code>tmp</code> directory. If you have a local copy of your webpage at <code>public_html</code>, this might go to the server <code>personal-webpages</code> instead of <code>e.maths</code>. There is a lot more you can do in this file, the <code>rsync</code> man page has a long section on this.
+</p>
+<p align="justify">
+ Then create a script and make it executable so that you can run it from a terminal with the following contents:
+</p>
+<pre>
+#!/bin/bash
+
+k=`date +%N`
+
+while true
+do
+ read -s -p "TEST to e.maths [enter]; s: skip " nos
+ if [ "$nos" == "s" ]; then
+  echo "TEST to e.maths skipped"
+  break
+ elif [ -z "$nos" ]; then
+  echo "___________________ TEST to e.maths ___________________" 2>&1|tee -a ~/tmp/sync_tmp$k.txt
+  rsync --timeout=120 -nrvauzzi --progress --no-group --exclude-from=/home/[username]/[exclusion file] -e ssh /home/[username]/ [username]@e.maths.bris.ac.uk:/home/[username]/ 2>&1|tee -a ~/tmp/sync_tmp$k.txt
+  echo "^^^^^^^^^^^^^^^^^^^ TEST to e.maths ^^^^^^^^^^^^^^^^^^^" 2>&1|tee -a ~/tmp/sync_tmp$k.txt
+  break
+ fi
+done
+
+if [ -f ~/tmp/sync_tmp$k.txt ]; then
+ [your preferred text editor/viewer here] ~/tmp/sync_tmp$k.txt
+fi
+</pre>
+<p align="justify">
+where <code>[your preferred text editor/viewer here]</code> could be <code>less</code>, <code>more</code>, <code>gedit</code>, <code>pico</code>, <code>emacs</code>, <code>vim</code>, etc. (My line here uses Vim and the MultipleSearch plugin, it reads
+</p>
+<pre class="one">
+ vim "+noremap q :q<CR>" "+noremap <Space> <PageDown>" -c 'Search TEST' -c 'Search ^...st' -c 'Search ^.....p' -c 'Search ^..+++++++++' -p -M -R ~/tmp/sync_tmp$k.txt
+</pre>
+<p align="justify">
+:-) ) The script gives you an opportunity to skip if you change your mind, I find this useful. It then runs <code>rsync</code> which looks at your files on <code>e.maths</code>, and uploads anything from your local machine's <code>HOME</code> that is either missing or newer than on <code>e.maths</code> and is not excluded in the <code>[exclusion file]</code>. The options we used are:<br>
+ <code>--exclude-from=</code> to exclude files and directories you listed in <code>[exclusion file]</code>.<br>
+ <code>-nrvauzi</code>, these are several options that I found useful for rsync over ssh and for listing the actions. They also forbid rsync to remove anything on <code>e.maths</code> that's missing locally. Check the man pages for various possibilities.<br>
+ <code>--timeout=120</code>, this limits your wait if something goes wrong with the network connection.<br>
+ <code>--progress</code>, this shows how files are being transferred, useful with big ones.<br>
+ <code>--no-group</code>, I added this when I figured that groups on <code>e.maths</code> and the local machine don't match.<br>
+</p>
+<p align="justify">
+ The pipe into <code>tee</code> writes a copy of whatever the script shows you into a file in <code>tmp/</code> of a random name that comes from the current time. Finally, the script shows you this file so that you can comfortably look into it. These files are not removed so eventually you'll have to clean your <code>tmp/</code>.
+</p>
+<p align="justify">
+ <b>Actually, the above script doesn't do anything</b> except showing you what would happen if you were serious, se let's call it <code>emathssynctest</code>. <b>To do the real thing</b>, make a copy and call it <code>emathssync</code> in which you remove "TEST" everywhere and replace <code>-nrvauzi</code> by <code>-rvauzi</code>.
+</p>
+<p align="justify">
+ It is also useful to compare your local files to those on <code>e.maths</code>, i.e., run the script backwards. This is simply achieved by swapping <code>/home/[username]/</code> and <code>[username]@e.maths.bris.ac.uk:/home/[username]/</code> above, and change "to e.maths" to "from e.maths". This will show you if there is a file on the server that's missing locally, and if you are on multiple machines you could use this to make sure all desktops are kept synced.
+</p>
+<p align="justify">
+ Finally, changing the rsync line to 
+</p>
+<pre class="one">
+  rsync --timeout=120 -nrvauzzi --progress --no-group -e ssh /home/[username]/public_html/ [username]@personal-webpages.maths.bris.ac.uk:/home/[username]/public_html/ 2>&1|tee -a ~/tmp/sync_tmp$k.txt
+</pre>
+<p align="justify">
+ can be used to upload your maths webpage from your local machine.
+</p>
+</body>
+</html>
